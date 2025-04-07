@@ -46,11 +46,11 @@ module.exports = {
         },
       },
 
-      fontFamily: {
-        // sans: ["var(--font-alpino)", "sans-serif"],
-        sans: ["var(--font-lora)", "sans-serif"], // Default font
-        body: ["var(--font-montserrat)", "sans-serif"], // For paragraphs
-      },
+      // fontFamily: {
+      //   // sans: ["var(--font-alpino)", "sans-serif"],
+      //   sans: ["var(--font-montserrat)", "sans-serif"], // Default font
+      //   body: ["var(--font-wix)", "sans-serif"], // For paragraphs
+      // },
       keyframes: {
         "slide-left": {
           "0%": { transform: "translateX(0)" },

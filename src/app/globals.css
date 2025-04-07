@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+  font-family: var(--font-redhat); /* Use Roslindale for headings */
+}
+
+:root {
+  --foreground-color: #222222; /* Default: Black */
+  --background-start-color: #fafafa; /* background start color */
+  --background-end-color: #fafafa; /* background end color */
+}
+[data-theme="light"] {
+  --foreground-color: #fff4dd; /* White text */
+  --background-start-color: #1a1a1a; /* background start color */
+  --background-end-color: #1a1a1a; /* background end color */
+  /* --font-roslindale: 'RoslindaleVariable-VF-Testing', serif;
+        --font-montserrat: 'Montserrat', sans-serif; */
+}
+
+html {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  color: var(--foreground-color);
+  font-family: var(--font-montserrat); /* Default body font */
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--background-end-color)
+    )
+    var(--background-start-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  overflow-x: hidden;
+}

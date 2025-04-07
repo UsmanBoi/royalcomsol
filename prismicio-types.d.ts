@@ -4,22 +4,103 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HeaderDocumentDataSlicesSlice = never;
-
 /**
  * Content for Header documents
  */
 interface HeaderDocumentData {
   /**
-   * `slices` field in *Header*
+   * Title field in *Header*
    *
-   * - **Field Type**: Slice Zone
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: header.slices[]
+   * - **API ID Path**: header.title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  slices: prismic.SliceZone<HeaderDocumentDataSlicesSlice>;
+  title: prismic.KeyTextField;
+
+  /**
+   * Home field in *Header*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: home button
+   * - **API ID Path**: header.home
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  home: prismic.KeyTextField;
+
+  /**
+   * HomeLink field in *Header*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.homelink
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  homelink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Theme Button field in *Header*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: header.theme_button
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  theme_button: prismic.BooleanField;
+
+  /**
+   * Menu Icon field in *Header*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: header.menu_icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  menu_icon: prismic.BooleanField /**
+   * Meta Title field in *Header*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.meta_title
+   * - **Tab**: SEO and Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Header*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.meta_description
+   * - **Tab**: SEO and Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * OG Image field in *Header*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.og_image
+   * - **Tab**: SEO and Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  og_image: prismic.ImageField<never>;
 }
 
 /**
@@ -37,6 +118,107 @@ export type HeaderDocument<Lang extends string = string> =
     "header",
     Lang
   >;
+
+/**
+ * Item in *Menu → Menu Links*
+ */
+export interface MenuDocumentDataMenuLinksItem {
+  /**
+   * Link Title field in *Menu → Menu Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menu_links[].link_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_title: prismic.KeyTextField;
+
+  /**
+   * Link Url field in *Menu → Menu Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menu_links[].link_url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Menu documents
+ */
+interface MenuDocumentData {
+  /**
+   * Title field in *Menu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Menu Links field in *Menu*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menu_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menu_links: prismic.GroupField<Simplify<MenuDocumentDataMenuLinksItem>> /**
+   * Meta Title field in *Menu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.meta_title
+   * - **Tab**: SEO and MetaData
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Menu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.meta_description
+   * - **Tab**: SEO and MetaData
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * OG Image field in *Menu*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.og_image
+   * - **Tab**: SEO and MetaData
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  og_image: prismic.ImageField<never>;
+}
+
+/**
+ * Menu document from Prismic
+ *
+ * - **API ID**: `menu`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MenuDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
 type PageDocumentDataSlicesSlice = HeroSlice;
 
@@ -110,7 +292,59 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = HeaderDocument | PageDocument;
+export type AllDocumentTypes = HeaderDocument | MenuDocument | PageDocument;
+
+/**
+ * Primary content in *Dummy → Default → Primary*
+ */
+export interface DummySliceDefaultPrimary {
+  /**
+   * dummy title field in *Dummy → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: dummy.default.primary.dummy_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  dummy_title: prismic.KeyTextField;
+
+  /**
+   * dummy text field in *Dummy → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: dummy.default.primary.dummy_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  dummy_text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Dummy Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DummySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<DummySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Dummy*
+ */
+type DummySliceVariation = DummySliceDefault;
+
+/**
+ * Dummy Shared Slice
+ *
+ * - **API ID**: `dummy`
+ * - **Description**: Dummy
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DummySlice = prismic.SharedSlice<"dummy", DummySliceVariation>;
 
 /**
  * Item in *Hero → Default → Primary → CTA Buttons*
@@ -275,11 +509,17 @@ declare module "@prismicio/client" {
     export type {
       HeaderDocument,
       HeaderDocumentData,
-      HeaderDocumentDataSlicesSlice,
+      MenuDocument,
+      MenuDocumentData,
+      MenuDocumentDataMenuLinksItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      DummySlice,
+      DummySliceDefaultPrimary,
+      DummySliceVariation,
+      DummySliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,

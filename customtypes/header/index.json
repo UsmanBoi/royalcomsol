@@ -6,9 +6,72 @@
   "status": true,
   "json": {
     "Main": {
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone"
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "home": {
+        "type": "Text",
+        "config": {
+          "label": "Home",
+          "placeholder": "home button"
+        }
+      },
+      "homelink": {
+        "type": "Link",
+        "config": {
+          "label": "HomeLink",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "theme_button": {
+        "type": "Boolean",
+        "config": {
+          "label": "Theme Button",
+          "placeholder_false": "dark",
+          "placeholder_true": "light",
+          "default_value": true
+        }
+      },
+      "menu_icon": {
+        "type": "Boolean",
+        "config": {
+          "label": "Menu Icon",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      }
+    },
+    "SEO and Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": ""
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": ""
+        }
+      },
+      "og_image": {
+        "type": "Image",
+        "config": {
+          "label": "OG Image",
+          "constraint": {},
+          "thumbnails": []
+        }
       }
     }
   }

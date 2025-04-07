@@ -1,14 +1,16 @@
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import "./globals.css";
-import { Inter, Lora, Montserrat } from "next/font/google";
+import { ThemeProvider } from "./context/themecontext";
+import { Montserrat, Red_Hat_Display } from "next/font/google";
+import Header from "./components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+// const urban = Urbanist({ subsets: ["latin"] });
 
-const LoraFont = Lora({
+const redHatFont = Red_Hat_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-lora", // Custom variable for the font
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-redhat", // Custom variable for the font
 });
 
 const montserratFont = Montserrat({
@@ -25,9 +27,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserratFont.variable} ${LoraFont.variable} no-scrollbar`}
+      className={`${montserratFont.variable} ${redHatFont.variable} no-scrollbar`}
     >
-      <body className={inter.className}>{children}</body>
+      <body className={`text-mywhite-200`}>
+        <ThemeProvider>
+          <div>
+            <Header />
+          </div>
+          {children}
+        </ThemeProvider>
+      </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
   );

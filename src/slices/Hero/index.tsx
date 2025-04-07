@@ -21,13 +21,13 @@ const Hero: FC<HeroProps> = ({ slice }) => (
   <Bounded
     data-slice-type={slice.slice_type}
     data-slice-variation={slice.variation}
-    className="relative flex h-[70em] w-screen flex-col items-center"
+    className="relative flex h-screen w-screen flex-col items-center"
   >
     <div className="absolute top-0 -z-10 h-fit">
       <PrismicNextImage
         priority
         field={slice.primary.hero_image}
-        className="h-[70em] w-screen object-cover object-center"
+        className="h-full w-full object-cover object-center"
       />
     </div>
 
@@ -37,18 +37,18 @@ const Hero: FC<HeroProps> = ({ slice }) => (
     {/* Content */}
 
     <div
-      className={`absolute left-10 top-32 z-20 mr-20 flex h-[14rem] w-fit max-w-[30rem] -translate-y-1/2 transform flex-col justify-center gap-2 rounded-lg bg-gradient-to-br from-transparent/15 via-transparent/25 to-black/30 p-6 shadow-lg backdrop-blur-[6px] sm:top-1/2 sm:h-auto sm:gap-4 lg:left-16 lg:mr-0 lg:max-w-[45rem] 2xl:max-w-[52rem]`}
+      className={`absolute left-10 top-1/2 z-20 mr-20 flex h-auto w-fit max-w-[30rem] -translate-y-1/2 transform flex-col justify-center gap-2 rounded-lg bg-gradient-to-br from-transparent/15 via-transparent/25 to-black/30 p-6 shadow-lg backdrop-blur-[6px] sm:gap-4 lg:left-16 lg:mr-0 lg:max-w-[36rem] xl:max-w-[45rem] 2xl:max-w-[52rem]`}
     >
       <div className="flex h-full flex-col justify-center gap-10 self-start px-2 pb-[2.5%]">
-        <div className="flex flex-col gap-y-5">
-          <h1 className="text-[66px] font-semibold leading-[1.2]">
+        <div className="flex flex-col gap-y-4">
+          <h1 className="text-2xl font-semibold leading-[1.2] lg:text-3xl xl:text-5xl 2xl:text-[66px]">
             {slice.primary.heading}
           </h1>
-          <h2 className="text-2xl font-extralight italic">
+          <h2 className="text-xl font-extralight italic xl:text-2xl">
             {slice.primary.tagline}
           </h2>
         </div>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           {slice.primary.cta_buttons.map((item, index) => (
             <button
               className={`${index !== 0 ? "bg-blue-400" : "bg-red-400"} h-12 w-[8em] rounded`}

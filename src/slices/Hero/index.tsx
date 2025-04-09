@@ -27,7 +27,7 @@ const Hero: FC<HeroProps> = ({ slice }) => (
       <PrismicNextImage
         priority
         field={slice.primary.hero_image}
-        className="h-full w-full object-cover object-center"
+        className="h-full w-screen object-cover object-center"
       />
     </div>
 

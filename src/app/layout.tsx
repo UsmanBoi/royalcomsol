@@ -29,7 +29,7 @@ export default function RootLayout({
       lang="en"
       className={`${montserratFont.variable} ${redHatFont.variable} no-scrollbar`}
     >
-      <body className={`text-mywhite-200`}>
+      <body className={`text-myblack-200`}>
         <ThemeProvider>
           <div>
             <Header />

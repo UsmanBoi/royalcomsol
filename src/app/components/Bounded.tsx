@@ -12,10 +12,8 @@ const Bounded = React.forwardRef<HTMLDivElement, BoundedProps>(
     return (
       <Comp
         ref={ref}
-        className={clsx(
-          `overflow-y-hidden px-4 py-10 md:px-6 md:py-14 lg:py-16`,
-          className,
-        )}
+        className={clsx(`px-4 md:px-6`, className)}
+        // className={clsx(` px-4 py-10 md:px-6 md:py-14 lg:py-16`, className)}
         {...restProps}
       >
         {children}

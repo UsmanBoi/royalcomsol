@@ -119,6 +119,78 @@ export type HeaderDocument<Lang extends string = string> =
     Lang
   >;
 
+type HomeDocumentDataSlicesSlice = AboutSlice | HeroSlice;
+
+/**
+ * Content for Home documents
+ */
+interface HomeDocumentData {
+  /**
+   * Title field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
+   * Meta Title field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: home.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: home.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Home*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Home document from Prismic
+ *
+ * - **API ID**: `home`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HomeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<HomeDocumentData>, "home", Lang>;
+
 /**
  * Item in *Menu → Menu Links*
  */
@@ -292,78 +364,92 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = HeaderDocument | MenuDocument | PageDocument;
+export type AllDocumentTypes =
+  | HeaderDocument
+  | HomeDocument
+  | MenuDocument
+  | PageDocument;
 
 /**
- * Primary content in *Dummy → Default → Primary*
+ * Primary content in *About → Default → Primary*
  */
-export interface DummySliceDefaultPrimary {
+export interface AboutSliceDefaultPrimary {
   /**
-   * dummy title field in *Dummy → Default → Primary*
+   * About Image field in *About → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: dummy.default.primary.dummy_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: about.default.primary.about_image
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  dummy_title: prismic.KeyTextField;
+  about_image: prismic.ImageField<never>;
 
   /**
-   * dummy text field in *Dummy → Default → Primary*
+   * About Content field in *About → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: dummy.default.primary.dummy_text
+   * - **API ID Path**: about.default.primary.about_content
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  dummy_text: prismic.RichTextField;
+  about_content: prismic.RichTextField;
 }
 
 /**
- * Default variation for Dummy Slice
+ * Default variation for About Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type DummySliceDefault = prismic.SharedSliceVariation<
+export type AboutSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<DummySliceDefaultPrimary>,
+  Simplify<AboutSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *Dummy*
+ * Slice variation for *About*
  */
-type DummySliceVariation = DummySliceDefault;
+type AboutSliceVariation = AboutSliceDefault;
 
 /**
- * Dummy Shared Slice
+ * About Shared Slice
  *
- * - **API ID**: `dummy`
- * - **Description**: Dummy
+ * - **API ID**: `about`
+ * - **Description**: About
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type DummySlice = prismic.SharedSlice<"dummy", DummySliceVariation>;
+export type AboutSlice = prismic.SharedSlice<"about", AboutSliceVariation>;
 
 /**
  * Item in *Hero → Default → Primary → CTA Buttons*
  */
 export interface HeroSliceDefaultPrimaryCtaButtonsItem {
   /**
-   * CTA field in *Hero → Default → Primary → CTA Buttons*
+   * Link Title field in *Hero → Default → Primary → CTA Buttons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.cta_buttons[].link_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_title: prismic.KeyTextField;
+
+  /**
+   * link_url field in *Hero → Default → Primary → CTA Buttons*
    *
    * - **Field Type**: Link
-   * - **Placeholder**: place cta here
-   * - **API ID Path**: hero.default.primary.cta_buttons[].cta
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.cta_buttons[].link_url
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField<
+  link_url: prismic.LinkField<
     string,
     string,
     unknown,
     prismic.FieldState,
-    "Primary" | "Secondary"
+    never
   >;
 }
 
@@ -509,6 +595,9 @@ declare module "@prismicio/client" {
     export type {
       HeaderDocument,
       HeaderDocumentData,
+      HomeDocument,
+      HomeDocumentData,
+      HomeDocumentDataSlicesSlice,
       MenuDocument,
       MenuDocumentData,
       MenuDocumentDataMenuLinksItem,
@@ -516,10 +605,10 @@ declare module "@prismicio/client" {
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       AllDocumentTypes,
-      DummySlice,
-      DummySliceDefaultPrimary,
-      DummySliceVariation,
-      DummySliceDefault,
+      AboutSlice,
+      AboutSliceDefaultPrimary,
+      AboutSliceVariation,
+      AboutSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,

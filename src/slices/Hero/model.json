@@ -32,19 +32,22 @@
             "label": "CTA Buttons",
             "repeat": true,
             "fields": {
-              "cta": {
+              "link_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Link Title",
+                  "placeholder": ""
+                }
+              },
+              "link_url": {
                 "type": "Link",
                 "config": {
-                  "label": "CTA",
-                  "placeholder": "place cta here",
+                  "label": "link_url",
+                  "placeholder": "",
                   "select": null,
                   "allowTargetBlank": true,
                   "allowText": true,
-                  "repeat": false,
-                  "variants": [
-                    "Primary",
-                    "Secondary"
-                  ]
+                  "repeat": false
                 }
               }
             }

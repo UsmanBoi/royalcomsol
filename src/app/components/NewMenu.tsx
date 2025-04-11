@@ -2,6 +2,7 @@
 import { PrismicLink } from "@prismicio/react";
 import React, { useEffect, useState } from "react";
 import { getCurrentScreenSize } from "../constants.js";
+import { PrismicNextLink } from "@prismicio/next";
 
 export default function NewMenu({ menuLinks }) {
   const [open, setOpen] = useState(false);
@@ -33,11 +34,11 @@ export default function NewMenu({ menuLinks }) {
                       : { transitionDelay: `${200 + index * 100}ms` }
                   }
                 >
-                  <PrismicLink field={item.link_url} className="">
+                  <PrismicNextLink field={item.link_url} className="">
                     <span className="px-5 text-mywhite-50">
                       {item.link_title}
                     </span>
-                  </PrismicLink>
+                  </PrismicNextLink>
                 </button>
               ))}
             </div>

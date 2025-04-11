@@ -8,7 +8,7 @@ export default async function Header() {
   const header = await client.getSingle("header");
   return (
     <header className="z-50 grid h-24 grid-cols-[1fr_1fr] items-center justify-between bg-neutral-50 px-3 sm:px-4 md:sticky md:top-4 lg:grid-cols-[2fr_3fr] lg:px-12 xl:px-16 2xl:px-20">
-      <Menu extraStyle="order-2" />
+      <Menu extraStyle="order-2" pageName="header" />
       <PrismicLink
         field={header.data.homelink}
         aria-label="Home Button"

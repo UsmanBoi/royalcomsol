@@ -17,7 +17,7 @@ const About: FC<AboutProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="my-20 flex h-[42rem] flex-col items-center gap-4 lg:h-[50rem]"
+      className="my-10 flex h-[42rem] flex-col items-center gap-4 lg:h-[50rem]"
     >
       <h1 className="text-center text-7xl font-bold text-red-600">About Us</h1>
       <div className="grid h-full w-full max-w-6xl grid-cols-[1fr_1fr] place-items-center justify-items-center py-14">

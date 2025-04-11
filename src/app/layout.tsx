@@ -30,15 +30,11 @@ export default function RootLayout({
       lang="en"
       className={`${montserratFont.variable} ${redHatFont.variable} no-scrollbar`}
     >
-      <body className={`text-myblack-200`}>
+      <body className={`no-scrollbar text-myblack-200`}>
         <ThemeProvider>
-          <div>
-            <Header />
-          </div>
+          <Header />
           {children}
-          <div>
-            <Footer extraStyle="text-mywhite-200 bg-myblack-100" />
-          </div>
+          <Footer extraStyle="text-mywhite-200 bg-myblack-100" />
         </ThemeProvider>
       </body>
       <PrismicPreview repositoryName={repositoryName} />

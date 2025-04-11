@@ -11,7 +11,7 @@ h1 {
   --background-start-color: #fafafa; /* background start color */
   --background-end-color: #fafafa; /* background end color */
 }
-[data-theme="light"] {
+[data-theme="dark"] {
   --foreground-color: #fff4dd; /* White text */
   --background-start-color: #1a1a1a; /* background start color */
   --background-end-color: #1a1a1a; /* background end color */

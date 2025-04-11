@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "./context/themecontext";
 import { Montserrat, Red_Hat_Display } from "next/font/google";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // const urban = Urbanist({ subsets: ["latin"] });
 
@@ -35,6 +36,9 @@ export default function RootLayout({
             <Header />
           </div>
           {children}
+          <div>
+            <Footer extraStyle="text-mywhite-200 bg-myblack-100" />
+          </div>
         </ThemeProvider>
       </body>
       <PrismicPreview repositoryName={repositoryName} />

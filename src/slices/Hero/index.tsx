@@ -53,7 +53,7 @@ const Hero: FC<HeroProps> = ({ slice }) => (
             <PrismicLink field={item.link_url} key={index}>
               <button
                 key={index}
-                className={`${index !== 0 ? "bg-blue-400" : "bg-red-400"} h-12 w-[8em] rounded`}
+                className={`${index !== 0 ? "bg-blue-400" : "bg-red-500"} h-12 w-[8em] rounded`}
               >
                 <span className="px-1">{item.link_title} </span>
               </button>

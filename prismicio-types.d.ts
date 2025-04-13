@@ -405,7 +405,7 @@ interface MenuDocumentData {
 export type MenuDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
-type PageDocumentDataSlicesSlice = HeroSlice;
+type PageDocumentDataSlicesSlice = ServicesSlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -686,6 +686,108 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Item in *Services → Default → Primary → Service Data*
+ */
+export interface ServicesSliceDefaultPrimaryServiceDataItem {
+  /**
+   * Service Title field in *Services → Default → Primary → Service Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.service_data[].service_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_title: prismic.KeyTextField;
+
+  /**
+   * Service Image field in *Services → Default → Primary → Service Data*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.service_data[].service_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  service_image: prismic.ImageField<never>;
+
+  /**
+   * Service Content 1 field in *Services → Default → Primary → Service Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.service_data[].service_content_1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_content_1: prismic.KeyTextField;
+
+  /**
+   * Service Content 2 field in *Services → Default → Primary → Service Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.service_data[].service_content_2
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_content_2: prismic.KeyTextField;
+
+  /**
+   * Service Content 3 field in *Services → Default → Primary → Service Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.service_data[].service_content_3
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_content_3: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Services → Default → Primary*
+ */
+export interface ServicesSliceDefaultPrimary {
+  /**
+   * Service Data field in *Services → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.default.primary.service_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  service_data: prismic.GroupField<
+    Simplify<ServicesSliceDefaultPrimaryServiceDataItem>
+  >;
+}
+
+/**
+ * Default variation for Services Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ServicesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Services*
+ */
+type ServicesSliceVariation = ServicesSliceDefault;
+
+/**
+ * Services Shared Slice
+ *
+ * - **API ID**: `services`
+ * - **Description**: Services
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServicesSlice = prismic.SharedSlice<
+  "services",
+  ServicesSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -734,6 +836,11 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ServicesSlice,
+      ServicesSliceDefaultPrimaryServiceDataItem,
+      ServicesSliceDefaultPrimary,
+      ServicesSliceVariation,
+      ServicesSliceDefault,
     };
   }
 }

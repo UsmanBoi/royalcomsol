@@ -21,7 +21,7 @@ const Services: FC<ServicesProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="grid grid-cols-[1fr_2fr] gap-10"
+      className="grid grid-cols-[2fr_3fr] gap-10"
     >
       <div className="">
         {slice.primary.service_data.map((service, id) => (
@@ -29,7 +29,7 @@ const Services: FC<ServicesProps> = ({ slice }) => {
             <button onClick={() => toggleContent(id)} key={id} type="button">
               <h1
                 key={id}
-                className={`font-space text-start font-bold tracking-tight transition-all duration-500 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl max-sm:text-3xl ${
+                className={`text-start text-2xl font-bold tracking-tight transition-all duration-500 md:text-3xl lg:text-4xl 2xl:text-2xl ${
                   currentService === id ? "text-blue-200" : "text-zinc-600"
                 } `}
               >
@@ -40,29 +40,36 @@ const Services: FC<ServicesProps> = ({ slice }) => {
         ))}
       </div>
 
-      <div className="flex h-full w-screen justify-between gap-6">
+      <div className="relative h-full w-screen">
         {slice.primary.service_data.map((service, id) => (
           <div
-            className={`flex flex-col gap-2 ${
-              currentService === id ? "-translate-y-20" : ""
+            className={`absolute left-0 top-0 flex flex-col gap-2 ${
+              currentService === id
+                ? "-translate-y-0"
+                : "-translate-y-80 opacity-0"
             } transition-all duration-200 ease-linear`}
             key={id}
           >
-            <h1>{service.service_title}</h1>
+            <h1 className="">
+              {currentService === id ? service.service_title : ""}
+            </h1>
             <div className="relative order-2 h-[20rem] w-fit lg:h-[30rem]">
               <PrismicNextImage
-                field={service.service_image}
+                field={currentService === id ? service.service_image : {}}
                 alt=""
                 className="h-full w-full rounded-2xl object-cover object-center"
               />
             </div>
             <p className="order-1 flex h-full max-w-xs flex-col justify-center gap-2 pr-6 text-xs sm:text-sm md:text-base">
-              {service.service_content_1}
+              {currentService === id ? service.service_content_1 : ""}
             </p>
             <p
               key={id}
-              className={`font-saira absolute right-0 block max-w-sm text-sm font-medium tracking-wide transition-all duration-500 ease-in-out sm:text-xl lg:text-2xl xl:max-w-md 2xl:max-w-lg`}
-            ></p>
+              className={`max-w-sm text-sm font-medium tracking-wide transition-all duration-500 ease-in-out sm:text-xl lg:text-2xl xl:max-w-md 2xl:max-w-lg`}
+            >
+              {" "}
+              {currentService === id ? service.service_content_2 : ""}
+            </p>
           </div>
         ))}
       </div>

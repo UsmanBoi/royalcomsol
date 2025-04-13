@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={`no-scrollbar text-myblack-200`}>
         <ThemeProvider>
           <Header />
-          {children}
+          <div className="min-h-[80vh]">{children}</div>
           <Footer extraStyle="text-mywhite-200 bg-myblack-100" />
         </ThemeProvider>
       </body>

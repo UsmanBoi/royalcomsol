@@ -1,0 +1,115 @@
+{
+  "id": "benefits",
+  "type": "SharedSlice",
+  "name": "Benefits",
+  "description": "Benefits",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "benefit_data": {
+          "type": "Group",
+          "config": {
+            "label": "Benefit Data",
+            "repeat": true,
+            "fields": {
+              "benefit_id": {
+                "type": "Number",
+                "config": {
+                  "label": "Benefit Id",
+                  "placeholder": ""
+                }
+              },
+              "benefit_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Title",
+                  "placeholder": ""
+                }
+              },
+              "benefit_headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Headline",
+                  "placeholder": ""
+                }
+              },
+              "benefit_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Benefit Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "benefit_content_1": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Content 1",
+                  "placeholder": ""
+                }
+              },
+              "benefit_content_2": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Content 2",
+                  "placeholder": ""
+                }
+              },
+              "benefit_content_3": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Content 3",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "benefits_points": {
+          "type": "Group",
+          "config": {
+            "label": "Benefits Points",
+            "repeat": true,
+            "fields": {
+              "benefit_point_id": {
+                "type": "Number",
+                "config": {
+                  "label": "Benefit Point Id",
+                  "placeholder": ""
+                }
+              },
+              "benefit_point_1": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Point 1",
+                  "placeholder": ""
+                }
+              },
+              "benefit_point_2": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Point 2",
+                  "placeholder": ""
+                }
+              },
+              "benefit_point_3": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Point 3",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

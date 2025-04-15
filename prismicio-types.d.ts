@@ -405,7 +405,7 @@ interface MenuDocumentData {
 export type MenuDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
-type PageDocumentDataSlicesSlice = ServicesSlice | HeroSlice;
+type PageDocumentDataSlicesSlice = BenefitsSlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -535,6 +535,185 @@ type AboutSliceVariation = AboutSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type AboutSlice = prismic.SharedSlice<"about", AboutSliceVariation>;
+
+/**
+ * Item in *Benefits → Default → Primary → Benefit Data*
+ */
+export interface BenefitsSliceDefaultPrimaryBenefitDataItem {
+  /**
+   * Benefit Id field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_id
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  benefit_id: prismic.NumberField;
+
+  /**
+   * Benefit Title field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_title: prismic.KeyTextField;
+
+  /**
+   * Benefit Headline field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_headline: prismic.KeyTextField;
+
+  /**
+   * Benefit Image field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  benefit_image: prismic.ImageField<never>;
+
+  /**
+   * Benefit Content 1 field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_content_1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_content_1: prismic.KeyTextField;
+
+  /**
+   * Benefit Content 2 field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_content_2
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_content_2: prismic.KeyTextField;
+
+  /**
+   * Benefit Content 3 field in *Benefits → Default → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[].benefit_content_3
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_content_3: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Benefits → Default → Primary → Benefits Points*
+ */
+export interface BenefitsSliceDefaultPrimaryBenefitsPointsItem {
+  /**
+   * Benefit Point Id field in *Benefits → Default → Primary → Benefits Points*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefits_points[].benefit_point_id
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  benefit_point_id: prismic.NumberField;
+
+  /**
+   * Benefit Point 1 field in *Benefits → Default → Primary → Benefits Points*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefits_points[].benefit_point_1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_point_1: prismic.KeyTextField;
+
+  /**
+   * Benefit Point 2 field in *Benefits → Default → Primary → Benefits Points*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefits_points[].benefit_point_2
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_point_2: prismic.KeyTextField;
+
+  /**
+   * Benefit Point 3 field in *Benefits → Default → Primary → Benefits Points*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefits_points[].benefit_point_3
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_point_3: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Benefits → Default → Primary*
+ */
+export interface BenefitsSliceDefaultPrimary {
+  /**
+   * Benefit Data field in *Benefits → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefit_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  benefit_data: prismic.GroupField<
+    Simplify<BenefitsSliceDefaultPrimaryBenefitDataItem>
+  >;
+
+  /**
+   * Benefits Points field in *Benefits → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.default.primary.benefits_points[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  benefits_points: prismic.GroupField<
+    Simplify<BenefitsSliceDefaultPrimaryBenefitsPointsItem>
+  >;
+}
+
+/**
+ * Default variation for Benefits Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BenefitsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BenefitsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Benefits*
+ */
+type BenefitsSliceVariation = BenefitsSliceDefault;
+
+/**
+ * Benefits Shared Slice
+ *
+ * - **API ID**: `benefits`
+ * - **Description**: Benefits
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BenefitsSlice = prismic.SharedSlice<
+  "benefits",
+  BenefitsSliceVariation
+>;
 
 /**
  * Item in *Hero → Default → Primary → CTA Buttons*
@@ -686,108 +865,6 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
-/**
- * Item in *Services → Default → Primary → Service Data*
- */
-export interface ServicesSliceDefaultPrimaryServiceDataItem {
-  /**
-   * Service Title field in *Services → Default → Primary → Service Data*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.default.primary.service_data[].service_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  service_title: prismic.KeyTextField;
-
-  /**
-   * Service Image field in *Services → Default → Primary → Service Data*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.default.primary.service_data[].service_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  service_image: prismic.ImageField<never>;
-
-  /**
-   * Service Content 1 field in *Services → Default → Primary → Service Data*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.default.primary.service_data[].service_content_1
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  service_content_1: prismic.KeyTextField;
-
-  /**
-   * Service Content 2 field in *Services → Default → Primary → Service Data*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.default.primary.service_data[].service_content_2
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  service_content_2: prismic.KeyTextField;
-
-  /**
-   * Service Content 3 field in *Services → Default → Primary → Service Data*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.default.primary.service_data[].service_content_3
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  service_content_3: prismic.KeyTextField;
-}
-
-/**
- * Primary content in *Services → Default → Primary*
- */
-export interface ServicesSliceDefaultPrimary {
-  /**
-   * Service Data field in *Services → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.default.primary.service_data[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  service_data: prismic.GroupField<
-    Simplify<ServicesSliceDefaultPrimaryServiceDataItem>
-  >;
-}
-
-/**
- * Default variation for Services Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ServicesSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ServicesSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Services*
- */
-type ServicesSliceVariation = ServicesSliceDefault;
-
-/**
- * Services Shared Slice
- *
- * - **API ID**: `services`
- * - **Description**: Services
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ServicesSlice = prismic.SharedSlice<
-  "services",
-  ServicesSliceVariation
->;
-
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -827,6 +904,12 @@ declare module "@prismicio/client" {
       AboutSliceDefaultPrimary,
       AboutSliceVariation,
       AboutSliceDefault,
+      BenefitsSlice,
+      BenefitsSliceDefaultPrimaryBenefitDataItem,
+      BenefitsSliceDefaultPrimaryBenefitsPointsItem,
+      BenefitsSliceDefaultPrimary,
+      BenefitsSliceVariation,
+      BenefitsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,
@@ -836,11 +919,6 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
-      ServicesSlice,
-      ServicesSliceDefaultPrimaryServiceDataItem,
-      ServicesSliceDefaultPrimary,
-      ServicesSliceVariation,
-      ServicesSliceDefault,
     };
   }
 }

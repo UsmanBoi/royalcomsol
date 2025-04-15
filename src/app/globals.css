@@ -7,14 +7,15 @@ h1 {
 }
 
 :root {
-  --foreground-color: #222222; /* Default: Black */
+  --foreground-color: #1a1a1a; /* Default: Black */
   --background-start-color: #fafafa; /* background start color */
   --background-end-color: #fafafa; /* background end color */
 }
+
 [data-theme="dark"] {
-  --foreground-color: #fff4dd; /* White text */
-  --background-start-color: #1a1a1a; /* background start color */
-  --background-end-color: #1a1a1a; /* background end color */
+  --foreground-color: #fafafa; /* White text */
+  --background-start-color: #333333; /* background start color */
+  --background-end-color: #333333; /* background end color */
   /* --font-roslindale: 'RoslindaleVariable-VF-Testing', serif;
         --font-montserrat: 'Montserrat', sans-serif; */
 }

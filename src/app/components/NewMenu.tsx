@@ -3,6 +3,8 @@ import { PrismicLink } from "@prismicio/react";
 import React, { useEffect, useState } from "react";
 import { getCurrentScreenSize } from "../constants.js";
 import { PrismicNextLink } from "@prismicio/next";
+import { useTheme } from "../context/themecontext.js";
+import ThemeToggle from "./ui/ThemeToggle";
 
 export default function NewMenu({ menuLinks }) {
   const [open, setOpen] = useState(false);
@@ -19,7 +21,7 @@ export default function NewMenu({ menuLinks }) {
   return (
     <>
       <div
-        className={`fixed inset-0 z-50 bg-myblack-150/85 backdrop-blur-[8px] transition-all duration-300 ease-in-out ${open ? "translate-x-0 delay-150" : "translate-x-full delay-500"}`}
+        className={`fixed inset-0 z-50 h-screen w-screen bg-myblack-150/85 backdrop-blur-[8px] transition-all duration-300 ease-in-out ${open ? "translate-x-0 delay-150" : "translate-x-full delay-500"}`}
       >
         <div className="flex items-center justify-center gap-8">
           <div className="mt-8">
@@ -28,6 +30,7 @@ export default function NewMenu({ menuLinks }) {
                 <button
                   className={`h-10 w-fit rounded-full bg-red-500 transition-all duration-300 ease-in-out ${open ? "translate-y-0" : "-translate-y-20"}`}
                   key={index}
+                  onClick={toggleMenu}
                   style={
                     open
                       ? { transitionDelay: `${600 + index * 100}ms` }

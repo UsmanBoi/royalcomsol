@@ -9,7 +9,7 @@ export default async function Footer({ extraStyle }) {
   const footer = await client.getSingle("footer");
   return (
     <footer
-      className={`${extraStyle} mt-20 grid h-full grid-cols-[1fr_1fr] items-center justify-end gap-x-6 px-4 py-10 sm:grid-cols-[2fr_2fr_3fr] md:sticky md:top-4 lg:justify-between lg:pl-10`}
+      className={`${extraStyle} mt-10 grid max-h-64 grid-cols-[1fr_1fr] items-center justify-end gap-x-6 px-4 py-10 sm:grid-cols-[2fr_2fr_3fr] md:sticky md:top-4 lg:justify-between lg:pl-10`}
     >
       <div className="flex flex-col gap-4">
         <PrismicNextLink field={footer.data.home_link}>
@@ -20,7 +20,7 @@ export default async function Footer({ extraStyle }) {
           <span className="sm:w-60">{footer.data.address}</span>
         </div>
       </div>
-      <div className="flex flex-col gap-2 max-sm:hidden">
+      <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold uppercase">Company</h2>
         <Menu extraStyle="flex flex-col " pageName="footer" />
       </div>

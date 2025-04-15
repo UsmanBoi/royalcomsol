@@ -7,7 +7,7 @@ h1 {
 }
 
 :root {
-  --foreground-color: #1a1a1a; /* Default: Black */
+  --foreground-color: #111111; /* Default: Black */
   --background-start-color: #fafafa; /* background start color */
   --background-end-color: #fafafa; /* background end color */
 }

@@ -7,7 +7,6 @@ import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
 import { paddingClass } from "@/app/constants";
 import { GoDotFill } from "react-icons/go";
-
 /**
  * Props for `Benefits`.
  */

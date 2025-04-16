@@ -34,11 +34,68 @@
             "thumbnails": []
           }
         },
-        "service_content_1": {
-          "type": "Text",
+        "service_link": {
+          "type": "Link",
           "config": {
-            "label": "Service Content 1",
-            "placeholder": ""
+            "label": "Service Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "homeService",
+      "name": "homeService",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "service_data": {
+          "type": "Group",
+          "config": {
+            "label": "Service Data",
+            "repeat": true,
+            "fields": {
+              "service_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Service Title",
+                  "placeholder": ""
+                }
+              },
+              "service_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Service Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "service_headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Service Headline",
+                  "placeholder": ""
+                }
+              },
+              "service_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Service Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
           }
         }
       },

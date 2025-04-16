@@ -7,4 +7,5 @@ export const components = {
   benefits: dynamic(() => import("./Benefits")),
   hero: dynamic(() => import("./Hero")),
   rich_text: dynamic(() => import("./RichText")),
+  service: dynamic(() => import("./Service")),
 };

@@ -1,0 +1,48 @@
+{
+  "id": "service",
+  "type": "SharedSlice",
+  "name": "Service",
+  "description": "Service",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "service_title": {
+          "type": "Text",
+          "config": {
+            "label": "Service Title",
+            "placeholder": ""
+          }
+        },
+        "service_headline": {
+          "type": "Text",
+          "config": {
+            "label": "Service Headline",
+            "placeholder": ""
+          }
+        },
+        "service_image": {
+          "type": "Image",
+          "config": {
+            "label": "Service Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "service_content_1": {
+          "type": "Text",
+          "config": {
+            "label": "Service Content 1",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -477,49 +477,71 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type ServicesDocumentDataSlicesSlice = never;
+type ServicePostDocumentDataSlicesSlice = ServiceSlice;
 
 /**
- * Content for Services documents
+ * Content for service post documents
  */
-interface ServicesDocumentData {
+interface ServicePostDocumentData {
   /**
-   * Slice Zone field in *Services*
+   * Title field in *service post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service_post.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Headline field in *service post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service_post.headline
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  headline: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *service post*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.slices[]
+   * - **API ID Path**: service_post.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice> /**
-   * Meta Title field in *Services*
+  slices: prismic.SliceZone<ServicePostDocumentDataSlicesSlice> /**
+   * Meta Title field in *service post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: services.meta_title
+   * - **API ID Path**: service_post.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Services*
+   * Meta Description field in *service post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: services.meta_description
+   * - **API ID Path**: service_post.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Services*
+   * Meta Image field in *service post*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.meta_image
+   * - **API ID Path**: service_post.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -527,18 +549,18 @@ interface ServicesDocumentData {
 }
 
 /**
- * Services document from Prismic
+ * service post document from Prismic
  *
- * - **API ID**: `services`
+ * - **API ID**: `service_post`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ServicesDocument<Lang extends string = string> =
+export type ServicePostDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<ServicesDocumentData>,
-    "services",
+    Simplify<ServicePostDocumentData>,
+    "service_post",
     Lang
   >;
 
@@ -548,7 +570,7 @@ export type AllDocumentTypes =
   | HomeDocument
   | MenuDocument
   | PageDocument
-  | ServicesDocument;
+  | ServicePostDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -931,6 +953,81 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Primary content in *Service → Default → Primary*
+ */
+export interface ServiceSliceDefaultPrimary {
+  /**
+   * Service Title field in *Service → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.default.primary.service_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_title: prismic.KeyTextField;
+
+  /**
+   * Service Headline field in *Service → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.default.primary.service_headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_headline: prismic.KeyTextField;
+
+  /**
+   * Service Image field in *Service → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.default.primary.service_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  service_image: prismic.ImageField<never>;
+
+  /**
+   * Service Content 1 field in *Service → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.default.primary.service_content_1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_content_1: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Service Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServiceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ServiceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Service*
+ */
+type ServiceSliceVariation = ServiceSliceDefault;
+
+/**
+ * Service Shared Slice
+ *
+ * - **API ID**: `service`
+ * - **Description**: Service
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServiceSlice = prismic.SharedSlice<
+  "service",
+  ServiceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -965,9 +1062,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
-      ServicesDocument,
-      ServicesDocumentData,
-      ServicesDocumentDataSlicesSlice,
+      ServicePostDocument,
+      ServicePostDocumentData,
+      ServicePostDocumentDataSlicesSlice,
       AllDocumentTypes,
       AboutSlice,
       AboutSliceDefaultPrimary,
@@ -988,6 +1085,10 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ServiceSlice,
+      ServiceSliceDefaultPrimary,
+      ServiceSliceVariation,
+      ServiceSliceDefault,
     };
   }
 }

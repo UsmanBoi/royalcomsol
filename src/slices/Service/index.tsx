@@ -2,6 +2,9 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
+import { paddingClass, secHeading } from "@/app/constants";
+// import { PrismicNextImage } from "@prismicio/next";
+import ServiceCard from "@/app/components/ui/ServiceCard";
 
 /**
  * Props for `Service`.
@@ -16,16 +19,11 @@ const Service: FC<ServiceProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className=""
+      className={`flex h-auto flex-col items-center gap-y-16 py-14 sm:gap-y-20 lg:py-20 ${paddingClass}`}
     >
-      <div className="flex h-80 flex-col gap-2 bg-pink-50">
-        {slice.variation === "homeService" &&
-          slice.primary.service_data.map((service, index) => (
-            <div className="flex flex-col gap-2" key={index}>
-              <h1>{service.service_title}</h1>
-              <h2>{service.service_headline}</h2>
-            </div>
-          ))}
+      <h1 className={`${secHeading}`}>{slice.primary.title}</h1>
+      <div className="grid h-full place-items-center gap-x-4 gap-y-6 justify-self-center md:grid-cols-2 md:gap-x-6 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-12 2xl:gap-y-[4.25rem]">
+        <ServiceCard cardData={slice.primary.service_data} />
       </div>
     </Bounded>
   ) : slice.variation === "default" ? (

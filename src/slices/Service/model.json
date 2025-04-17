@@ -56,6 +56,13 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
         "service_data": {
           "type": "Group",
           "config": {
@@ -66,6 +73,13 @@
                 "type": "Text",
                 "config": {
                   "label": "Service Title",
+                  "placeholder": ""
+                }
+              },
+              "service_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Service Description",
                   "placeholder": ""
                 }
               },

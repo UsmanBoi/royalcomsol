@@ -36,7 +36,7 @@ export default function RootLayout({
           <div className="mt-24 max-h-max min-h-[84svh] lg:min-h-[75lvh] 2xl:min-h-[71vh]">
             {children}
           </div>
-          <Footer extraStyle="text-mywhite-200 bg-myblack-100" />
+          <Footer extraStyle="text-mywhite-200 bg-myblack-50" />
         </ThemeProvider>
       </body>
       <PrismicPreview repositoryName={repositoryName} />

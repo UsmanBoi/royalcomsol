@@ -3,6 +3,7 @@ import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
+import { secHeading } from "@/app/constants";
 
 /**
  * Props for `About`.
@@ -17,9 +18,9 @@ const About: FC<AboutProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="my-10 flex h-[42rem] flex-col items-center gap-4 lg:h-[50rem]"
+      className="flex h-full min-h-[60rem] flex-col items-center gap-4 py-16 lg:h-[50rem]"
     >
-      <h1 className="text-center text-7xl font-bold text-red-600">About Us</h1>
+      <h1 className={`${secHeading}`}>About Us</h1>
       <div className="grid h-full w-full max-w-6xl grid-cols-[1fr_1fr] place-items-center justify-items-center py-14">
         <div className="relative order-2 h-[30rem] w-[12rem] md:w-[22rem] lg:h-[40rem] lg:w-[30rem]">
           <PrismicNextImage

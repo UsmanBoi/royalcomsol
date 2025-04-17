@@ -44,7 +44,7 @@ const Hero: FC<HeroProps> = ({ slice }) => (
           <h1 className="text-2xl font-semibold leading-[1.2] lg:text-3xl xl:text-5xl 2xl:text-[66px]">
             {slice.primary.heading}
           </h1>
-          <h2 className="text-xl font-extralight italic xl:text-2xl">
+          <h2 className="text-xl font-light italic xl:text-2xl">
             {slice.primary.tagline}
           </h2>
         </div>

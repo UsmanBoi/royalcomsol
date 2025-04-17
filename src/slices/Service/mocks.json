@@ -111,10 +111,23 @@
 										"text": "pass"
 									}
 								}
+							],
+							[
+								"service_description",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "environment",
+									"type": "Text"
+								}
 							]
 						]
 					}
 				]
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "simplest",
+				"type": "Text"
 			}
 		},
 		"items": [

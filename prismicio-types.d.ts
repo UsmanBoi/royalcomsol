@@ -968,6 +968,16 @@ export interface ServiceSliceHomeServicePrimaryServiceDataItem {
   service_title: prismic.KeyTextField;
 
   /**
+   * Service Description field in *Service → homeService → Primary → Service Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.homeService.primary.service_data[].service_description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_description: prismic.KeyTextField;
+
+  /**
    * Service Image field in *Service → homeService → Primary → Service Data*
    *
    * - **Field Type**: Image
@@ -1072,6 +1082,16 @@ export type ServiceSliceDefault = prismic.SharedSliceVariation<
  * Primary content in *Service → homeService → Primary*
  */
 export interface ServiceSliceHomeServicePrimary {
+  /**
+   * Title field in *Service → homeService → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.homeService.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
   /**
    * Service Data field in *Service → homeService → Primary*
    *

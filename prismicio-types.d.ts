@@ -232,7 +232,11 @@ export type HeaderDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomeDocumentDataSlicesSlice = ServiceSlice | AboutSlice | HeroSlice;
+type HomeDocumentDataSlicesSlice =
+  | BenefitsSlice
+  | ServiceSlice
+  | AboutSlice
+  | HeroSlice;
 
 /**
  * Content for Home documents
@@ -745,6 +749,51 @@ export interface BenefitsSliceDefaultPrimaryBenefitsPointsItem {
 }
 
 /**
+ * Item in *Benefits → homeBenefits → Primary → Benefit Data*
+ */
+export interface BenefitsSliceHomeBenefitsPrimaryBenefitDataItem {
+  /**
+   * Benefit Id field in *Benefits → homeBenefits → Primary → Benefit Data*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.benefit_data[].benefit_id
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  benefit_id: prismic.NumberField;
+
+  /**
+   * Benefit Title field in *Benefits → homeBenefits → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.benefit_data[].benefit_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_title: prismic.KeyTextField;
+
+  /**
+   * Benefit Headline field in *Benefits → homeBenefits → Primary → Benefit Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.benefit_data[].benefit_headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  benefit_headline: prismic.KeyTextField;
+
+  /**
+   * Benefit Image field in *Benefits → homeBenefits → Primary → Benefit Data*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.benefit_data[].benefit_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  benefit_image: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *Benefits → Default → Primary*
  */
 export interface BenefitsSliceDefaultPrimary {
@@ -787,9 +836,49 @@ export type BenefitsSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Benefits → homeBenefits → Primary*
+ */
+export interface BenefitsSliceHomeBenefitsPrimary {
+  /**
+   * Title field in *Benefits → homeBenefits → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Benefit Data field in *Benefits → homeBenefits → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.benefit_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  benefit_data: prismic.GroupField<
+    Simplify<BenefitsSliceHomeBenefitsPrimaryBenefitDataItem>
+  >;
+}
+
+/**
+ * homeBenefits variation for Benefits Slice
+ *
+ * - **API ID**: `homeBenefits`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BenefitsSliceHomeBenefits = prismic.SharedSliceVariation<
+  "homeBenefits",
+  Simplify<BenefitsSliceHomeBenefitsPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Benefits*
  */
-type BenefitsSliceVariation = BenefitsSliceDefault;
+type BenefitsSliceVariation = BenefitsSliceDefault | BenefitsSliceHomeBenefits;
 
 /**
  * Benefits Shared Slice
@@ -1181,8 +1270,11 @@ declare module "@prismicio/client" {
       BenefitsSliceDefaultPrimaryBenefitDataItem,
       BenefitsSliceDefaultPrimaryBenefitsPointsItem,
       BenefitsSliceDefaultPrimary,
+      BenefitsSliceHomeBenefitsPrimaryBenefitDataItem,
+      BenefitsSliceHomeBenefitsPrimary,
       BenefitsSliceVariation,
       BenefitsSliceDefault,
+      BenefitsSliceHomeBenefits,
       HeroSlice,
       HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,

@@ -1,6 +1,6 @@
 "use client";
 
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { useState } from "react";
 
 import React from "react";
@@ -28,20 +28,38 @@ const ServiceCard = ({ cardData }) => {
               >
                 {service.service_title}
               </h1>
-              <h2 className="min-h-10 text-sm font-light 2xl:text-base">
+              <h2 className="min-h-10 text-sm 2xl:text-base">
                 {service.service_headline}
               </h2>
             </div>
             <div className="relative flex max-h-64 w-full 2xl:max-h-80">
-              <p
-                className={`absolute left-0 top-1/4 w-full text-justify transition-all duration-300 ease-in-out ${
-                  content
-                    ? "translate-y-0 opacity-100"
-                    : "pointer-events-none translate-y-10 opacity-0"
-                }`}
+              <div
+                className={`absolute bottom-0 left-0 flex h-full w-full flex-col items-center justify-end gap-8`}
               >
-                {service?.service_description}
-              </p>
+                <p
+                  className={`w-full text-center text-xs font-light transition-all duration-300 ease-in-out sm:text-sm xl:text-base ${
+                    content
+                      ? "translate-y-0 opacity-100"
+                      : "pointer-events-none translate-y-10 opacity-0"
+                  }`}
+                >
+                  {service?.service_description}
+                </p>
+                <button
+                  className={`transition-all duration-300 ease-in-out ${
+                    content
+                      ? "translate-y-0 opacity-100 delay-75"
+                      : "pointer-events-none translate-y-12 opacity-0"
+                  } rounded bg-red-500 px-4 py-2`}
+                >
+                  <PrismicNextLink
+                    field={service?.service_link}
+                    className="text-sm"
+                  >
+                    Read More
+                  </PrismicNextLink>
+                </button>
+              </div>
 
               <PrismicNextImage
                 field={service?.service_image}

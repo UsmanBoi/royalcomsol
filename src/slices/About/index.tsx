@@ -18,18 +18,18 @@ const About: FC<AboutProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex h-full min-h-[60rem] flex-col items-center gap-4 py-16 lg:h-[50rem]"
+      className="flex h-full min-h-[60rem] flex-col items-center gap-8 py-16 lg:h-[50rem]"
     >
       <h1 className={`${secHeading}`}>About Us</h1>
-      <div className="grid h-full w-full max-w-6xl grid-cols-[1fr_1fr] place-items-center justify-items-center py-14">
-        <div className="relative order-2 h-[30rem] w-[12rem] md:w-[22rem] lg:h-[40rem] lg:w-[30rem]">
+      <div className="grid h-full w-full max-w-6xl place-items-center justify-items-center gap-x-2 gap-y-4 lg:grid-cols-[1fr_1fr]">
+        <div className="relative order-2 h-[30rem] w-full lg:h-[40rem] lg:w-[30rem]">
           <PrismicNextImage
             field={slice.primary.about_image}
             alt=""
             className="h-[26rem] rounded-2xl object-cover object-center lg:h-[40rem]"
           />
         </div>
-        <div className="order-1 flex h-full max-w-xs flex-col justify-center gap-2 pr-6 text-xs sm:text-sm md:text-base">
+        <div className="order-1 flex h-full max-w-sm flex-col justify-center gap-2 self-start text-sm md:text-base lg:pr-6">
           <PrismicRichText field={slice.primary.about_content} />
         </div>
       </div>

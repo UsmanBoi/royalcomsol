@@ -110,6 +110,62 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "homeBenefits",
+      "name": "homeBenefits",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "benefit_data": {
+          "type": "Group",
+          "config": {
+            "label": "Benefit Data",
+            "repeat": true,
+            "fields": {
+              "benefit_id": {
+                "type": "Number",
+                "config": {
+                  "label": "Benefit Id",
+                  "placeholder": ""
+                }
+              },
+              "benefit_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Title",
+                  "placeholder": ""
+                }
+              },
+              "benefit_headline": {
+                "type": "Text",
+                "config": {
+                  "label": "Benefit Headline",
+                  "placeholder": ""
+                }
+              },
+              "benefit_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Benefit Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

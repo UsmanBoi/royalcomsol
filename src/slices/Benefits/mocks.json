@@ -131,5 +131,82 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "homeBenefits",
+		"primary": {
+			"benefit_data": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"benefit_id",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "23",
+									"type": "Number"
+								}
+							],
+							[
+								"benefit_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "letter",
+									"type": "Text"
+								}
+							],
+							[
+								"benefit_headline",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "pile",
+									"type": "Text"
+								}
+							],
+							[
+								"benefit_image",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
+										"width": 12288,
+										"height": 16384
+									},
+									"url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
+									"width": 12288,
+									"height": 16384,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "top",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					}
+				]
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "pale",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

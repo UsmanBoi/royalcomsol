@@ -5,8 +5,9 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
-import { paddingClass } from "@/app/constants";
+import { paddingClass, secHeading } from "@/app/constants";
 import { GoDotFill } from "react-icons/go";
+import BenefitCard from "@/app/components/ui/BenefitCard";
 /**
  * Props for `Benefits`.
  */
@@ -18,7 +19,24 @@ export type BenefitsProps = SliceComponentProps<Content.BenefitsSlice>;
 const Benefits: FC<BenefitsProps> = ({ slice }) => {
   const [currentBenefit, setCurrentBenefit] = useState(0);
   const toggleContent = (id) => setCurrentBenefit(id);
-  return (
+  return slice.variation === "homeBenefits" ? (
+    <Bounded
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+      className={`${paddingClass} h-auto w-full bg-red-500/20`}
+    >
+      <div
+        className={`flex flex-col items-center gap-y-16 py-14 sm:gap-y-20 lg:py-20`}
+      >
+        <h1 className={`${secHeading} text-mywhite-50`}>
+          {slice.primary.title}
+        </h1>
+        <div className="grid gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+          <BenefitCard cardData={slice.primary.benefit_data} />
+        </div>
+      </div>
+    </Bounded>
+  ) : slice.variation === "default" ? (
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
@@ -104,6 +122,8 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
         ))}
       </div>
     </Bounded>
+  ) : (
+    ""
   );
 };
 

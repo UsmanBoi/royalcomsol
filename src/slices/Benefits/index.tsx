@@ -23,15 +23,15 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} h-auto w-full bg-red-500/20`}
+      className={`${paddingClass} h-auto w-full bg-red-50 py-10 dark:text-myblack-50`}
     >
       <div
-        className={`flex flex-col items-center gap-y-16 py-14 sm:gap-y-20 lg:py-20`}
+        className={`flex flex-col items-center gap-y-16 py-10 sm:gap-y-20 lg:py-20`}
       >
-        <h1 className={`${secHeading} text-mywhite-50`}>
+        <h1 className={`${secHeading}`} style={{ wordSpacing: "0.125em" }}>
           {slice.primary.title}
         </h1>
-        <div className="grid gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-4 gap-y-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-10">
           <BenefitCard cardData={slice.primary.benefit_data} />
         </div>
       </div>

@@ -18,9 +18,11 @@ const About: FC<AboutProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex h-full min-h-[60rem] flex-col items-center gap-8 py-16 lg:h-[50rem]"
+      className="flex h-full min-h-[60rem] flex-col items-center gap-10 py-8 sm:py-16 lg:h-[50rem]"
     >
-      <h1 className={`${secHeading}`}>About Us</h1>
+      <h1 className={`${secHeading}`} style={{ wordSpacing: "0.125em" }}>
+        About Us
+      </h1>
       <div className="grid h-full w-full max-w-6xl place-items-center justify-items-center gap-x-2 gap-y-4 lg:grid-cols-[1fr_1fr]">
         <div className="relative order-2 h-[30rem] w-full lg:h-[40rem] lg:w-[30rem]">
           <PrismicNextImage

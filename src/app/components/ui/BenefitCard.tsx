@@ -9,9 +9,14 @@ const BenefitCard = ({ cardData }) => {
     return (
       <>
         {cardData.map((benefit, id) => (
-          <div className="flex flex-col items-center gap-4" key={id}>
-            <div className="flex flex-col items-center justify-center text-center">
-              <h1 className="text-xl font-bold">{benefit.benefit_title}</h1>
+          <div
+            className="flex max-w-lg flex-col items-center gap-4 rounded-md"
+            key={id}
+          >
+            <div className="flex flex-col items-center justify-center gap-2 text-center">
+              <h1 className="text-2xl font-medium tracking-[0.01em]">
+                {benefit.benefit_title}
+              </h1>
               <span className="px-6 text-sm">{benefit.benefit_headline}</span>
             </div>
             <div className="relative h-[10rem] w-fit lg:h-[12rem] 2xl:h-[18rem]">

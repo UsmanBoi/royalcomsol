@@ -31,9 +31,8 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
         <h1 className={`${secHeading}`} style={{ wordSpacing: "0.125em" }}>
           {slice.primary.title}
         </h1>
-        <div className="grid gap-x-4 gap-y-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-10">
-          <BenefitCard cardData={slice.primary.benefit_data} />
-        </div>
+
+        <BenefitCard cardData={slice.primary.benefit_data} />
       </div>
     </Bounded>
   ) : slice.variation === "default" ? (

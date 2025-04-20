@@ -21,23 +21,12 @@ const Hero: FC<HeroProps> = ({ slice }) => (
   <Bounded
     data-slice-type={slice.slice_type}
     data-slice-variation={slice.variation}
-    className="relative z-0 flex h-[40rem] w-screen flex-col items-center text-mywhite-100 lg:h-[50rem]"
+    className="relative z-0 flex h-[40rem] w-screen flex-col items-center text-myblack-200 lg:h-[50rem]"
   >
-    <div className="absolute top-0 -z-50 h-[38rem] lg:h-[50rem]">
-      <div className="absolute inset-0 -z-0 bg-black/10"></div>
-      <PrismicNextImage
-        priority
-        field={slice.primary.hero_image}
-        className="-z-50 h-full w-screen object-cover object-center"
-      />
-    </div>
-
-    {/* <div className="absolute inset-0 z-0 bg-gradient-to-l from-mywhite-200/5 via-mywhite-200/10 to-mywhite-200/20 bg-blend-screen"></div> */}
-
     {/* Content */}
-
     <div
-      className={`absolute left-2 top-1/3 -z-10 mr-20 flex h-auto w-fit max-w-[30rem] -translate-y-1/2 flex-col justify-center gap-2 rounded-lg bg-gradient-to-br from-red-100/50 via-red-300/10 to-red-300/10 p-6 shadow-lg backdrop-blur-[6px] sm:gap-4 lg:left-16 lg:mr-0 lg:max-w-[36rem] xl:max-w-[45rem] 2xl:max-w-[52rem]`}
+      // className={`absolute left-2 top-1/3 -z-10 mr-20 flex h-auto w-fit max-w-[30rem] -translate-y-1/2 flex-col justify-center gap-2 rounded-lg bg-gradient-to-br from-red-100/50 via-red-300/10 to-red-300/10 p-6 shadow-lg backdrop-blur-[6px] sm:gap-4 lg:left-16 lg:mr-0 lg:max-w-[36rem] xl:max-w-[45rem] 2xl:max-w-[52rem]`}
+      className={`absolute left-2 top-1/3 z-10 mr-20 flex h-auto w-fit max-w-[30rem] -translate-y-1/2 flex-col justify-center gap-2 rounded-lg p-6 shadow-lg backdrop-blur-[4px] sm:gap-4 lg:left-16 lg:mr-0 lg:max-w-[36rem] xl:max-w-[45rem] 2xl:max-w-[52rem]`}
     >
       <div className="flex h-full flex-col justify-center gap-10 self-start px-2 pb-[2.5%]">
         <div className="flex flex-col gap-y-4">
@@ -53,7 +42,7 @@ const Hero: FC<HeroProps> = ({ slice }) => (
             <PrismicLink field={item.link_url} key={index}>
               <button
                 key={index}
-                className={`${index !== 0 ? "bg-blue-400" : "bg-red-500"} h-12 w-[8em] rounded`}
+                className={`${index !== 0 ? "bg-blue-400" : "bg-red-400"} h-12 w-[8em] rounded`}
               >
                 <span className="px-1">{item.link_title} </span>
               </button>
@@ -61,6 +50,17 @@ const Hero: FC<HeroProps> = ({ slice }) => (
           ))}
         </div>
       </div>
+    </div>
+    <div className="absolute top-0 -z-50 h-[38rem] w-2/3 lg:h-[50rem]">
+      {/* <div className="absolute inset-0 z-0 bg-gradient-to-l from-mywhite-200/5 via-mywhite-200/10 to-mywhite-200/20 bg-blend-screen"></div> */}
+      {/* Hero Image  */}
+
+      <div className="absolute inset-0 z-0 bg-black/10"></div>
+      <PrismicNextImage
+        priority
+        field={slice.primary.hero_image}
+        className="-z-50 h-full w-full object-cover object-center"
+      />
     </div>
   </Bounded>
 );

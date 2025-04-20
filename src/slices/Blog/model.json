@@ -1,0 +1,99 @@
+{
+  "id": "blog",
+  "type": "SharedSlice",
+  "name": "Blog",
+  "description": "Blog",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "blog_data": {
+          "type": "Group",
+          "config": {
+            "label": "Blog Data",
+            "repeat": true,
+            "fields": {
+              "blog_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Blog Title",
+                  "placeholder": ""
+                }
+              },
+              "blog_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Blog Description",
+                  "placeholder": ""
+                }
+              },
+              "blog_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Blog Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "blog_content": {
+                "type": "Text",
+                "config": {
+                  "label": "Blog Content",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "blogCard",
+      "name": "blogCard",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "blog_data": {
+          "type": "Group",
+          "config": {
+            "label": "Blog Data",
+            "repeat": true,
+            "fields": {
+              "blog_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Blog Title",
+                  "placeholder": ""
+                }
+              },
+              "blog_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Blog Description",
+                  "placeholder": ""
+                }
+              },
+              "blog_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Blog Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

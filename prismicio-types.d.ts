@@ -4,6 +4,104 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type BlogPostDocumentDataSlicesSlice = BlogSlice;
+
+/**
+ * Content for blog post documents
+ */
+interface BlogPostDocumentData {
+  /**
+   * Title field in *blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Blog Image field in *blog post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.blog_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  blog_image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *blog post*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<BlogPostDocumentDataSlicesSlice> /**
+   * Meta Title field in *blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: blog_post.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *blog post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: blog_post.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *blog post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * blog post document from Prismic
+ *
+ * - **API ID**: `blog_post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BlogPostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<BlogPostDocumentData>,
+    "blog_post",
+    Lang
+  >;
+
 /**
  * Content for Footer documents
  */
@@ -569,6 +667,7 @@ export type ServicePostDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | BlogPostDocument
   | FooterDocument
   | HeaderDocument
   | HomeDocument
@@ -891,6 +990,156 @@ export type BenefitsSlice = prismic.SharedSlice<
   "benefits",
   BenefitsSliceVariation
 >;
+
+/**
+ * Item in *Blog → Default → Primary → Blog Data*
+ */
+export interface BlogSliceDefaultPrimaryBlogDataItem {
+  /**
+   * Blog Title field in *Blog → Default → Primary → Blog Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.default.primary.blog_data[].blog_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_title: prismic.KeyTextField;
+
+  /**
+   * Blog Description field in *Blog → Default → Primary → Blog Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.default.primary.blog_data[].blog_description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_description: prismic.KeyTextField;
+
+  /**
+   * Blog Image field in *Blog → Default → Primary → Blog Data*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.default.primary.blog_data[].blog_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  blog_image: prismic.ImageField<never>;
+
+  /**
+   * Blog Content field in *Blog → Default → Primary → Blog Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.default.primary.blog_data[].blog_content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_content: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Blog → blogCard → Primary → Blog Data*
+ */
+export interface BlogSliceBlogCardPrimaryBlogDataItem {
+  /**
+   * Blog Title field in *Blog → blogCard → Primary → Blog Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.blogCard.primary.blog_data[].blog_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_title: prismic.KeyTextField;
+
+  /**
+   * Blog Description field in *Blog → blogCard → Primary → Blog Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.blogCard.primary.blog_data[].blog_description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  blog_description: prismic.KeyTextField;
+
+  /**
+   * Blog Image field in *Blog → blogCard → Primary → Blog Data*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.blogCard.primary.blog_data[].blog_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  blog_image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Blog → Default → Primary*
+ */
+export interface BlogSliceDefaultPrimary {
+  /**
+   * Blog Data field in *Blog → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.default.primary.blog_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  blog_data: prismic.GroupField<Simplify<BlogSliceDefaultPrimaryBlogDataItem>>;
+}
+
+/**
+ * Default variation for Blog Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BlogSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *Blog → blogCard → Primary*
+ */
+export interface BlogSliceBlogCardPrimary {
+  /**
+   * Blog Data field in *Blog → blogCard → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.blogCard.primary.blog_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  blog_data: prismic.GroupField<Simplify<BlogSliceBlogCardPrimaryBlogDataItem>>;
+}
+
+/**
+ * blogCard variation for Blog Slice
+ *
+ * - **API ID**: `blogCard`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogSliceBlogCard = prismic.SharedSliceVariation<
+  "blogCard",
+  Simplify<BlogSliceBlogCardPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Blog*
+ */
+type BlogSliceVariation = BlogSliceDefault | BlogSliceBlogCard;
+
+/**
+ * Blog Shared Slice
+ *
+ * - **API ID**: `blog`
+ * - **Description**: Blog
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogSlice = prismic.SharedSlice<"blog", BlogSliceVariation>;
 
 /**
  * Item in *Hero → Default → Primary → CTA Buttons*
@@ -1245,6 +1494,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      BlogPostDocument,
+      BlogPostDocumentData,
+      BlogPostDocumentDataSlicesSlice,
       FooterDocument,
       FooterDocumentData,
       HeaderDocument,
@@ -1275,6 +1527,14 @@ declare module "@prismicio/client" {
       BenefitsSliceVariation,
       BenefitsSliceDefault,
       BenefitsSliceHomeBenefits,
+      BlogSlice,
+      BlogSliceDefaultPrimaryBlogDataItem,
+      BlogSliceDefaultPrimary,
+      BlogSliceBlogCardPrimaryBlogDataItem,
+      BlogSliceBlogCardPrimary,
+      BlogSliceVariation,
+      BlogSliceDefault,
+      BlogSliceBlogCard,
       HeroSlice,
       HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,

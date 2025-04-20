@@ -1353,45 +1353,55 @@ export interface ServiceSliceHomeServicePrimaryServiceDataItem {
 }
 
 /**
- * Primary content in *Service → Default → Primary*
+ * Item in *Service → Default → Primary → Service Data*
  */
-export interface ServiceSliceDefaultPrimary {
+export interface ServiceSliceDefaultPrimaryServiceDataItem {
   /**
-   * Service Title field in *Service → Default → Primary*
+   * Service Title field in *Service → Default → Primary → Service Data*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: service.default.primary.service_title
+   * - **API ID Path**: service.default.primary.service_data[].service_title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   service_title: prismic.KeyTextField;
 
   /**
-   * Service Headline field in *Service → Default → Primary*
+   * Service Headline field in *Service → Default → Primary → Service Data*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: service.default.primary.service_headline
+   * - **API ID Path**: service.default.primary.service_data[].service_headline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   service_headline: prismic.KeyTextField;
 
   /**
-   * Service Image field in *Service → Default → Primary*
+   * Service Image field in *Service → Default → Primary → Service Data*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: service.default.primary.service_image
+   * - **API ID Path**: service.default.primary.service_data[].service_image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   service_image: prismic.ImageField<never>;
 
   /**
-   * Service Link field in *Service → Default → Primary*
+   * Service Description field in *Service → Default → Primary → Service Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.default.primary.service_data[].service_description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  service_description: prismic.KeyTextField;
+
+  /**
+   * Service Link field in *Service → Default → Primary → Service Data*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: service.default.primary.service_link
+   * - **API ID Path**: service.default.primary.service_data[].service_link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   service_link: prismic.LinkField<
@@ -1402,19 +1412,6 @@ export interface ServiceSliceDefaultPrimary {
     never
   >;
 }
-
-/**
- * Default variation for Service Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ServiceSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ServiceSliceDefaultPrimary>,
-  never
->;
 
 /**
  * Primary content in *Service → homeService → Primary*
@@ -1457,9 +1454,39 @@ export type ServiceSliceHomeService = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Service → Default → Primary*
+ */
+export interface ServiceSliceDefaultPrimary {
+  /**
+   * Service Data field in *Service → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.default.primary.service_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  service_data: prismic.GroupField<
+    Simplify<ServiceSliceDefaultPrimaryServiceDataItem>
+  >;
+}
+
+/**
+ * Default variation for Service Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ServiceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ServiceSliceDefaultPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Service*
  */
-type ServiceSliceVariation = ServiceSliceDefault | ServiceSliceHomeService;
+type ServiceSliceVariation = ServiceSliceHomeService | ServiceSliceDefault;
 
 /**
  * Service Shared Slice
@@ -1545,12 +1572,13 @@ declare module "@prismicio/client" {
       RichTextSliceVariation,
       RichTextSliceDefault,
       ServiceSlice,
-      ServiceSliceDefaultPrimary,
       ServiceSliceHomeServicePrimaryServiceDataItem,
       ServiceSliceHomeServicePrimary,
+      ServiceSliceDefaultPrimaryServiceDataItem,
+      ServiceSliceDefaultPrimary,
       ServiceSliceVariation,
-      ServiceSliceDefault,
       ServiceSliceHomeService,
+      ServiceSliceDefault,
     };
   }
 }

@@ -24,12 +24,19 @@ const Service: FC<ServiceProps> = ({ slice }) => {
       <h1 className={`${secHeading}`} style={{ wordSpacing: "0.125em" }}>
         {slice.primary.title}
       </h1>
-      <ServiceCard cardData={slice.primary.service_data} />
+      <ServiceCard
+        cardData={slice.primary.service_data}
+        gridClass="grid h-full place-items-center gap-x-4 gap-y-6 justify-self-center md:grid-cols-2 md:gap-x-6 lg:gap-y-12 xl:grid-cols-3 xl:gap-x-12 2xl:gap-y-[4.25rem]"
+        cardClass="flex h-full w-full max-w-xl flex-col items-center justify-between gap-y-2 rounded-lg border-2 border-neutral-200/50 p-5 pt-7 transition-all duration-300 ease-in-out dark:border-neutral-700 2xl:gap-y-5"
+      />
     </Bounded>
   ) : slice.variation === "default" ? (
     <div className="flex flex-col gap-2">
-      <h1>{slice.primary.service_title}</h1>
-      <h2>{slice.primary.service_headline}a</h2>
+      <ServiceCard
+        cardData={slice.primary.service_data}
+        gridClass="grid h-full place-items-center gap-x-4 gap-y-6 justify-self-center md:gap-x-6 lg:gap-y-12  xl:gap-x-12 2xl:gap-y-[4.25rem]"
+        cardClass="flex h-full w-full max-w-xl flex-col items-center justify-between gap-y-2 rounded-lg border-2 border-neutral-200/50 p-5 pt-7 transition-all duration-300 ease-in-out dark:border-neutral-700 2xl:gap-y-5"
+      />
     </div>
   ) : (
     ""

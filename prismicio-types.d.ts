@@ -242,15 +242,15 @@ interface HeaderDocumentData {
   home: prismic.KeyTextField;
 
   /**
-   * HomeLink field in *Header*
+   * Home Link field in *Header*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: header.homelink
+   * - **API ID Path**: header.home_link
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  homelink: prismic.LinkField<
+  home_link: prismic.LinkField<
     string,
     string,
     unknown,
@@ -331,6 +331,7 @@ export type HeaderDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | LogoSliderSlice
   | BenefitsSlice
   | ServiceSlice
   | AboutSlice
@@ -1247,6 +1248,78 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *LogoSlider → Default → Primary → Slider Data*
+ */
+export interface LogoSliderSliceDefaultPrimarySliderDataItem {
+  /**
+   * Logo Image field in *LogoSlider → Default → Primary → Slider Data*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_slider.default.primary.slider_data[].logo_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *LogoSlider → Default → Primary*
+ */
+export interface LogoSliderSliceDefaultPrimary {
+  /**
+   * title field in *LogoSlider → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_slider.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slider Data field in *LogoSlider → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_slider.default.primary.slider_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  slider_data: prismic.GroupField<
+    Simplify<LogoSliderSliceDefaultPrimarySliderDataItem>
+  >;
+}
+
+/**
+ * Default variation for LogoSlider Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoSliderSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LogoSliderSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *LogoSlider*
+ */
+type LogoSliderSliceVariation = LogoSliderSliceDefault;
+
+/**
+ * LogoSlider Shared Slice
+ *
+ * - **API ID**: `logo_slider`
+ * - **Description**: LogoSlider
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoSliderSlice = prismic.SharedSlice<
+  "logo_slider",
+  LogoSliderSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -1567,6 +1640,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      LogoSliderSlice,
+      LogoSliderSliceDefaultPrimarySliderDataItem,
+      LogoSliderSliceDefaultPrimary,
+      LogoSliderSliceVariation,
+      LogoSliderSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

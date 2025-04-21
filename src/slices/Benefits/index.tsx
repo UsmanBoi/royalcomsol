@@ -23,7 +23,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} h-auto w-full bg-red-50 py-10 dark:text-myblack-50`}
+      className={`${paddingClass} h-auto w-full bg-blue-50 py-10 dark:text-myblack-50`}
     >
       <div
         className={`flex flex-col items-center gap-y-16 py-10 sm:gap-y-20 lg:py-20`}
@@ -52,7 +52,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
             <span>
               <GoDotFill
                 className={`w-4 text-[10px] sm:text-sm ${
-                  currentBenefit === id ? "text-red-500" : "opacity-80"
+                  currentBenefit === id ? "text-blue-500" : "opacity-80"
                 }`}
               />
             </span>
@@ -60,7 +60,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
               key={id}
               className={`text-start text-xs font-bold tracking-tight transition-all duration-500 sm:text-base xl:text-xl 2xl:text-2xl ${
                 currentBenefit === id
-                  ? "font-bold text-red-500"
+                  ? "font-bold text-blue-500"
                   : "font-semibold opacity-80"
               } `}
             >
@@ -79,7 +79,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
             key={id}
           >
             <div className={`flex flex-col gap-4`}>
-              <h1 className="text-xl font-bold text-red-500 lg:text-2xl xl:text-3xl 2xl:text-4xl">
+              <h1 className="text-xl font-bold text-blue-500 lg:text-2xl xl:text-3xl 2xl:text-4xl">
                 {currentBenefit === id ? benefit.benefit_title : ""}
               </h1>
               <div className="flex flex-col gap-2.5 text-xs sm:text-sm md:text-base 2xl:text-lg">

@@ -1,0 +1,43 @@
+{
+  "id": "logo_slider",
+  "type": "SharedSlice",
+  "name": "LogoSlider",
+  "description": "LogoSlider",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "slider_data": {
+          "type": "Group",
+          "config": {
+            "label": "Slider Data",
+            "repeat": true,
+            "fields": {
+              "logo_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Logo Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

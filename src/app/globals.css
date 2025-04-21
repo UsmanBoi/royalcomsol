@@ -2,14 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-  font-family: var(--font-raleway); /* Use Roslindale for headings */
+h1,
+h2 {
+  letter-spacing: -0.025em;
 }
 
 :root {
-  --foreground-color: #111111; /* Default: Black */
-  --background-start-color: #fafafa; /* background start color */
-  --background-end-color: #fafafa; /* background end color */
+  --foreground-color: #101010; /* Default: Black */
+  --background-start-color: #fefefe; /* background start color */
+  --background-end-color: #fefefe; /* background end color */
 }
 
 [data-theme="dark"] {
@@ -30,7 +31,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   color: var(--foreground-color);
-  font-family: var(--font-poppins); /* Default body font */
+  font-family: var(--font-inter); /* Default body font */
   background: linear-gradient(
       to bottom,
       transparent,

@@ -20,10 +20,10 @@
           "placeholder": "home button"
         }
       },
-      "homelink": {
+      "home_link": {
         "type": "Link",
         "config": {
-          "label": "HomeLink",
+          "label": "Home Link",
           "placeholder": "",
           "select": null,
           "allowTargetBlank": true,

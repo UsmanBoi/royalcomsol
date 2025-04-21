@@ -28,7 +28,7 @@ export default function NewMenu({ menuLinks }) {
             <div className="flex gap-4">
               {menuLinks?.map((item, index) => (
                 <button
-                  className={`h-10 w-fit rounded-full bg-red-500 transition-all duration-300 ease-in-out ${open ? "translate-y-0" : "-translate-y-20"}`}
+                  className={`h-10 w-fit rounded-full bg-blue-500 transition-all duration-300 ease-in-out ${open ? "translate-y-0" : "-translate-y-20"}`}
                   key={index}
                   onClick={toggleMenu}
                   style={
@@ -56,7 +56,7 @@ export default function NewMenu({ menuLinks }) {
         <div className="flex gap-4">
           {menuLinks?.map((item, index) => (
             <button
-              className={`h-10 w-fit rounded-full bg-red-500 transition-all duration-300 ease-in-out ${open ? "-translate-y-20" : "translate-y-0"}`}
+              className={`h-10 w-fit rounded-full bg-blue-500 transition-all duration-300 ease-in-out ${open ? "-translate-y-20" : "translate-y-0"}`}
               key={index}
               style={
                 open
@@ -94,21 +94,21 @@ export default function NewMenu({ menuLinks }) {
               y1="6"
               x2="20"
               y2="6"
-              className={`stroke-red-500 stroke-1 transition-all duration-200 ease-linear ${open ? "rotate-[40deg]" : ""}`}
+              className={`stroke-blue-500 stroke-1 transition-all duration-200 ease-linear ${open ? "rotate-[40deg]" : ""}`}
             />
             <line
               x1="4"
               y1="12"
               x2="20"
               y2="12"
-              className={`stroke-red-500 stroke-1 transition-all duration-200 ease-linear ${open ? "rotate-[40deg]" : ""}`}
+              className={`stroke-blue-500 stroke-1 transition-all duration-200 ease-linear ${open ? "rotate-[40deg]" : ""}`}
             />
             <line
               x1="4"
               y1="18"
               x2="20"
               y2="18"
-              className={`stroke-red-500 stroke-1 transition-all duration-200 ease-linear ${open ? "rotate-[40deg]" : ""}`}
+              className={`stroke-blue-500 stroke-1 transition-all duration-200 ease-linear ${open ? "rotate-[40deg]" : ""}`}
             />
           </svg>
         </div>

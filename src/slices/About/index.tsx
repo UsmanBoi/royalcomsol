@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
 import { secHeading } from "@/app/constants";
+import { RichText } from "@/app/components/ui/RichText";
 
 /**
  * Props for `About`.
@@ -18,21 +19,28 @@ const About: FC<AboutProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex h-full min-h-[60rem] flex-col items-center gap-10 py-8 sm:py-16 lg:h-[50rem]"
+      className="flex min-h-[37rem] max-w-full flex-col items-center justify-center bg-myblack-150 py-8 text-mywhite-50 sm:py-16 2xl:py-24"
     >
-      <h1 className={`${secHeading}`} style={{ wordSpacing: "0.125em" }}>
-        About Us
-      </h1>
-      <div className="grid h-full w-full max-w-6xl place-items-center justify-items-center gap-x-2 gap-y-4 lg:grid-cols-[1fr_1fr]">
-        <div className="relative order-2 h-[30rem] w-full lg:h-[40rem] lg:w-[30rem]">
-          <PrismicNextImage
-            field={slice.primary.about_image}
-            alt=""
-            className="h-[26rem] rounded-2xl object-cover object-center lg:h-[40rem]"
-          />
+      <div className="relative grid h-full w-full place-items-center justify-items-center gap-x-32 gap-y-10 lg:grid-cols-[1fr_1fr] 2xl:max-w-screen-xl 2xl:gap-x-40 3xl:max-w-screen-2xl">
+        <div className="flex h-full w-full flex-col gap-8">
+          <h1
+            className={`w-fit text-start text-3xl font-extralight opacity-40 lg:text-4xl 2xl:text-5xl`}
+            style={{ wordSpacing: "0.125em" }}
+          >
+            About Us
+          </h1>
+          <div className="relative h-full w-full max-sm:h-[25rem]">
+            <PrismicNextImage
+              field={slice.primary.about_image}
+              alt=""
+              className="rounded object-cover object-center max-sm:h-[25rem] max-lg:max-h-[25rem]"
+            />
+          </div>
         </div>
-        <div className="order-1 flex h-full max-w-sm flex-col justify-center gap-2 self-start text-sm md:text-base lg:pr-6">
-          <PrismicRichText field={slice.primary.about_content} />
+        <div className="absolute left-1/2 top-0 h-full w-1 bg-gray-500 max-lg:hidden"></div>
+
+        <div className="flex h-full max-w-lg flex-col gap-3 pl-4 text-sm font-light sm:place-self-end md:text-base lg:place-self-start max-sm:py-6">
+          <RichText field={slice.primary.about_content} />
         </div>
       </div>
     </Bounded>

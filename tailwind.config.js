@@ -52,14 +52,13 @@ module.exports = {
       //   body: ["var(--font-wix)", "sans-serif"], // For paragraphs
       // },
       keyframes: {
-        "slide-left": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-100%)" },
+        scroll: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-870%)" }, // Adjust based on logo size and repeats
         },
       },
       animation: {
-        "slide-left": "slide-left 3s linear infinite",
-        "spin-slow": "spin 6s linear infinite",
+        scroll: "scroll 7s linear infinite",
       },
     },
   },

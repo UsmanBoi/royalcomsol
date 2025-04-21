@@ -40,57 +40,67 @@ const ServiceCard = ({ cardData, gridClass, cardClass }) => {
 
           return (
             <div
-              className={`${isHovered ? "border-blue-500/10" : ""} ${cardClass} snap-start`}
+              className={`${isHovered ? "border-blue-500/70" : ""} ${cardClass} flex h-full min-h-80 w-full max-w-sm flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border-2 border-neutral-200/50 transition-all duration-300 ease-in-out dark:border-neutral-700 xl:max-w-[400px]`}
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className="flex min-h-24 flex-col items-center gap-2 text-center xl:gap-2">
-                <h1
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered ? "text-blue-500" : ""
-                  } pointer-events-none min-h-10 text-lg font-semibold capitalize sm:text-xl lg:text-2xl`}
-                >
-                  {service.service_title}
-                </h1>
-              </div>
-              <div className="relative flex max-h-64 w-full 2xl:max-h-80">
+              <div className="relative flex min-h-80 w-full items-end 2xl:max-h-80">
                 <div
-                  className={`absolute bottom-0 left-0 flex h-full w-full flex-col items-center justify-end gap-8`}
+                  className={`flex flex-col gap-1 px-2 transition-all duration-300 ease-in-out ${
+                    isHovered
+                      ? "-translate-y-12"
+                      : "translate-y-0 text-myblack-150"
+                  }`}
                 >
-                  <p
-                    className={`w-full text-center text-xs font-light transition-all duration-300 ease-in-out sm:text-sm xl:text-base ${
+                  <h1
+                    style={
                       isHovered
-                        ? "translate-y-0 opacity-100"
-                        : "pointer-events-none translate-y-10 opacity-0"
-                    }`}
+                        ? {
+                            transform: "scale(1.15)",
+                            transformOrigin: "left",
+                            transition: "transform 0.3s ease",
+                          }
+                        : {
+                            transform: "scale(1)",
+                            transformOrigin: "left",
+                            transition: "transform 0.3s ease",
+                          }
+                    }
+                    className={`${
+                      isHovered ? "text-blue-500" : ""
+                    } pointer-events-none text-lg font-semibold capitalize sm:text-xl lg:text-2xl`}
                   >
-                    {service?.service_description}
+                    {service.service_title}
+                  </h1>
+                  <hr className="w-80 bg-myblack-150" />
+                  <p className={`min-h-20 text-sm lg:text-base 2xl:text-lg`}>
+                    {service.service_headline}
                   </p>
-                  <button
-                    className={`transition-all duration-300 ease-in-out ${
-                      isHovered
-                        ? "translate-y-0 opacity-100 delay-75"
-                        : "pointer-events-none translate-y-12 opacity-0"
-                    } rounded bg-blue-500 px-4 py-2`}
-                  >
-                    <PrismicNextLink
-                      field={service?.service_link}
-                      className="text-sm"
-                    >
-                      Read More
-                    </PrismicNextLink>
-                  </button>
                 </div>
-
                 <PrismicNextImage
                   field={service?.service_image}
-                  className={`transition-all duration-300 ease-in-out ${
-                    isHovered
+                  className={`absolute left-0 top-0 -z-10 transition-all duration-300 ease-in-out ${
+                    !isHovered
                       ? "pointer-events-none translate-y-10 opacity-0"
                       : "translate-y-0 opacity-100"
-                  } h-full w-full rounded-lg object-cover object-center`}
+                  } h-96 w-full object-cover object-center`}
                 />
+
+                <button
+                  className={`absolute left-2 text-mywhite-50 transition-all duration-300 ease-in-out ${
+                    isHovered
+                      ? "-translate-y-7 opacity-100"
+                      : "pointer-events-none translate-y-10 opacity-0"
+                  } rounded-full bg-myblack-150 px-3 py-0.5`}
+                >
+                  <PrismicNextLink
+                    field={service?.service_link}
+                    className="text-sm"
+                  >
+                    Read More
+                  </PrismicNextLink>
+                </button>
               </div>
             </div>
           );

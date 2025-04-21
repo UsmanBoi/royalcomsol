@@ -27,7 +27,7 @@ const Service: FC<ServiceProps> = ({ slice }) => {
       <ServiceCard
         cardData={slice.primary.service_data}
         gridClass=""
-        cardClass="flex h-full w-full max-w-xl flex-col flex-shrink-0 items-center justify-between gap-y-2 rounded-lg border-2 border-neutral-200/50  transition-all duration-300 ease-in-out dark:border-neutral-700 "
+        cardClass=""
       />
     </Bounded>
   ) : slice.variation === "default" ? (

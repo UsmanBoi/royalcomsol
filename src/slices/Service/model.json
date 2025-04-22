@@ -19,6 +19,17 @@
             "placeholder": ""
           }
         },
+        "show_all": {
+          "type": "Link",
+          "config": {
+            "label": "Show All",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
         "service_data": {
           "type": "Group",
           "config": {

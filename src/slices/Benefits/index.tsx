@@ -4,9 +4,9 @@ import { useState } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { paddingClass, secHeading } from "@/app/constants";
-import { GoDotFill } from "react-icons/go";
+import { GoArrowRight, GoDotFill } from "react-icons/go";
 import BenefitCard from "@/app/components/ui/BenefitCard";
 /**
  * Props for `Benefits`.
@@ -23,16 +23,28 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} h-auto w-full bg-blue-50 py-10 dark:text-myblack-50`}
+      className={`${paddingClass} h-auto w-full py-10 dark:text-myblack-150`}
     >
-      <div
-        className={`flex flex-col items-center gap-y-16 py-10 sm:gap-y-20 lg:py-20`}
-      >
-        <h1 className={`${secHeading}`} style={{ wordSpacing: "0.125em" }}>
+      <div className={`flex flex-col gap-y-16 py-10 sm:gap-y-20 lg:py-20`}>
+        <h1
+          className={`h-fit sm:w-[30rem] ${secHeading}`}
+          style={{ wordSpacing: "0.125em" }}
+        >
           {slice.primary.title}
         </h1>
 
         <BenefitCard cardData={slice.primary.benefit_data} />
+        <div className="flex min-w-96 items-center justify-end text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
+          <button type="button" className={`w-fit`}>
+            <PrismicNextLink field={slice.primary.view_all}>
+              {/* Button text */}
+              <span className="">View All Benefits</span>
+            </PrismicNextLink>
+          </button>
+          <GoArrowRight
+            className={`w-12 transition-all duration-300 ease-in-out`}
+          />
+        </div>
       </div>
     </Bounded>
   ) : slice.variation === "default" ? (

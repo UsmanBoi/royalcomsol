@@ -200,6 +200,26 @@
 				"__TYPE__": "FieldContent",
 				"value": "pale",
 				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Aliqua velit aliquip officia laborum excepteur ex cillum."
+						}
+					}
+				]
+			},
+			"view_all": {
+				"key": "de7a23e6-5ef2-4613-8a5b-ba9f8756cd4d",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "visit"
+				}
 			}
 		},
 		"items": [

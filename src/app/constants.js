@@ -38,4 +38,4 @@ export const isDarkColor = (bgColor) => {
 export const paddingClass = "px-4 md:px-6 lg:px-12 xl:px-16 2xl:px-20";
 
 export const secHeading =
-  "text-5xl tracking-[-0.025em] sm:text-7xl font-medium capitalize";
+  "text-5xl tracking-[-0.025em] sm:text-6xl lg:text-7xl font-light capitalize";

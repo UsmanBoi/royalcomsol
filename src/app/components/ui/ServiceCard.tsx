@@ -2,13 +2,34 @@
 
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { useEffect, useRef, useState } from "react";
+import { getCurrentScreenSize } from "../../constants.js";
 
 import React from "react";
+import { GoArrowRight } from "react-icons/go";
 
-const ServiceCard = ({ cardData, gridClass, cardClass }) => {
+const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
+  const [screenSize, setScreenSize] = useState(null);
   const scrollContainerRef = useRef(null);
   const [hoveredIndex, setHoveredIndex] = useState(null); // Track which card is hovered
-  const visibleCards = cardData.slice(0, 5); // Show all cards or limit to 3
+  const visibleCards =
+    screenSize === "xxs" ||
+    screenSize === "xs" ||
+    screenSize === "sm" ||
+    screenSize === "md" ||
+    screenSize === "lg" ||
+    screenSize === "xl"
+      ? cardData.slice(0, 5)
+      : screenSize === "2xl" || screenSize === "3xl"
+        ? cardData.slice(0, 7)
+        : cardData.slice(0, 4); // Show all cards or limit to 3
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(getCurrentScreenSize());
+    handleResize(); // initial
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const el = scrollContainerRef.current;
     if (!el) return;
@@ -40,82 +61,117 @@ const ServiceCard = ({ cardData, gridClass, cardClass }) => {
 
           return (
             <div
-              className={`${isHovered ? "border-blue-500/70" : ""} ${cardClass} flex h-full min-h-80 w-full max-w-sm flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border-2 border-neutral-200/50 transition-all duration-300 ease-in-out dark:border-neutral-700 xl:max-w-[400px]`}
+              className={`${isHovered ? "border-blue-500/70" : ""} ${cardClass} flex h-full min-h-80 w-full max-w-sm flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border-2 border-neutral-200/50 transition-all duration-300 ease-in-out dark:border-neutral-700 xl:max-w-[400px] 3xl:h-96 3xl:max-w-md`}
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className="relative flex min-h-80 w-full items-end 2xl:max-h-80">
+              <div className="relative flex min-h-80 w-full items-end 2xl:h-80 3xl:h-96">
                 <div
-                  className={`flex flex-col gap-1 px-2 transition-all duration-300 ease-in-out ${
+                  className={`flex flex-col gap-1 px-4 transition-all duration-300 ease-in-out ${
                     isHovered
-                      ? "-translate-y-12"
-                      : "translate-y-0 text-myblack-150"
+                      ? "-translate-y-3"
+                      : "translate-y-1 text-myblack-150"
                   }`}
                 >
-                  <h1
-                    style={
-                      isHovered
-                        ? {
-                            transform: "scale(1.15)",
-                            transformOrigin: "left",
-                            transition: "transform 0.3s ease",
-                          }
-                        : {
-                            transform: "scale(1)",
-                            transformOrigin: "left",
-                            transition: "transform 0.3s ease",
-                          }
-                    }
-                    className={`${
-                      isHovered ? "text-blue-500" : ""
-                    } pointer-events-none text-lg font-semibold capitalize sm:text-xl lg:text-2xl`}
+                  <div
+                    className={`flex items-center justify-between transition-all duration-300 ease-in-out ${
+                      isHovered ? "" : ""
+                    }`}
                   >
-                    {service.service_title}
-                  </h1>
-                  <hr className="w-80 bg-myblack-150" />
-                  <p className={`min-h-20 text-sm lg:text-base 2xl:text-lg`}>
+                    <h1
+                      style={{
+                        textShadow: isHovered
+                          ? "1px 1px 3px rgba(255, 255, 255, 0.3)" // subtle white shadow on hover
+                          : "1px 1px 3px rgba(0, 0, 0, 0.2)", // subtle black shadow normally
+                        scale: isHovered
+                          ? "1.15" // subtle white shadow on hover
+                          : "1", // subtle black shadow normally
+
+                        transformOrigin: "left",
+                        transition: "scale 0.3s ease, text-shadow 0.1s ease",
+                      }}
+                      className={`${
+                        isHovered
+                          ? "text-mywhite-50 outline-1 outline-blue-500"
+                          : ""
+                      } pointer-events-none font-semibold capitalize sm:text-[18px] xl:text-lg`}
+                    >
+                      {service.service_title}
+                    </h1>
+                    <GoArrowRight
+                      className={`w-12 text-2xl transition-all duration-300 ease-in-out ${
+                        isHovered ? "text-blue-500" : ""
+                      }`}
+                      style={
+                        isHovered
+                          ? {
+                              transform: "scale(1.3)",
+                              transformOrigin: "right",
+                              transition: "transform 0.3s ease",
+                            }
+                          : {
+                              transform: "scale(1)",
+                              transformOrigin: "right",
+                              transition: "transform 0.3s ease",
+                            }
+                      }
+                    />
+                  </div>
+
+                  <p
+                    className={`${
+                      isHovered ? "text-mywhite-50" : ""
+                    } min-h-20 text-sm 2xl:text-base`}
+                    style={{
+                      textShadow: isHovered
+                        ? "1px 1px 3px rgba(255, 255, 255, 0.3)" // subtle white shadow on hover
+                        : "1px 1px 3px rgba(0, 0, 0, 0.3)", // subtle black shadow normally
+                      transition: "0.3s ease, text-shadow 0.1s ease",
+                    }}
+                  >
                     {service.service_headline}
                   </p>
+                  <button
+                    className={`w-fit text-mywhite-50 transition-all duration-300 ease-in-out hover:text-blue-400 ${
+                      isHovered
+                        ? "-translate-y-1 opacity-100"
+                        : "translate-y-10 opacity-0"
+                    } rounded-full bg-myblack-150 px-4 py-0.5`}
+                  >
+                    <PrismicNextLink
+                      field={service?.service_link}
+                      className="text-sm"
+                    >
+                      Read More
+                    </PrismicNextLink>
+                  </button>
                 </div>
                 <PrismicNextImage
                   field={service?.service_image}
                   className={`absolute left-0 top-0 -z-10 transition-all duration-300 ease-in-out ${
                     !isHovered
-                      ? "pointer-events-none translate-y-10 opacity-0"
+                      ? "pointer-events-none translate-y-5 opacity-0"
                       : "translate-y-0 opacity-100"
                   } h-96 w-full object-cover object-center`}
                 />
-
-                <button
-                  className={`absolute left-2 text-mywhite-50 transition-all duration-300 ease-in-out ${
-                    isHovered
-                      ? "-translate-y-7 opacity-100"
-                      : "pointer-events-none translate-y-10 opacity-0"
-                  } rounded-full bg-myblack-150 px-3 py-0.5`}
-                >
-                  <PrismicNextLink
-                    field={service?.service_link}
-                    className="text-sm"
-                  >
-                    Read More
-                  </PrismicNextLink>
-                </button>
               </div>
             </div>
           );
         })}
-      </div>
-      {cardData.length > 3 && (
-        <div className="my-8 flex items-center justify-center lg:mt-14">
-          <button type="button" className="">
-            {/* Button text */}
-            <span className="relative z-10 transition-all duration-300 ease-[cubic-bezier(0.3,1,0.3,1)] group-hover:text-black">
-              Show All
-            </span>
+
+        <div className="flex min-w-96 items-center justify-end text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
+          <button type="button" className={`w-fit rounded`}>
+            <PrismicNextLink field={serviceLink}>
+              {/* Button text */}
+              <span className="">View All Services</span>
+            </PrismicNextLink>
           </button>
+          <GoArrowRight
+            className={`w-12 transition-all duration-300 ease-in-out`}
+          />
         </div>
-      )}
+      </div>
     </>
   );
 };

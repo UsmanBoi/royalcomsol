@@ -6,6 +6,7 @@ export const components = {
   about: dynamic(() => import("./About")),
   benefits: dynamic(() => import("./Benefits")),
   blog: dynamic(() => import("./Blog")),
+  faqs: dynamic(() => import("./Faqs")),
   hero: dynamic(() => import("./Hero")),
   logo_slider: dynamic(() => import("./LogoSlider")),
   rich_text: dynamic(() => import("./RichText")),

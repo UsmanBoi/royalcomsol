@@ -79,6 +79,15 @@
 				"__TYPE__": "FieldContent",
 				"value": "simplest",
 				"type": "Text"
+			},
+			"show_all": {
+				"key": "b7181b86-6803-42f1-9d1b-6fd063a16619",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "loose"
+				}
 			}
 		},
 		"items": [

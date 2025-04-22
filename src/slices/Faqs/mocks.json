@@ -1,0 +1,49 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "hand",
+				"type": "Text"
+			},
+			"faq_data": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"question",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "whole",
+									"type": "Text"
+								}
+							],
+							[
+								"answer",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "myself",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"view_all": {
+				"key": "c0c9f32f-0704-4bde-9ec3-c99cfbc1a375",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "highway"
+				}
+			}
+		},
+		"items": []
+	}
+]

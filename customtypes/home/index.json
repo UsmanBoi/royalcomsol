@@ -25,6 +25,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "faqs": {
+              "type": "SharedSlice"
+            },
             "logo_slider": {
               "type": "SharedSlice"
             },

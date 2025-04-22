@@ -331,6 +331,7 @@ export type HeaderDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | FaqsSlice
   | LogoSliderSlice
   | BenefitsSlice
   | ServiceSlice
@@ -950,6 +951,32 @@ export interface BenefitsSliceHomeBenefitsPrimary {
   title: prismic.KeyTextField;
 
   /**
+   * Description field in *Benefits → homeBenefits → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * View All field in *Benefits → homeBenefits → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: benefits.homeBenefits.primary.view_all
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  view_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
    * Benefit Data field in *Benefits → homeBenefits → Primary*
    *
    * - **Field Type**: Group
@@ -1141,6 +1168,99 @@ type BlogSliceVariation = BlogSliceDefault | BlogSliceBlogCard;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type BlogSlice = prismic.SharedSlice<"blog", BlogSliceVariation>;
+
+/**
+ * Item in *Faqs → Default → Primary → Faq Data*
+ */
+export interface FaqsSliceDefaultPrimaryFaqDataItem {
+  /**
+   * Question field in *Faqs → Default → Primary → Faq Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.faq_data[].question
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  question: prismic.KeyTextField;
+
+  /**
+   * Answer field in *Faqs → Default → Primary → Faq Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.faq_data[].answer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  answer: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Faqs → Default → Primary*
+ */
+export interface FaqsSliceDefaultPrimary {
+  /**
+   * Title field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * View All field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.view_all
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  view_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Faq Data field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.faq_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  faq_data: prismic.GroupField<Simplify<FaqsSliceDefaultPrimaryFaqDataItem>>;
+}
+
+/**
+ * Default variation for Faqs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FaqsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Faqs*
+ */
+type FaqsSliceVariation = FaqsSliceDefault;
+
+/**
+ * Faqs Shared Slice
+ *
+ * - **API ID**: `faqs`
+ * - **Description**: Faqs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FaqsSlice = prismic.SharedSlice<"faqs", FaqsSliceVariation>;
 
 /**
  * Item in *Hero → Default → Primary → CTA Buttons*
@@ -1501,6 +1621,22 @@ export interface ServiceSliceHomeServicePrimary {
   title: prismic.KeyTextField;
 
   /**
+   * Show All field in *Service → homeService → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.homeService.primary.show_all
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  show_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
    * Service Data field in *Service → homeService → Primary*
    *
    * - **Field Type**: Group
@@ -1635,6 +1771,11 @@ declare module "@prismicio/client" {
       BlogSliceVariation,
       BlogSliceDefault,
       BlogSliceBlogCard,
+      FaqsSlice,
+      FaqsSliceDefaultPrimaryFaqDataItem,
+      FaqsSliceDefaultPrimary,
+      FaqsSliceVariation,
+      FaqsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,

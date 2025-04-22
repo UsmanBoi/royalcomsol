@@ -29,11 +29,11 @@ const About: FC<AboutProps> = ({ slice }) => {
           >
             About Us
           </h1>
-          <div className="relative h-full w-full max-sm:h-[25rem]">
+          <div className="relative h-[25rem] w-full sm:h-full max-lg:max-w-96">
             <PrismicNextImage
               field={slice.primary.about_image}
               alt=""
-              className="rounded object-cover object-center max-sm:h-[25rem] max-lg:max-h-[25rem]"
+              className="h-[25rem] rounded object-cover object-center sm:h-[28rem]"
             />
           </div>
         </div>

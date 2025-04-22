@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import { getCurrentScreenSize } from "../../constants.js";
 import React from "react";
 import { GoArrowRight } from "react-icons/go";
-import { FilledLinkToWebField, ImageField } from "@prismicio/client";
+import { ImageField, LinkField } from "@prismicio/client";
 
 interface ServiceCardData {
   service_title: string;
   service_headline: string;
-  service_link: FilledLinkToWebField;
+  service_link: LinkField;
   service_image: ImageField;
 }
 
@@ -18,7 +18,7 @@ interface ServiceCardProps {
   cardData: ServiceCardData[];
   gridClass?: string;
   cardClass?: string;
-  serviceLink: FilledLinkToWebField | object;
+  serviceLink: LinkField | null;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({

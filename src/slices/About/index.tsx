@@ -3,7 +3,6 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
-import { secHeading } from "@/app/constants";
 import { RichText } from "@/app/components/ui/RichText";
 
 /**

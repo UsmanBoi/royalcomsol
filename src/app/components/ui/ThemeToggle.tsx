@@ -2,7 +2,7 @@
 
 import { useTheme } from "../../context/themecontext";
 
-const ThemeToggle = ({ extraStyle }) => {
+const ThemeToggle = ({ extraStyle }: { extraStyle?: string }) => {
   const { theme, setTheme } = useTheme();
 
   return (

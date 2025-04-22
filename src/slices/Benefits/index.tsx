@@ -18,7 +18,7 @@ export type BenefitsProps = SliceComponentProps<Content.BenefitsSlice>;
  */
 const Benefits: FC<BenefitsProps> = ({ slice }) => {
   const [currentBenefit, setCurrentBenefit] = useState(0);
-  const toggleContent = (id) => setCurrentBenefit(id);
+  const toggleContent = (id: number) => setCurrentBenefit(id);
   return slice.variation === "homeBenefits" ? (
     <Bounded
       data-slice-type={slice.slice_type}

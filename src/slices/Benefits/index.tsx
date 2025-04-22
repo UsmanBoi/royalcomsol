@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 import { useState } from "react";
-import { Content } from "@prismicio/client";
+import { Content, ImageField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
@@ -16,6 +16,13 @@ export type BenefitsProps = SliceComponentProps<Content.BenefitsSlice>;
 /**
  * Component for "Benefits" Slices.
  */
+
+type Benefit = {
+  benefit_title: string;
+  benefit_headline: string;
+  benefit_image: ImageField;
+};
+
 const Benefits: FC<BenefitsProps> = ({ slice }) => {
   const [currentBenefit, setCurrentBenefit] = useState(0);
   const toggleContent = (id: number) => setCurrentBenefit(id);
@@ -33,7 +40,13 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
           {slice.primary.title}
         </h1>
 
-        <BenefitCard cardData={slice.primary.benefit_data} />
+        <BenefitCard
+          cardData={slice.primary.benefit_data.map((item) => ({
+            benefit_title: item.benefit_title ?? "",
+            benefit_headline: item.benefit_headline ?? "",
+            benefit_image: item.benefit_image ?? "",
+          }))}
+        />
         <div className="flex min-w-96 items-center text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
           <button type="button" className={`w-fit`}>
             <PrismicNextLink field={slice.primary.view_all}>

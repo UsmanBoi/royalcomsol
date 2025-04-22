@@ -7,15 +7,22 @@ import React from "react";
 import { GoArrowRight } from "react-icons/go";
 import { ImageField, LinkField } from "@prismicio/client";
 
+type Service = {
+  service_title: string;
+  service_headline: string;
+  service_image: ImageField;
+  service_link: LinkField;
+};
+
 interface ServiceCardData {
   service_title: string;
   service_headline: string;
-  service_link: LinkField;
   service_image: ImageField;
+  service_link: LinkField;
 }
 
 interface ServiceCardProps {
-  cardData: ServiceCardData[];
+  cardData: Service[]; // allow flexible input with service__link
   gridClass?: string;
   cardClass?: string;
   serviceLink: LinkField | null;
@@ -31,6 +38,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number>(0);
 
+  const formattedCardData: ServiceCardData[] = cardData.map((item) => ({
+    service_title: item.service_title,
+    service_headline: item.service_headline,
+    service_link: item.service_link,
+    service_image: item.service_image,
+  }));
+
   const visibleCards =
     screenSize === "xxs" ||
     screenSize === "xs" ||
@@ -38,10 +52,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     screenSize === "md" ||
     screenSize === "lg" ||
     screenSize === "xl"
-      ? cardData.slice(0, 5)
+      ? formattedCardData.slice(0, 5)
       : screenSize === "2xl" || screenSize === "3xl"
-        ? cardData.slice(0, 7)
-        : cardData.slice(0, 4);
+        ? formattedCardData.slice(0, 7)
+        : formattedCardData.slice(0, 4);
 
   useEffect(() => {
     const handleResize = () => setScreenSize(getCurrentScreenSize());
@@ -91,9 +105,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   }`}
                 >
                   <div
-                    className={`flex items-center justify-between transition-all duration-300 ease-in-out ${
-                      isHovered ? "" : ""
-                    }`}
+                    className={`flex items-center justify-between transition-all duration-300 ease-in-out`}
                   >
                     <h1
                       className={`${
@@ -127,18 +139,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     />
                   </div>
                   <div
-                    className={`h-[1.5px] w-80 outline-0 sm:w-full ${isHovered ? "bg-mywhite-100" : "bg-myblack-100"}`}
+                    className={`h-[1.5px] w-80 outline-0 sm:w-full ${
+                      isHovered ? "bg-mywhite-100" : "bg-myblack-100"
+                    }`}
                   />
                   <p
                     className={`${
                       isHovered ? "text-mywhite-50" : ""
                     } min-h-20 text-sm 2xl:text-base`}
-                    // style={{
-                    //   textShadow: isHovered
-                    //     ? "1px 1px 3px rgba(255, 255, 255, 0.3)" // subtle white shadow on hover
-                    //     : "1px 1px 3px rgba(0, 0, 0, 0.3)", // subtle black shadow normally
-                    //   transition: "0.3s ease, text-shadow 0.1s ease",
-                    // }}
                   >
                     {service.service_headline}
                   </p>
@@ -150,7 +158,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     } rounded-full bg-myblack-150 px-4 py-0.5`}
                   >
                     <PrismicNextLink
-                      field={service?.service_link}
+                      field={service.service_link}
                       className="text-sm"
                     >
                       Read More
@@ -158,7 +166,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   </button>
                 </div>
                 <PrismicNextImage
-                  field={service?.service_image}
+                  field={service.service_image}
                   className={`absolute left-0 top-0 -z-10 transition-all duration-200 ease-linear ${
                     !isHovered
                       ? "pointer-events-none translate-y-5 opacity-0"
@@ -173,7 +181,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <div className="flex min-w-96 items-center justify-end text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
           <button type="button" className={`w-fit rounded`}>
             <PrismicNextLink field={serviceLink}>
-              {/* Button text */}
               <span className="">View All Services</span>
             </PrismicNextLink>
           </button>

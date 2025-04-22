@@ -62,14 +62,6 @@
 										"text": "pass"
 									}
 								}
-							],
-							[
-								"service_description",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "environment",
-									"type": "Text"
-								}
 							]
 						]
 					}

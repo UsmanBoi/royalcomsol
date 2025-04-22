@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { Content, ImageField, LinkField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { secHeading } from "@/app/constants";
 // import { PrismicNextImage } from "@prismicio/next";
@@ -14,6 +14,14 @@ export type ServiceProps = SliceComponentProps<Content.ServiceSlice>;
 /**
  * Component for "Service" Slices.
  */
+
+type Service = {
+  service_title: string;
+  service_headline: string;
+  service_image: ImageField;
+  service_link: LinkField;
+};
+
 const Service: FC<ServiceProps> = ({ slice }) => {
   return slice.variation === "homeService" ? (
     <Bounded
@@ -31,7 +39,12 @@ const Service: FC<ServiceProps> = ({ slice }) => {
       </div>
       <ServiceCard
         serviceLink={slice.primary.show_all}
-        cardData={slice.primary.service_data}
+        cardData={slice.primary.service_data.map((item) => ({
+          service_title: item.service_title ?? "",
+          service_headline: item.service_headline ?? "",
+          service_image: item.service_image ?? "",
+          service_link: item.service_link,
+        }))}
         gridClass="absolute w-screen max-h-[400px] bottom-4 left-0 w-full"
         cardClass=""
       />
@@ -40,7 +53,12 @@ const Service: FC<ServiceProps> = ({ slice }) => {
     <div className="flex flex-col gap-2">
       <ServiceCard
         serviceLink={null}
-        cardData={slice.primary.service_data}
+        cardData={slice.primary.service_data.map((item) => ({
+          service_title: item.service_title ?? "",
+          service_headline: item.service_headline ?? "",
+          service_image: item.service_image ?? "",
+          service_link: item.service_link ?? "",
+        }))}
         gridClass="grid h-full place-items-center gap-x-4 gap-y-6 justify-self-center md:gap-x-6 lg:gap-y-12  xl:gap-x-12 2xl:gap-y-[4.25rem]"
         cardClass="flex h-full w-full max-w-xl flex-col items-center justify-between gap-y-2 rounded-lg border-2 border-neutral-200/50 p-5 pt-7 transition-all duration-300 ease-in-out dark:border-neutral-700 2xl:gap-y-5"
       />

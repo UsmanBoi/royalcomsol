@@ -17,11 +17,11 @@ export type BenefitsProps = SliceComponentProps<Content.BenefitsSlice>;
  * Component for "Benefits" Slices.
  */
 
-type _Benefit = {
-  benefit_title: string;
-  benefit_headline: string;
-  benefit_image: ImageField;
-};
+// type _Benefit = {
+//   benefit_title: string;
+//   benefit_headline: string;
+//   benefit_image: ImageField;
+// };
 
 const Benefits: FC<BenefitsProps> = ({ slice }) => {
   const [currentBenefit, setCurrentBenefit] = useState(0);

@@ -43,13 +43,6 @@
                   "placeholder": ""
                 }
               },
-              "service_description": {
-                "type": "Text",
-                "config": {
-                  "label": "Service Description",
-                  "placeholder": ""
-                }
-              },
               "service_image": {
                 "type": "Image",
                 "config": {

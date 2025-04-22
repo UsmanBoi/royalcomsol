@@ -3,14 +3,34 @@
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { useEffect, useRef, useState } from "react";
 import { getCurrentScreenSize } from "../../constants.js";
-
 import React from "react";
 import { GoArrowRight } from "react-icons/go";
+import { FilledLinkToWebField, ImageField } from "@prismicio/client";
 
-const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
-  const [screenSize, setScreenSize] = useState(null);
-  const scrollContainerRef = useRef(null);
-  const [hoveredIndex, setHoveredIndex] = useState(0); // Track which card is hovered
+interface ServiceCardData {
+  service_title: string;
+  service_headline: string;
+  service_link: FilledLinkToWebField;
+  service_image: ImageField;
+}
+
+interface ServiceCardProps {
+  cardData: ServiceCardData[];
+  gridClass?: string;
+  cardClass?: string;
+  serviceLink: FilledLinkToWebField | object;
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({
+  cardData,
+  gridClass = "",
+  cardClass = "",
+  serviceLink,
+}) => {
+  const [screenSize, setScreenSize] = useState<string | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number>(0);
+
   const visibleCards =
     screenSize === "xxs" ||
     screenSize === "xs" ||
@@ -21,11 +41,11 @@ const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
       ? cardData.slice(0, 5)
       : screenSize === "2xl" || screenSize === "3xl"
         ? cardData.slice(0, 7)
-        : cardData.slice(0, 4); // Show all cards or limit to 3
+        : cardData.slice(0, 4);
 
   useEffect(() => {
     const handleResize = () => setScreenSize(getCurrentScreenSize());
-    handleResize(); // initial
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -34,7 +54,7 @@ const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
     const el = scrollContainerRef.current;
     if (!el) return;
 
-    const handleWheel = (e) => {
+    const handleWheel = (e: WheelEvent) => {
       if (e.deltaY === 0) return;
       e.preventDefault();
       el.scrollTo({
@@ -44,10 +64,7 @@ const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
     };
 
     el.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      el.removeEventListener("wheel", handleWheel);
-    };
+    return () => el.removeEventListener("wheel", handleWheel);
   }, []);
 
   return (

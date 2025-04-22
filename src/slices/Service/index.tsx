@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { paddingClass, secHeading } from "@/app/constants";
+import { secHeading } from "@/app/constants";
 // import { PrismicNextImage } from "@prismicio/next";
 import ServiceCard from "@/app/components/ui/ServiceCard";
 import Bounded from "@/app/components/Bounded";

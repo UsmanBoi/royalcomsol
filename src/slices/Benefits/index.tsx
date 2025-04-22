@@ -27,7 +27,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     >
       <div className={`flex flex-col gap-y-10 py-10 sm:gap-y-20 lg:py-20`}>
         <h1
-          className={`h-fit sm:w-[30rem] max-sm:leading-[1.3em] ${secHeading}`}
+          className={`h-fit sm:w-[30rem] 3xl:leading-[1.3] max-3xl:leading-[1.275em] ${secHeading}`}
           style={{ wordSpacing: "0.1em" }}
         >
           {slice.primary.title}

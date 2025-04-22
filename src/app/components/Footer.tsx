@@ -4,7 +4,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import Menu from "./Menu";
 // import { PrismicLink } from "@prismicio/react";
 
-export default async function Footer({ extraStyle }) {
+export default async function Footer({ extraStyle }: { extraStyle?: string }) {
   const client = createClient();
   const footer = await client.getSingle("footer");
   return (

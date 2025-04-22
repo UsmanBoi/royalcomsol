@@ -18,13 +18,13 @@ const FaqCard: React.FC<FaqCardProps> = ({ cardData }) => {
   };
 
   return (
-    <div className="w-full space-y-4 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
+    <div className="w-full space-y-4 px-2 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
       {cardData.map((faq, index) => (
-        <div key={index} className="border-b border-gray-300 pb-4">
+        <div key={index} className="border-b border-gray-300 pb-4 font-normal">
           <button
             type="button"
             onClick={() => toggleItem(index)}
-            className="flex w-full items-center justify-between py-2 text-left font-medium sm:text-lg xl:text-2xl 2xl:text-3xl"
+            className="flex w-full items-center justify-between py-2 text-left sm:text-lg xl:text-2xl 2xl:text-[28px]"
           >
             <span className={openIndex === index ? "text-blue-600" : ""}>
               {faq.question}

@@ -4,6 +4,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { paddingClass, secHeading } from "@/app/constants";
 // import { PrismicNextImage } from "@prismicio/next";
 import ServiceCard from "@/app/components/ui/ServiceCard";
+import Bounded from "@/app/components/Bounded";
 
 /**
  * Props for `Service`.
@@ -15,24 +16,26 @@ export type ServiceProps = SliceComponentProps<Content.ServiceSlice>;
  */
 const Service: FC<ServiceProps> = ({ slice }) => {
   return slice.variation === "homeService" ? (
-    <div
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`flex h-auto flex-col gap-y-16 px-0 py-14 sm:gap-y-20 lg:py-20`}
+      className={`relative flex h-[36rem] w-screen items-start gap-y-16 px-0 py-14 sm:h-[42rem] sm:gap-y-20 lg:py-20 2xl:justify-center`}
     >
-      <h1
-        className={`${secHeading} ${paddingClass}`}
-        style={{ wordSpacing: "0.125em" }}
-      >
-        {slice.primary.title}
-      </h1>
+      <div className="flex h-[5rem] w-screen max-w-full 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
+        <h1
+          className={`${secHeading} h-fit pt-4 sm:pt-12`}
+          style={{ wordSpacing: "0.1em" }}
+        >
+          {slice.primary.title}
+        </h1>
+      </div>
       <ServiceCard
         serviceLink={slice.primary.show_all}
         cardData={slice.primary.service_data}
-        gridClass=""
+        gridClass="absolute w-screen max-h-[400px] bottom-4 left-0 w-full"
         cardClass=""
       />
-    </div>
+    </Bounded>
   ) : slice.variation === "default" ? (
     <div className="flex flex-col gap-2">
       <ServiceCard

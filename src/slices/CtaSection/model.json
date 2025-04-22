@@ -1,0 +1,45 @@
+{
+  "id": "cta_section",
+  "type": "SharedSlice",
+  "name": "CtaSection",
+  "description": "CtaSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cta_title": {
+          "type": "Text",
+          "config": {
+            "label": "CTA title",
+            "placeholder": ""
+          }
+        },
+        "cta_image": {
+          "type": "Image",
+          "config": {
+            "label": "CTA Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "cta_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

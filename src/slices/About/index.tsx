@@ -25,7 +25,7 @@ const About: FC<AboutProps> = ({ slice }) => {
         <div className="flex h-full w-full flex-col gap-8">
           <h1
             className={`w-fit text-start text-3xl font-extralight opacity-40 lg:text-4xl 2xl:text-5xl`}
-            style={{ wordSpacing: "0.125em" }}
+            style={{ wordSpacing: "0.1em" }}
           >
             About Us
           </h1>

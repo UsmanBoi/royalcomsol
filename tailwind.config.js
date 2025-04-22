@@ -44,6 +44,9 @@ module.exports = {
           100: "#E4ECFF",
           200: "#7df9ff",
         },
+        lilac: {
+          100: "#E9F0FF",
+        },
       },
 
       // fontFamily: {

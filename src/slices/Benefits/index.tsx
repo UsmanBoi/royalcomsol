@@ -23,22 +23,22 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} h-auto w-full py-10 dark:text-myblack-150`}
+      className={`${paddingClass} flex h-auto min-w-fit items-center py-10 dark:text-myblack-150 2xl:justify-center`}
     >
-      <div className={`flex flex-col gap-y-16 py-10 sm:gap-y-20 lg:py-20`}>
+      <div className={`flex flex-col gap-y-10 py-10 sm:gap-y-20 lg:py-20`}>
         <h1
-          className={`h-fit sm:w-[30rem] ${secHeading}`}
-          style={{ wordSpacing: "0.125em" }}
+          className={`h-fit sm:w-[30rem] max-sm:leading-[1.3em] ${secHeading}`}
+          style={{ wordSpacing: "0.1em" }}
         >
           {slice.primary.title}
         </h1>
 
         <BenefitCard cardData={slice.primary.benefit_data} />
-        <div className="flex min-w-96 items-center justify-end text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
+        <div className="flex min-w-96 items-center text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
           <button type="button" className={`w-fit`}>
             <PrismicNextLink field={slice.primary.view_all}>
               {/* Button text */}
-              <span className="">View All Benefits</span>
+              <span className="text-lg">View All Benefits</span>
             </PrismicNextLink>
           </button>
           <GoArrowRight

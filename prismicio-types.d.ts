@@ -331,6 +331,7 @@ export type HeaderDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | CtaSectionSlice
   | FaqsSlice
   | LogoSliderSlice
   | BenefitsSlice
@@ -1170,6 +1171,77 @@ type BlogSliceVariation = BlogSliceDefault | BlogSliceBlogCard;
 export type BlogSlice = prismic.SharedSlice<"blog", BlogSliceVariation>;
 
 /**
+ * Primary content in *CtaSection → Default → Primary*
+ */
+export interface CtaSectionSliceDefaultPrimary {
+  /**
+   * CTA title field in *CtaSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cta_section.default.primary.cta_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_title: prismic.KeyTextField;
+
+  /**
+   * CTA Image field in *CtaSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cta_section.default.primary.cta_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cta_image: prismic.ImageField<never>;
+
+  /**
+   * CTA Link field in *CtaSection → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cta_section.default.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for CtaSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CtaSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CtaSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CtaSection*
+ */
+type CtaSectionSliceVariation = CtaSectionSliceDefault;
+
+/**
+ * CtaSection Shared Slice
+ *
+ * - **API ID**: `cta_section`
+ * - **Description**: CtaSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CtaSectionSlice = prismic.SharedSlice<
+  "cta_section",
+  CtaSectionSliceVariation
+>;
+
+/**
  * Item in *Faqs → Default → Primary → Faq Data*
  */
 export interface FaqsSliceDefaultPrimaryFaqDataItem {
@@ -1771,6 +1843,10 @@ declare module "@prismicio/client" {
       BlogSliceVariation,
       BlogSliceDefault,
       BlogSliceBlogCard,
+      CtaSectionSlice,
+      CtaSectionSliceDefaultPrimary,
+      CtaSectionSliceVariation,
+      CtaSectionSliceDefault,
       FaqsSlice,
       FaqsSliceDefaultPrimaryFaqDataItem,
       FaqsSliceDefaultPrimary,

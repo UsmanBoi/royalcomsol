@@ -10,7 +10,7 @@ import { GoArrowRight } from "react-icons/go";
 const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
   const [screenSize, setScreenSize] = useState(null);
   const scrollContainerRef = useRef(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null); // Track which card is hovered
+  const [hoveredIndex, setHoveredIndex] = useState(0); // Track which card is hovered
   const visibleCards =
     screenSize === "xxs" ||
     screenSize === "xs" ||
@@ -58,20 +58,19 @@ const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
       >
         {visibleCards.map((service, index) => {
           const isHovered = hoveredIndex === index;
-
           return (
             <div
-              className={`${isHovered ? "border-blue-500/70" : ""} ${cardClass} flex h-full min-h-80 w-full max-w-sm flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border-2 border-neutral-200/50 transition-all duration-300 ease-in-out dark:border-neutral-700 xl:max-w-[400px] 3xl:h-96 3xl:max-w-md`}
+              className={`${isHovered ? "bg-opacity-0" : "bg-lilac-100"} ${cardClass} flex h-full min-h-[25rem] w-full max-w-[355px] flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border border-myblack-150/30 transition-all duration-300 ease-in-out dark:border-neutral-700 sm:max-w-sm xl:max-w-[400px] 2xl:max-w-md 3xl:max-w-lg`}
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseLeave={() => setHoveredIndex(0)}
             >
-              <div className="relative flex min-h-80 w-full items-end 2xl:h-80 3xl:h-96">
+              <div className="relative flex min-h-[25rem] w-full items-end">
                 <div
-                  className={`flex flex-col gap-1 px-4 transition-all duration-300 ease-in-out ${
+                  className={`flex flex-col gap-2.5 px-4 transition-all duration-300 ease-in-out sm:px-5 ${
                     isHovered
                       ? "-translate-y-3"
-                      : "translate-y-1 text-myblack-150"
+                      : "translate-y-5 text-myblack-150"
                   }`}
                 >
                   <div
@@ -80,55 +79,49 @@ const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
                     }`}
                   >
                     <h1
+                      className={`${
+                        isHovered ? "font-normal text-mywhite-50" : ""
+                      } pointer-events-none text-xl capitalize xl:text-xl 2xl:text-2xl`}
                       style={{
-                        textShadow: isHovered
-                          ? "1px 1px 3px rgba(255, 255, 255, 0.3)" // subtle white shadow on hover
-                          : "1px 1px 3px rgba(0, 0, 0, 0.2)", // subtle black shadow normally
-                        scale: isHovered
-                          ? "1.15" // subtle white shadow on hover
-                          : "1", // subtle black shadow normally
-
+                        scale: isHovered ? "1.105" : "1",
                         transformOrigin: "left",
                         transition: "scale 0.3s ease, text-shadow 0.1s ease",
                       }}
-                      className={`${
-                        isHovered
-                          ? "text-mywhite-50 outline-1 outline-blue-500"
-                          : ""
-                      } pointer-events-none font-semibold capitalize sm:text-[18px] xl:text-lg`}
                     >
                       {service.service_title}
                     </h1>
                     <GoArrowRight
                       className={`w-12 text-2xl transition-all duration-300 ease-in-out ${
-                        isHovered ? "text-blue-500" : ""
+                        isHovered ? "" : "text-blue-500"
                       }`}
                       style={
                         isHovered
                           ? {
                               transform: "scale(1.3)",
-                              transformOrigin: "right",
+                              transformOrigin: "left",
                               transition: "transform 0.3s ease",
                             }
                           : {
                               transform: "scale(1)",
-                              transformOrigin: "right",
+                              transformOrigin: "left",
                               transition: "transform 0.3s ease",
                             }
                       }
                     />
                   </div>
-
+                  <div
+                    className={`h-[1.5px] w-80 outline-0 sm:w-full ${isHovered ? "bg-mywhite-100" : "bg-myblack-100"}`}
+                  />
                   <p
                     className={`${
                       isHovered ? "text-mywhite-50" : ""
                     } min-h-20 text-sm 2xl:text-base`}
-                    style={{
-                      textShadow: isHovered
-                        ? "1px 1px 3px rgba(255, 255, 255, 0.3)" // subtle white shadow on hover
-                        : "1px 1px 3px rgba(0, 0, 0, 0.3)", // subtle black shadow normally
-                      transition: "0.3s ease, text-shadow 0.1s ease",
-                    }}
+                    // style={{
+                    //   textShadow: isHovered
+                    //     ? "1px 1px 3px rgba(255, 255, 255, 0.3)" // subtle white shadow on hover
+                    //     : "1px 1px 3px rgba(0, 0, 0, 0.3)", // subtle black shadow normally
+                    //   transition: "0.3s ease, text-shadow 0.1s ease",
+                    // }}
                   >
                     {service.service_headline}
                   </p>
@@ -149,11 +142,11 @@ const ServiceCard = ({ cardData, gridClass, cardClass, serviceLink }) => {
                 </div>
                 <PrismicNextImage
                   field={service?.service_image}
-                  className={`absolute left-0 top-0 -z-10 transition-all duration-300 ease-in-out ${
+                  className={`absolute left-0 top-0 -z-10 transition-all duration-200 ease-linear ${
                     !isHovered
                       ? "pointer-events-none translate-y-5 opacity-0"
                       : "translate-y-0 opacity-100"
-                  } h-96 w-full object-cover object-center`}
+                  } h-[25rem] w-full object-cover object-center`}
                 />
               </div>
             </div>

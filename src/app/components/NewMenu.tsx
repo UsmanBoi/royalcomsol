@@ -21,19 +21,19 @@ export default function NewMenu({ menuLinks }) {
   return (
     <>
       <div
-        className={`fixed inset-0 z-50 h-screen w-screen bg-myblack-150/85 backdrop-blur-[8px] transition-all duration-300 ease-in-out ${open ? "translate-x-0 delay-150" : "translate-x-full delay-500"}`}
+        className={`fixed inset-0 z-50 h-screen w-screen bg-mywhite-50/95 backdrop-blur-lg transition-all duration-300 ease-in-out ${open ? "translate-x-0 delay-150" : "-translate-x-full delay-500"}`}
       >
-        <div className="flex items-center justify-center gap-8">
+        <div className="flex h-full w-full items-center justify-center gap-8">
           <div className="mt-8">
-            <div className="flex gap-4">
+            <div className="flex flex-col items-center justify-center gap-8">
               {menuLinks?.map((item, index) => (
                 <button
-                  className={`h-10 w-fit rounded-full bg-blue-500 transition-all duration-300 ease-in-out ${open ? "translate-y-0" : "-translate-y-20"}`}
+                  className={`h-10 w-fit rounded bg-blue-500 px-3 transition-all duration-500 ease-in-out ${open ? "translate-x-0" : "-translate-x-[400%]"}`}
                   key={index}
                   onClick={toggleMenu}
                   style={
                     open
-                      ? { transitionDelay: `${600 + index * 100}ms` }
+                      ? { transitionDelay: `${200 + index * 100}ms` }
                       : { transitionDelay: `${200 + index * 100}ms` }
                   }
                 >
@@ -77,7 +77,7 @@ export default function NewMenu({ menuLinks }) {
         title="Menu"
         type="button"
         onClick={toggleMenu}
-        className={`group z-50 h-10 w-10 cursor-pointer outline-none transition-all duration-300 ease-in-out max-sm:h-8 max-sm:w-8`}
+        className={`group z-50 h-10 w-10 cursor-pointer outline-none transition-all duration-300 ease-in-out lg:hidden max-sm:h-8 max-sm:w-8`}
       >
         <div
           className={`group flex scale-x-110 items-center justify-center transition-all duration-300 ease-in-out ${open ? "scale-x-150" : "hover:scale-125"} `}

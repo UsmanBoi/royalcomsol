@@ -20,7 +20,6 @@ export default async function Header() {
         <span>{header.data.home}</span>
       </PrismicLink>
       <Menu extraStyle="" pageName="header" />
-      <ThemeToggle extraStyle="absolute right-0 top-0" />
     </header>
   );
 }

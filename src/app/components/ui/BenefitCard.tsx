@@ -10,7 +10,7 @@ const BenefitCard = ({ cardData }) => {
       <div className="grid max-w-full gap-x-4 gap-y-4 md:grid-cols-2 lg:gap-y-10 xl:grid-cols-3 xl:justify-items-center xl:place-self-center 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
         {cardData.map((benefit, id) => (
           <div
-            className="grid max-w-sm grid-cols-[1fr_1fr] gap-4 rounded bg-[#E9F0FF] px-3 py-2 sm:min-w-full sm:p-4 2xl:max-w-xl 2xl:py-5"
+            className="bg-lilac-100 grid min-h-40 max-w-full grid-cols-[1fr_1fr] gap-4 rounded px-3 py-2 sm:p-4 2xl:max-w-xl 2xl:py-5"
             key={id}
           >
             <div className="flex flex-col justify-center gap-2">
@@ -21,7 +21,7 @@ const BenefitCard = ({ cardData }) => {
                 {benefit.benefit_headline}
               </span>
             </div>
-            <div className="relative h-[11rem] sm:h-[12rem] lg:h-[13rem] 2xl:h-[15rem]">
+            <div className="relative h-[10rem] lg:h-[13rem] 2xl:h-[15rem]">
               <PrismicNextImage
                 field={benefit.benefit_image}
                 alt=""

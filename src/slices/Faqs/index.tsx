@@ -15,6 +15,12 @@ export type FaqsProps = SliceComponentProps<Content.FaqsSlice>;
 /**
  * Component for "Faqs" Slices.
  */
+
+type _FaqItem = {
+  question: string;
+  answer: string;
+};
+
 const Faqs: FC<FaqsProps> = ({ slice }) => {
   return (
     <Bounded
@@ -45,7 +51,12 @@ const Faqs: FC<FaqsProps> = ({ slice }) => {
           </div>
         </div>
 
-        <FaqCard cardData={slice.primary.faq_data} />
+        <FaqCard
+          cardData={slice.primary.faq_data.map((item) => ({
+            question: item.question ?? "",
+            answer: item.answer ?? "",
+          }))}
+        />
       </div>
     </Bounded>
   );

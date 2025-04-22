@@ -4,7 +4,6 @@ import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { GoArrowRight } from "react-icons/go";
-import { paddingClass, secHeading } from "@/app/constants";
 
 /**
  * Props for `CtaSection`.

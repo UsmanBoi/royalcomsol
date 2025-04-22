@@ -17,7 +17,7 @@ export type BenefitsProps = SliceComponentProps<Content.BenefitsSlice>;
  * Component for "Benefits" Slices.
  */
 
-type Benefit = {
+type _Benefit = {
   benefit_title: string;
   benefit_headline: string;
   benefit_image: ImageField;

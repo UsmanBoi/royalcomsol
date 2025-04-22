@@ -256,31 +256,7 @@ interface HeaderDocumentData {
     unknown,
     prismic.FieldState,
     never
-  >;
-
-  /**
-   * Theme Button field in *Header*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: true
-   * - **API ID Path**: header.theme_button
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  theme_button: prismic.BooleanField;
-
-  /**
-   * Menu Icon field in *Header*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: header.menu_icon
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  menu_icon: prismic.BooleanField /**
+  > /**
    * Meta Title field in *Header*
    *
    * - **Field Type**: Text

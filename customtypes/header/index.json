@@ -30,24 +30,6 @@
           "allowText": true,
           "repeat": false
         }
-      },
-      "theme_button": {
-        "type": "Boolean",
-        "config": {
-          "label": "Theme Button",
-          "placeholder_false": "dark",
-          "placeholder_true": "light",
-          "default_value": true
-        }
-      },
-      "menu_icon": {
-        "type": "Boolean",
-        "config": {
-          "label": "Menu Icon",
-          "placeholder_false": "false",
-          "placeholder_true": "true",
-          "default_value": false
-        }
       }
     },
     "SEO and Metadata": {

@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { paddingClass } from "../constants";
 
 type BoundedProps = {
   as?: React.ElementType;
@@ -12,7 +13,7 @@ const Bounded = React.forwardRef<HTMLDivElement, BoundedProps>(
     return (
       <Comp
         ref={ref}
-        className={clsx(`px-4 md:px-6`, className)}
+        className={clsx(`${paddingClass}`, className)}
         // className={clsx(` px-4 py-10 md:px-6 md:py-14 lg:py-16`, className)}
         {...restProps}
       >

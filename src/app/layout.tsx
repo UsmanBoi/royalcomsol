@@ -1,7 +1,6 @@
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import "./globals.css";
-import { ThemeProvider } from "./context/themecontext";
 import { Inter } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -28,13 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={` ${interFont.variable} no-scrollbar`}>
       <body className={`no-scrollbar min-h-screen`}>
-        <ThemeProvider>
-          <Header />
-          <div className="mt-24 max-h-max min-h-[84svh] lg:min-h-[75lvh] 2xl:min-h-[71vh]">
-            {children}
-          </div>
-          <Footer extraStyle="text-mywhite-50 bg-myblack-50" />
-        </ThemeProvider>
+        <Header />
+        <div className="mt-24 max-h-max min-h-[84svh] lg:min-h-[75lvh] 2xl:min-h-[71vh]">
+          {children}
+        </div>
+        <Footer extraStyle="text-mywhite-50 bg-myblack-50" />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>

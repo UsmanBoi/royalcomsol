@@ -18,7 +18,7 @@ const CtaSection: FC<CtaSectionProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`relative flex h-auto min-w-fit items-center py-10 text-mywhite-50 dark:text-myblack-150 lg:py-20`}
+      className={`relative flex h-auto min-w-fit items-center py-10 text-mywhite-50 lg:py-20`}
     >
       <div className={`flex flex-col gap-y-8 py-10 lg:py-20`}>
         <h1

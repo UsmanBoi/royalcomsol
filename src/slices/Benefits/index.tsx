@@ -1,11 +1,11 @@
 "use client";
 import { FC } from "react";
 import { useState } from "react";
-import { Content, ImageField } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import { paddingClass, secHeading } from "@/app/constants";
+import { secHeading } from "@/app/constants";
 import { GoArrowRight, GoDotFill } from "react-icons/go";
 import BenefitCard from "@/app/components/ui/BenefitCard";
 /**
@@ -30,7 +30,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} flex h-auto min-w-fit items-center py-10 dark:text-myblack-150 2xl:justify-center`}
+      className={`flex h-auto min-w-fit items-center py-10 2xl:justify-center`}
     >
       <div className={`flex flex-col gap-y-10 py-10 sm:gap-y-20 lg:py-20`}>
         <h1
@@ -64,7 +64,7 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} grid h-auto w-full grid-rows-[8em_1fr] gap-2 sm:grid-cols-[1fr_3fr] lg:grid-cols-[1fr_4fr]`}
+      className={`grid h-auto w-full grid-rows-[8em_1fr] gap-2 sm:grid-cols-[1fr_3fr] lg:grid-cols-[1fr_4fr]`}
     >
       <div className="mt-2 flex h-fit max-w-sm flex-col gap-1.5">
         {slice.primary.benefit_data.map((benefit, id) => (

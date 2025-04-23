@@ -13,14 +13,6 @@ h1 {
   --background-end-color: #fefefe; /* background end color */
 }
 
-[data-theme="dark"] {
-  --foreground-color: #fafafa; /* White text */
-  --background-start-color: #303030; /* background start color */
-  --background-end-color: #303030; /* background end color */
-  /* --font-roslindale: 'RoslindaleVariable-VF-Testing', serif;
-        --font-montserrat: 'Montserrat', sans-serif; */
-}
-
 html {
   overflow-x: hidden;
   box-sizing: border-box;

@@ -15,10 +15,10 @@ export type AboutProps = SliceComponentProps<Content.AboutSlice>;
  */
 const About: FC<AboutProps> = ({ slice }) => {
   return (
-    <Bounded
+    <div
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex min-h-[37rem] max-w-full flex-col items-center justify-center bg-myblack-150 py-8 text-mywhite-50 sm:py-16 2xl:py-24"
+      className="flex min-h-[37rem] max-w-full flex-col items-center justify-center bg-myblack-150 px-4 py-8 text-mywhite-50 sm:py-16 md:px-6 lg:px-12 xl:px-16 2xl:py-24"
     >
       <div className="relative grid h-full w-full place-items-center justify-items-center gap-x-32 gap-y-10 lg:grid-cols-[1fr_1fr] 2xl:max-w-screen-xl 2xl:gap-x-40 3xl:max-w-screen-2xl">
         <div className="flex h-full w-full flex-col gap-8">
@@ -42,7 +42,7 @@ const About: FC<AboutProps> = ({ slice }) => {
           <RichText field={slice.primary.about_content} />
         </div>
       </div>
-    </Bounded>
+    </div>
   );
 };
 

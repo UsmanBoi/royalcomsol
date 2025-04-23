@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
-import { paddingClass, secHeading } from "@/app/constants";
+import { secHeading } from "@/app/constants";
 import { PrismicNextLink } from "@prismicio/next";
 import { GoArrowRight } from "react-icons/go";
 import FaqCard from "@/app/components/ui/FaqCard";
@@ -26,7 +26,7 @@ const Faqs: FC<FaqsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`${paddingClass} h-auto w-full py-10 dark:text-myblack-150 max-sm:py-2`}
+      className={`h-auto w-full py-10 max-sm:py-2`}
     >
       <div
         className={`grid gap-y-14 py-10 sm:gap-y-20 md:grid-cols-2 lg:py-20 xl:justify-items-center xl:place-self-center 2xl:max-w-screen-xl 3xl:max-w-screen-2xl max-sm:py-2 max-sm:pb-10`}

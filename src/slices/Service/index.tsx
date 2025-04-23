@@ -5,6 +5,7 @@ import { secHeading } from "@/app/constants";
 // import { PrismicNextImage } from "@prismicio/next";
 import ServiceCard from "@/app/components/ui/ServiceCard";
 import Bounded from "@/app/components/Bounded";
+import { ServiceSliceDefault } from "../../../prismicio-types";
 
 /**
  * Props for `Service`.
@@ -20,6 +21,7 @@ type Service = {
   service_headline: string;
   service_image: ImageField;
   service_link: LinkField;
+  serivce_description?: string;
 };
 
 const Service: FC<ServiceProps> = ({ slice }) => {
@@ -27,7 +29,7 @@ const Service: FC<ServiceProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`relative flex h-[36rem] w-screen items-start gap-y-16 px-0 py-14 sm:h-[42rem] sm:gap-y-20 lg:py-20 2xl:justify-center`}
+      className={`relative flex h-[36rem] w-screen items-start gap-y-16 py-14 sm:h-[42rem] sm:gap-y-20 lg:py-20 2xl:justify-center`}
     >
       <div className="flex h-[5rem] w-screen max-w-full 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
         <h1
@@ -38,6 +40,7 @@ const Service: FC<ServiceProps> = ({ slice }) => {
         </h1>
       </div>
       <ServiceCard
+        pagetype="homePage"
         serviceLink={slice.primary.show_all}
         cardData={slice.primary.service_data.map((item) => ({
           service_title: item.service_title ?? "",
@@ -45,24 +48,31 @@ const Service: FC<ServiceProps> = ({ slice }) => {
           service_image: item.service_image ?? "",
           service_link: item.service_link,
         }))}
-        gridClass="absolute w-screen max-h-[400px] bottom-4 left-0 w-full"
+        gridClass="absolute w-screen max-h-[400px] bottom-4 left-[4.5%] w-full"
         cardClass=""
       />
     </Bounded>
   ) : slice.variation === "default" ? (
-    <div className="flex flex-col gap-2">
-      <ServiceCard
-        serviceLink={null}
-        cardData={slice.primary.service_data.map((item) => ({
-          service_title: item.service_title ?? "",
-          service_headline: item.service_headline ?? "",
-          service_image: item.service_image ?? "",
-          service_link: item.service_link ?? "",
-        }))}
-        gridClass="grid h-full place-items-center gap-x-4 gap-y-6 justify-self-center md:gap-x-6 lg:gap-y-12  xl:gap-x-12 2xl:gap-y-[4.25rem]"
-        cardClass="flex h-full w-full max-w-xl flex-col items-center justify-between gap-y-2 rounded-lg border-2 border-neutral-200/50 p-5 pt-7 transition-all duration-300 ease-in-out dark:border-neutral-700 2xl:gap-y-5"
-      />
-    </div>
+    <Bounded className="flex flex-col gap-5 pb-20">
+      <h1 className={`${secHeading} pt-5`}>Our Services</h1>
+      {slice.variation === "default" && (
+        <ServiceCard
+          pagetype="services"
+          serviceLink={null}
+          cardData={(
+            slice.primary as ServiceSliceDefault["primary"]
+          ).service_data.map((item) => ({
+            service_title: item.service_title ?? "",
+            service_headline: item.service_headline ?? "",
+            service_image: item.service_image ?? "",
+            service_link: item.service_link ?? "",
+            service_description: item.service_description ?? "",
+          }))}
+          gridClass="grid h-full place-items-center gap-x-4 gap-y-6 justify-self-center md:gap-x-6 lg:gap-y-12  xl:gap-x-12 2xl:gap-y-[4.25rem]"
+          cardClass=""
+        />
+      )}
+    </Bounded>
   ) : (
     ""
   );

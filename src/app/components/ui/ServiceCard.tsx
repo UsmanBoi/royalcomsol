@@ -216,7 +216,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   }`}
                   style={{
                     // scale: isHovered ? "0.8 0.8 1" : "1 1 1",
-                    width: isHovered ? "75%" : "100%",
+                    width: isHovered && screenSize === "md" ? "75%" : "100%",
                     transformOrigin: "left",
                     transition: "width 0.4s ease",
                   }}
@@ -303,8 +303,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 <div
                   className="hidden h-full w-full p-2 md:flex"
                   style={{
-                    translate: isHovered ? "-20%" : "0%",
-                    width: isHovered ? "120%" : "100%",
+                    translate: isHovered && screenSize === "md" ? "-20%" : "0%",
+                    width: isHovered && screenSize === "md" ? "120%" : "100%",
                     transformOrigin: "right",
                     transition: "width 0.4s ease, translate 0.4s ease",
                   }}

@@ -69,6 +69,14 @@
               }
             ]
           }
+        },
+        "hero_image2": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Image2",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

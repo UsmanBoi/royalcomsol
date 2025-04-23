@@ -1386,6 +1386,16 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   hero_image: prismic.ImageField<"laptop">;
+
+  /**
+   * Hero Image2 field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.hero_image2
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_image2: prismic.ImageField<never>;
 }
 
 /**

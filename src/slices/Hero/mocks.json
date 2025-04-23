@@ -30,8 +30,8 @@
 							[
 								"link_url",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "34c9ae4d-b873-49cd-860c-ce82da867f7a",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "ExternalLink",
 										"url": "https://prismic.io",
@@ -87,6 +87,28 @@
 						"credits": null
 					}
 				}
+			},
+			"hero_image2": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1560762484-813fc97650a0",
+					"width": 3344,
+					"height": 2509
+				},
+				"url": "https://images.unsplash.com/photo-1560762484-813fc97650a0",
+				"width": 3344,
+				"height": 2509,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "river",
+				"thumbnails": {}
 			}
 		},
 		"items": []

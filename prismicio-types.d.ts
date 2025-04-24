@@ -486,7 +486,11 @@ interface MenuDocumentData {
 export type MenuDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
-type PageDocumentDataSlicesSlice = ServiceSlice | BenefitsSlice | HeroSlice;
+type PageDocumentDataSlicesSlice =
+  | AboutSlice
+  | ServiceSlice
+  | BenefitsSlice
+  | HeroSlice;
 
 /**
  * Content for Page documents
@@ -693,9 +697,47 @@ export type AboutSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *About → AboutSelf → Primary*
+ */
+export interface AboutSliceAboutSelfPrimary {
+  /**
+   * About Image field in *About → AboutSelf → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.aboutSelf.primary.about_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  about_image: prismic.ImageField<never>;
+
+  /**
+   * About Content field in *About → AboutSelf → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.aboutSelf.primary.about_content
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  about_content: prismic.KeyTextField;
+}
+
+/**
+ * AboutSelf variation for About Slice
+ *
+ * - **API ID**: `aboutSelf`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutSliceAboutSelf = prismic.SharedSliceVariation<
+  "aboutSelf",
+  Simplify<AboutSliceAboutSelfPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *About*
  */
-type AboutSliceVariation = AboutSliceDefault;
+type AboutSliceVariation = AboutSliceDefault | AboutSliceAboutSelf;
 
 /**
  * About Shared Slice
@@ -1800,8 +1842,10 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       AboutSlice,
       AboutSliceDefaultPrimary,
+      AboutSliceAboutSelfPrimary,
       AboutSliceVariation,
       AboutSliceDefault,
+      AboutSliceAboutSelf,
       BenefitsSlice,
       BenefitsSliceDefaultPrimaryBenefitDataItem,
       BenefitsSliceDefaultPrimaryBenefitsPointsItem,

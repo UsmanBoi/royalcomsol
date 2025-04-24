@@ -31,6 +31,32 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "aboutSelf",
+      "name": "AboutSelf",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "about_image": {
+          "type": "Image",
+          "config": {
+            "label": "About Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "about_content": {
+          "type": "Text",
+          "config": {
+            "label": "About Content",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

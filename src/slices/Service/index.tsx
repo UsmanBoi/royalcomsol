@@ -48,7 +48,7 @@ const Service: FC<ServiceProps> = ({ slice }) => {
           service_image: item.service_image ?? "",
           service_link: item.service_link,
         }))}
-        gridClass="absolute w-screen max-h-[400px] bottom-4 left-[4.5%] w-full"
+        gridClass="absolute w-screen max-h-[400px] bottom-4 left-[4.5%] 2xl:left-[10%] 3xl:left-[17%] w-full"
         cardClass=""
       />
     </Bounded>

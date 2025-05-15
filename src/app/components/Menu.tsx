@@ -8,11 +8,11 @@ type MenuDocument = Content.MenuDocument;
 type MenuLink = MenuDocument["data"]["menu_links"][number];
 
 type Props = {
-  extraStyle?: string;
+  extraClass?: string;
   pageName: "header" | "footer";
 };
 
-export default async function Menu({ extraStyle = "", pageName }: Props) {
+export default async function Menu({ extraClass = "", pageName }: Props) {
   const client = createClient();
   const menu = await client.getSingle("menu");
   const menuLinks: MenuLink[] = menu.data.menu_links;
@@ -20,7 +20,7 @@ export default async function Menu({ extraStyle = "", pageName }: Props) {
   if (pageName === "header") {
     return (
       <menu
-        className={`${extraStyle} flex h-24 items-center justify-end px-4 md:sticky md:top-4 lg:justify-between lg:pl-10`}
+        className={`${extraClass} flex h-[4.5rem] items-center justify-end px-4 md:sticky md:top-4 lg:justify-center lg:pl-10`}
       >
         <NewMenu menuLinks={menuLinks} />
       </menu>
@@ -29,7 +29,7 @@ export default async function Menu({ extraStyle = "", pageName }: Props) {
 
   if (pageName === "footer") {
     return (
-      <nav className={`${extraStyle}`}>
+      <nav className={`${extraClass}`}>
         {menuLinks.map((item, index) => (
           <button
             className={`-ml-1 w-fit p-2 opacity-70 transition-all duration-300 ease-in-out`}

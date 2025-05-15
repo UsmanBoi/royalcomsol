@@ -3,6 +3,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import React, { useEffect, useState } from "react";
 import { getCurrentScreenSize } from "../constants.js";
 import { Content } from "@prismicio/client";
+import { GoArrowRight } from "react-icons/go";
 
 // Typing for individual link item
 type MenuLink = Content.MenuDocument["data"]["menu_links"][number];
@@ -28,53 +29,53 @@ export default function NewMenu({ menuLinks }: Props) {
     <>
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-50 h-screen w-screen bg-mywhite-50/95 backdrop-blur-lg transition-all duration-300 ease-in-out ${
-          open ? "translate-x-0 delay-150" : "-translate-x-full delay-500"
+        className={`fixed inset-0 z-50 min-h-screen bg-mywhite-50 backdrop-blur-lg transition-all duration-300 ease-in-out ${
+          open
+            ? "translate-x-0 delay-150 md:hidden"
+            : "w-screen translate-x-full delay-500"
         }`}
       >
-        <div className="flex h-full w-full items-center justify-center gap-8">
-          <div className="mt-8">
-            <div className="flex flex-col items-center justify-center gap-8">
-              {menuLinks?.map((item, index) => (
+        <div className="flex h-full w-full flex-col justify-center gap-8">
+          <div className="flex flex-col gap-14 px-6">
+            {menuLinks?.map((item, index) => (
+              <PrismicNextLink key={index} field={item.link_url}>
                 <button
-                  className={`h-10 w-fit rounded bg-blue-500 px-3 transition-all duration-500 ease-in-out ${
-                    open ? "translate-x-0" : "-translate-x-[400%]"
+                  className={`flex h-10 w-full max-w-full items-center justify-between border-b border-myblack-200 transition-all duration-500 ease-in-out ${
+                    open ? "translate-x-0" : "translate-x-[200%]"
                   }`}
-                  key={index}
                   onClick={toggleMenu}
                   style={{
                     transitionDelay: `${200 + index * 100}ms`,
                   }}
                 >
-                  <PrismicNextLink field={item.link_url}>
-                    <span className="px-5 text-mywhite-50">
-                      {item.link_title}
-                    </span>
-                  </PrismicNextLink>
+                  <span className="text-3xl uppercase tracking-tighter">
+                    {item.link_title}
+                  </span>
+                  <GoArrowRight
+                    className={`w-12 text-3xl transition-all duration-300 ease-in-out`}
+                  />
                 </button>
-              ))}
-            </div>
+              </PrismicNextLink>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Desktop Menu */}
-      {["lg", "xl", "2xl", "3xl"].includes(screenSize || "") && (
-        <div className="flex gap-4">
+      {["md", "lg", "xl", "2xl", "3xl"].includes(screenSize || "") && (
+        <div className="flex gap-2 lg:gap-4">
           {menuLinks?.map((item, index) => (
             <button
-              className={`h-10 w-fit rounded-full bg-blue-500 transition-all duration-300 ease-in-out ${
-                open ? "-translate-y-20" : "translate-y-0"
-              }`}
+              className={`group h-10 w-fit min-w-24 transition-all duration-300 ease-in-out hover:scale-[1.025] hover:font-medium lg:min-w-32`}
               key={index}
-              style={{
-                transitionDelay: `${
-                  open ? 100 + index * 100 : 600 + index * 100
-                }ms`,
-              }}
+              // style={{
+              //   transitionDelay: `${
+              //     open ? 100 + index * 100 : 600 + index * 100
+              //   }ms`,
+              // }}
             >
               <PrismicNextLink field={item.link_url}>
-                <span className="px-5 text-mywhite-50">{item.link_title}</span>
+                <span className="2xl:text-lg">{item.link_title}</span>
               </PrismicNextLink>
             </button>
           ))}
@@ -86,7 +87,7 @@ export default function NewMenu({ menuLinks }: Props) {
         title="Menu"
         type="button"
         onClick={toggleMenu}
-        className="group z-50 h-10 w-10 cursor-pointer outline-none transition-all duration-300 ease-in-out lg:hidden max-sm:h-8 max-sm:w-8"
+        className="group z-50 h-10 w-10 cursor-pointer outline-none transition-all duration-300 ease-in-out md:hidden max-sm:h-8 max-sm:w-8"
       >
         <div
           className={`group flex scale-x-110 items-center justify-center transition-all duration-300 ease-in-out ${

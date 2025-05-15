@@ -4,12 +4,12 @@ import { PrismicNextLink } from "@prismicio/next";
 import Menu from "./Menu";
 // import { PrismicLink } from "@prismicio/react";
 
-export default async function Footer({ extraStyle }: { extraStyle?: string }) {
+export default async function Footer({ extraClass }: { extraClass?: string }) {
   const client = createClient();
   const footer = await client.getSingle("footer");
   return (
     <footer
-      className={`${extraStyle} grid max-h-64 grid-cols-[1fr_1fr] items-center justify-end gap-x-6 px-4 py-10 sm:grid-cols-[2fr_2fr_3fr] md:sticky md:top-4 lg:justify-between lg:pl-10`}
+      className={`${extraClass} grid max-h-64 grid-cols-[1fr_1fr] items-center justify-end gap-x-6 px-4 py-10 sm:grid-cols-[2fr_2fr_3fr] md:sticky md:top-4 lg:justify-between lg:pl-10`}
     >
       <div className="flex flex-col gap-4">
         <PrismicNextLink field={footer.data.home_link}>
@@ -22,11 +22,11 @@ export default async function Footer({ extraStyle }: { extraStyle?: string }) {
       </div>
       <div className="flex flex-col gap-2">
         <h2 className="text-2xl font-semibold uppercase">Company</h2>
-        <Menu extraStyle="flex flex-col " pageName="footer" />
+        <Menu extraClass="flex flex-col " pageName="footer" />
       </div>
       <div className="flex flex-col gap-2 max-sm:hidden">
         <h2 className="text-2xl font-semibold uppercase">Services</h2>
-        <Menu extraStyle="flex flex-col " pageName="footer" />
+        <Menu extraClass="flex flex-col " pageName="footer" />
       </div>
 
       {/* <div></div> */}

@@ -1353,37 +1353,6 @@ type FaqsSliceVariation = FaqsSliceDefault;
 export type FaqsSlice = prismic.SharedSlice<"faqs", FaqsSliceVariation>;
 
 /**
- * Item in *Hero → Default → Primary → CTA Buttons*
- */
-export interface HeroSliceDefaultPrimaryCtaButtonsItem {
-  /**
-   * Link Title field in *Hero → Default → Primary → CTA Buttons*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.cta_buttons[].link_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  link_title: prismic.KeyTextField;
-
-  /**
-   * link_url field in *Hero → Default → Primary → CTA Buttons*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.cta_buttons[].link_url
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link_url: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -1408,18 +1377,6 @@ export interface HeroSliceDefaultPrimary {
   tagline: prismic.KeyTextField;
 
   /**
-   * CTA Buttons field in *Hero → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.cta_buttons[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  cta_buttons: prismic.GroupField<
-    Simplify<HeroSliceDefaultPrimaryCtaButtonsItem>
-  >;
-
-  /**
    * Hero Image field in *Hero → Default → Primary*
    *
    * - **Field Type**: Image
@@ -1438,6 +1395,32 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   hero_image2: prismic.ImageField<never>;
+
+  /**
+   * CTAButton Title field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.ctabutton_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  ctabutton_title: prismic.KeyTextField;
+
+  /**
+   * CTAButton Link field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.ctabutton_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  ctabutton_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -1873,7 +1856,6 @@ declare module "@prismicio/client" {
       FaqsSliceVariation,
       FaqsSliceDefault,
       HeroSlice,
-      HeroSliceDefaultPrimaryCtaButtonsItem,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,

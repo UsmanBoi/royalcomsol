@@ -18,56 +18,104 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 /**
  * Component for "Hero" Slicesa.
  */
+
+{
+  /* <Bounded ">
+<div className=">
+  <div
+    className={`}
+  >
+    <div className="flex w-fit items-center">
+      <h1 className="">
+        Increase your medical practice revenue by
+        <span className="text-[#236BFE] tracking-tighter"> 30% </span>in 3
+        months
+      </h1>
+    </div>
+    
+    <div className="">
+      <h2 className="">
+        Royal Com Solutions is a leading organization that offers custom BPO
+        strategies and services including clean billing, claim denial managament and accurate reimbursements that enhance patient interactions, boost efficiency, and drive revenue growth.
+      </h2>
+
+      <Link href="/contact">
+        <button >
+          <span className="">Get Started Today</span>
+          <GoArrowRight className="w-8 text-2xl" />
+        </button>
+      </Link>
+    </div>
+  </div>
+
+  <div className="">
+
+    <div className="relative max-lg:min-h-full lg:max-h-[27rem] 2xl:max-h-[30rem] w-full max-w-[320px] xs:max-w-sm 2xl:max-w-md">
+      <StaticImg
+        alt="hero Image describing business environment"
+        width={300}
+        height={300}
+        src="/building2.jpg"
+        className="
+      />
+      <StaticImg
+        alt="hero Image describing telesupport services"
+        width={300}
+        height={300}
+        src="/group.jpg"
+        className="
+      />
+    </div>
+  </div>
+</div>
+</Bounded> */
+}
+
 const Hero: FC<HeroProps> = ({ slice }) => (
   <Bounded
     data-slice-type={slice.slice_type}
     data-slice-variation={slice.variation}
-    className="flex h-full w-screen flex-col justify-center pb-16 pt-10 text-myblack-150 md:min-h-80 md:flex-row xl:items-center max-sm:gap-y-14 max-md:gap-20"
+    className="flex w-screen flex-col justify-center pb-16 pt-7 sm:pt-10 md:min-h-[30em] md:flex-row md:items-center lg:min-h-[35em]"
   >
-    <div className="relative grid h-full w-full gap-y-16 md:min-h-80 md:grid-cols-[2fr_1fr] lg:grid-cols-[2fr_1fr] xl:justify-items-center xl:place-self-center 2xl:max-w-screen-2xl 2xl:py-20 3xl:max-w-screen-3xl max-md:grid-rows-[1fr_1fr]">
+    <div className="relative grid h-full w-full gap-y-6 md:min-h-[26em] md:grid-cols-[2fr_22rem] lg:grid-cols-[2fr_1fr] xl:justify-items-center xl:place-self-center 2xl:max-w-screen-2xl 2xl:pb-20 2xl:pt-4 3xl:max-w-screen-2xl max-md:grid-rows-[1fr_1fr] max-lg:gap-x-4">
       {/* Content */}
-      {/* className={`absolute left-2 top-1/3 -z-10 mr-20 flex h-auto w-fit max-w-[30rem] -translate-y-1/2 flex-col justify-center gap-2 rounded-lg bg-gradient-to-br from-blue-100/50 via-blue-300/10 to-blue-300/10 p-6 shadow-lg backdrop-blur-[6px] sm:gap-4 lg:left-16 lg:mr-0 lg:max-w-[36rem] xl:max-w-[45rem] 2xl:max-w-[52rem]`} */}
       <div
-        className={`flex h-auto w-fit flex-col justify-center gap-6 rounded-lg sm:gap-y-10 max-sm:w-96`}
+        className={`relative flex h-auto w-fit flex-col justify-center gap-y-9 place-self-start rounded-lg md:gap-y-20 max-sm:w-96`}
       >
-        <div className="flex flex-col gap-y-14">
-          <h1 className="text-3xl tracking-[-4%] sm:max-w-[26rem] sm:text-[40px] sm:leading-[120%] md:max-w-[26rem] md:leading-[120%] lg:max-w-[36rem] lg:text-[56px] lg:font-light xl:max-w-[40rem] xl:text-[62px] 2xl:max-w-[52rem] 3xl:text-[80px] max-xs:pr-12 max-sm:w-[22rem] max-sm:leading-[1.35]">
+        <div className="flex w-fit items-center">
+          <h1 className="fade-up -ml-0.5 text-[36px] leading-[120%] tracking-[-4%] sm:max-w-[26rem] sm:text-[40px] md:max-w-[26rem] lg:-ml-[0.8%] lg:max-w-[36rem] lg:text-[56px] lg:font-light xl:max-w-[40rem] xl:text-[62px] 2xl:max-w-[52rem] 3xl:text-[80px] max-xs:pr-12 max-sm:w-[22rem]">
             {slice.primary.heading}
           </h1>
-          <h2 className="w-full text-sm font-normal sm:max-w-md lg:max-w-xl lg:text-base 2xl:text-lg max-sm:max-w-80">
+        </div>
+        <div className="flex flex-col gap-y-2.5">
+          <h2 className="fade-up w-full text-sm font-normal sm:max-w-md lg:max-w-xl lg:text-base 2xl:text-lg max-sm:max-w-80">
             {slice.primary.tagline}
           </h2>
-        </div>
-        <div className="flex w-fit items-center">
-          {slice.primary.cta_buttons.map((item, index) => (
-            <PrismicLink field={item.link_url} key={index}>
-              <button
-                key={index}
-                className={`flex h-10 w-fit items-center gap-1 rounded-full bg-blue-500 px-2.5`}
-              >
-                <span className="pl-1.5 font-semibold">{item.link_title} </span>
-                <GoArrowRight className="w-8 text-xl" />
-              </button>
-            </PrismicLink>
-          ))}
+
+          <PrismicLink field={slice.primary.ctabutton_link}>
+            <button
+              className={`slide-in-left flex h-10 w-fit items-center gap-1 font-bold`}
+            >
+              <span className="pl-0.5">{slice.primary.ctabutton_title}</span>
+              <GoArrowRight className="w-8 text-2xl" />
+            </button>
+          </PrismicLink>
         </div>
       </div>
 
       {/* Hero Images  */}
-      <div className="relative flex min-h-80 w-full justify-end max-sm:min-h-[16rem] max-sm:items-end">
-        {/* <div className="absolute inset-0 z-0 bg-gradient-to-l from-mywhite-200/5 via-mywhite-200/10 to-mywhite-200/20 bg-blend-screen"></div> */}
-
-        <div className="relative min-h-full w-full max-w-[30rem]">
+      <div className="relative flex min-h-80 w-full justify-center xs:justify-end max-sm:min-h-[24rem] max-sm:items-end">
+        <div className="relative w-full max-w-[320px] xs:max-w-sm lg:max-h-[27rem] 2xl:max-h-[30rem] 2xl:max-w-md max-lg:min-h-full">
           <PrismicNextImage
             priority
             field={slice.primary.hero_image}
-            className="absolute right-0 top-0 h-[19rem] w-[14.25rem] rounded-sm object-cover object-center sm:w-[22rem] lg:w-[14.25rem]"
+            className="slide-in-right absolute right-0 top-8 h-56 w-44 rounded object-cover object-center xs:top-0 xs:h-[19rem] xs:w-[14.25rem] lg:top-3 lg:w-[14.25rem] 2xl:h-[23.5rem] 2xl:w-[17.5rem]"
           />
 
           <PrismicNextImage
             priority
             field={slice.primary.hero_image2}
-            className="absolute bottom-0 left-0 h-[14.25rem] w-[14.25rem] rounded-sm object-cover object-center"
+            className="slide-in-left absolute bottom-12 left-4 h-44 w-44 rounded object-cover object-center xs:bottom-4 xs:left-0 xs:h-[14.25rem] xs:w-52 lg:left-2 lg:w-[14.25rem] 2xl:-bottom-[20%] 2xl:h-[17.5rem] 2xl:w-[17.5rem]"
           />
         </div>
       </div>

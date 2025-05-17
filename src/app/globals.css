@@ -2,13 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* app/globals.css or your Tailwind CSS file */
+
+/* Base transition properties for all animated elements */
+
 h1 {
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   font-weight: 300;
+  color: #101010; /* Default: Black */
+}
+
+h2,
+p,
+span {
+  letter-spacing: -0.04%;
+  color: "#33ffaa";
+  /* font-weight: 300; */
 }
 
 :root {
-  --foreground-color: #101010; /* Default: Black */
+  --foreground-color: #2a2a2a; /* Default: Black */
   --background-start-color: #fefefe; /* background start color */
   --background-end-color: #fefefe; /* background end color */
 }

@@ -26,33 +26,6 @@
             "placeholder": "place tagline here"
           }
         },
-        "cta_buttons": {
-          "type": "Group",
-          "config": {
-            "label": "CTA Buttons",
-            "repeat": true,
-            "fields": {
-              "link_title": {
-                "type": "Text",
-                "config": {
-                  "label": "Link Title",
-                  "placeholder": ""
-                }
-              },
-              "link_url": {
-                "type": "Link",
-                "config": {
-                  "label": "link_url",
-                  "placeholder": "",
-                  "select": null,
-                  "allowTargetBlank": true,
-                  "allowText": true,
-                  "repeat": false
-                }
-              }
-            }
-          }
-        },
         "hero_image": {
           "type": "Image",
           "config": {
@@ -76,6 +49,24 @@
             "label": "Hero Image2",
             "constraint": {},
             "thumbnails": []
+          }
+        },
+        "ctabutton_title": {
+          "type": "Text",
+          "config": {
+            "label": "CTAButton Title",
+            "placeholder": ""
+          }
+        },
+        "ctabutton_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTAButton Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

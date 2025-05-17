@@ -13,36 +13,6 @@
 				"value": "luck",
 				"type": "Text"
 			},
-			"cta_buttons": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"link_title",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "remain",
-									"type": "Text"
-								}
-							],
-							[
-								"link_url",
-								{
-									"key": "34c9ae4d-b873-49cd-860c-ce82da867f7a",
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "ExternalLink",
-										"url": "https://prismic.io",
-										"text": "pot"
-									}
-								}
-							]
-						]
-					}
-				]
-			},
 			"hero_image": {
 				"origin": {
 					"id": "main",
@@ -89,7 +59,6 @@
 				}
 			},
 			"hero_image2": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1560762484-813fc97650a0",
@@ -108,7 +77,23 @@
 					"background": "transparent"
 				},
 				"alt": "river",
+				"credits": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"ctabutton_link": {
+				"key": "775193d1-bceb-4fa6-a137-07b50c781dae",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "become"
+				}
+			},
+			"ctabutton_title": {
+				"__TYPE__": "FieldContent",
+				"value": "construction",
+				"type": "Text"
 			}
 		},
 		"items": []

@@ -1,5 +1,4 @@
 import React from "react";
-// import Menu from "./Menu";
 import { paddingClass } from "../../constants";
 import Link from "next/link";
 import CTAButton from "./CTAButton";

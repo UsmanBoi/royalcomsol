@@ -3,9 +3,10 @@ import { repositoryName } from "@/prismicio";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "./components/Footer";
-import HeaderShell from "./components/ui/HeaderShell";
-import HeaderContent from "./components/ui/HeaderContent";
+// import HeaderShell from "./components/ui/HeaderShell";
+// import HeaderContent from "./components/ui/HeaderContent";
 import InViewObserver from "./components/ui/InViewObserver";
+import Header from "./components/Header";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -21,9 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={` ${interFont.variable} no-scrollbar`}>
       <body className={`no-scrollbar min-h-screen`}>
-        <HeaderShell>
-          <HeaderContent />
-        </HeaderShell>
+        <Header />
         <div className="mt-24 max-h-max min-h-[84svh] lg:min-h-[75lvh] 2xl:min-h-[71vh]">
           <InViewObserver />
           {children}

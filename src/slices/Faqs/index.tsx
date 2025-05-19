@@ -26,28 +26,31 @@ const Faqs: FC<FaqsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`h-auto w-full py-10 max-sm:py-2`}
+      className={`h-auto w-full py-5 sm:py-10`}
     >
       <div
-        className={`grid gap-y-14 py-10 sm:gap-y-20 md:grid-cols-2 lg:py-20 xl:justify-items-center xl:place-self-center 2xl:max-w-screen-xl 3xl:max-w-screen-2xl max-sm:py-2 max-sm:pb-10`}
+        className={`grid gap-y-10 py-5 sm:gap-y-14 sm:py-10 lg:grid-cols-2 lg:py-12 xl:justify-items-center xl:place-self-center 2xl:max-w-screen-2xl 3xl:max-w-screen-2xl max-sm:pb-10`}
       >
-        <div className="flex w-full flex-col justify-between gap-y-2 self-start sm:h-full">
+        <div className="flex w-full flex-col justify-between gap-y-5 self-start sm:h-full sm:gap-y-4">
           <h1
-            className={`h-fit leading-[1.3em] sm:w-[30rem] md:w-[36rem] ${secHeading}`}
+            className={`fade-up h-fit w-[28rem] text-5xl capitalize leading-[120%] md:w-[36rem] md:text-[52px] lg:text-6xl xl:text-7xl`}
             style={{ wordSpacing: "0.1em" }}
           >
             {slice.primary.title}
           </h1>
-          <div className="ml-2 flex w-fit items-center text-2xl transition-all duration-300 ease-in-out xl:text-3xl">
-            <button type="button" className={`w-fit`}>
-              <PrismicNextLink field={slice.primary.view_all}>
+          <div className="flex max-w-fit items-center pl-1.5 text-2xl transition-all duration-300 ease-in-out xl:text-3xl">
+            <PrismicNextLink field={slice.primary.view_all}>
+              <button
+                type="button"
+                className={`flex w-fit min-w-fit items-center`}
+              >
                 {/* Button text */}
                 <span className="text-lg">View All</span>
-              </PrismicNextLink>
-            </button>
-            <GoArrowRight
-              className={`w-12 transition-all duration-300 ease-in-out`}
-            />
+                <GoArrowRight
+                  className={`w-12 transition-all duration-300 ease-in-out`}
+                />
+              </button>
+            </PrismicNextLink>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     screens: {
       // Min-width breakpoints (default behavior)
-      xs: "400px",
+      xs: "420px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
@@ -16,7 +16,7 @@ module.exports = {
       "4xl": "2560px",
 
       // Max-width breakpoints (reverse approach)
-      "max-xs": { max: "400px" }, // For devices smaller than 450px, small mobiles iphones
+      "max-xs": { max: "420px" }, // For devices smaller than 450px, small mobiles iphones
       "max-sm": { max: "640px" }, // For devices smaller than 640px
       "max-md": { max: "768px" }, // For devices smaller than 768px
       "max-lg": { max: "1024px" }, // For devices smaller than 1024px
@@ -35,6 +35,10 @@ module.exports = {
           200: "#333333",
           250: "#2a2a2a",
         },
+        myblue: {
+          50: "#236BFE",
+          100: "#236BFE",
+        },
         mywhite: {
           50: "#fafafa",
           100: "#fefefe",
@@ -45,7 +49,7 @@ module.exports = {
           200: "#7df9ff",
         },
         lilac: {
-          100: "#E9F0FF",
+          100: "#236bfe",
         },
       },
 
@@ -65,5 +69,5 @@ module.exports = {
       },
     },
   },
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: [],
 };

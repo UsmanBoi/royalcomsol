@@ -1,35 +1,10 @@
 "use client";
 
+import React, { useEffect, useRef, useState } from "react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import { useEffect, useRef, useState } from "react";
 import { getCurrentScreenSize } from "../../constants.js";
-import React from "react";
-import { GoArrowRight } from "react-icons/go";
-import { ImageField, LinkField } from "@prismicio/client";
-
-type Service = {
-  service_title: string;
-  service_headline: string;
-  service_image: ImageField;
-  service_link: LinkField;
-  service_description?: string;
-};
-
-interface ServiceCardData {
-  service_title: string;
-  service_headline: string;
-  service_image: ImageField;
-  service_link: LinkField;
-  service_description?: string;
-}
-
-interface ServiceCardProps {
-  cardData: Service[]; // allow flexible input with service__link
-  gridClass?: string;
-  cardClass?: string;
-  pagetype?: string;
-  serviceLink: LinkField | null;
-}
+import { GoArrowRight, GoArrowLeft } from "react-icons/go";
+import { ServiceCardData, ServiceCardProps } from "@/app/utils/lib.js";
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
   cardData,
@@ -38,9 +13,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   pagetype = "",
   serviceLink,
 }) => {
-  const [screenSize, setScreenSize] = useState<string | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [hoveredIndex, setHoveredIndex] = useState<number>(0);
+  const [screenSize, setScreenSize] = useState(null);
+  const scrollContainerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const cardRefs = useRef([]);
+  const scrollTimeoutRef = useRef(null);
 
   const formattedCardData: ServiceCardData[] = cardData.map((item) => ({
     service_title: item.service_title,
@@ -63,62 +42,184 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           ? formattedCardData.slice(0, 7)
           : formattedCardData.slice(0, 4);
 
+  const dataToMap = pagetype === "homepage" ? visibleCards : cardData;
+
+  // Reset card refs whenever dataToMap changes
+  useEffect(() => {
+    cardRefs.current = cardRefs.current.slice(0, dataToMap.length);
+  }, [dataToMap]);
+
   useEffect(() => {
     const handleResize = () => setScreenSize(getCurrentScreenSize());
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
-  useEffect(() => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
+    // Set up scroll snap detection
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      const handleScroll = () => {
+        // Only update activeIndex when not in a programmatic scroll
+        if (!isScrolling) {
+          // Find which card is most visible in the viewport
+          const containerLeft = scrollContainer.scrollLeft;
+          const containerWidth = scrollContainer.clientWidth;
+          const containerCenter = containerLeft + containerWidth / 2;
 
-    const handleWheel = (e: WheelEvent) => {
-      if (e.deltaY === 0) return;
-      e.preventDefault();
-      el.scrollTo({
-        left: el.scrollLeft + e.deltaY * 4,
-        behavior: "smooth",
-      });
-    };
+          let closestCardIndex = 0;
+          let closestDistance = Infinity;
 
-    el.addEventListener("wheel", handleWheel, { passive: false });
-    return () => el.removeEventListener("wheel", handleWheel);
-  }, []);
+          cardRefs.current.forEach((cardRef, index) => {
+            if (!cardRef) return;
 
-  return pagetype === "homePage" ? (
+            const cardLeft = cardRef.offsetLeft;
+            const cardWidth = cardRef.offsetWidth;
+            const cardCenter = cardLeft + cardWidth / 2;
+
+            const distance = Math.abs(containerCenter - cardCenter);
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestCardIndex = index;
+            }
+          });
+
+          setActiveIndex(closestCardIndex);
+        }
+      };
+
+      scrollContainer.addEventListener("scroll", handleScroll);
+      return () => {
+        scrollContainer.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+      };
+    }
+  }, [isScrolling]);
+
+  const scrollToCard = (index: number) => {
+    const cardRef = cardRefs.current[index];
+    if (!cardRef || !scrollContainerRef.current) return;
+
+    // Mark that we're in a programmatic scroll
+    setIsScrolling(true);
+
+    // Calculate position to center the card in the container
+    const container = scrollContainerRef.current;
+    const containerWidth = container.clientWidth;
+    const cardLeft = cardRef.offsetLeft;
+    const cardWidth = cardRef.offsetWidth;
+
+    // Center the card in the view
+    const scrollPosition = cardLeft - containerWidth / 2 + cardWidth / 2;
+
+    // Set active index first
+    setActiveIndex(index);
+
+    // Then perform the scroll
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
+
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    // Reset the scrolling flag after animation completes
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 500); // Approximate duration of smooth scroll
+  };
+
+  const handleNext = () => {
+    const newIndex = (activeIndex + 1) % dataToMap.length;
+    scrollToCard(newIndex);
+  };
+
+  const handlePrev = () => {
+    const newIndex = (activeIndex - 1 + dataToMap.length) % dataToMap.length;
+    scrollToCard(newIndex);
+  };
+
+  const handleCardHover = (index) => {
+    // Always update hoveredIndex for visual feedback
+    setHoveredIndex(index);
+  };
+
+  if (pagetype !== "homePage" && pagetype !== "services") return null;
+
+  return (
     <>
+      <div className="flex max-h-32 w-full max-w-32 items-center justify-between sm:gap-x-6 lg:h-20 xl:h-24">
+        <button
+          onClick={handlePrev}
+          className="transition-transform hover:scale-110 focus:outline-none"
+        >
+          <GoArrowLeft className="fade-up w-12 text-4xl sm:text-5xl" />
+        </button>
+        <button
+          onClick={handleNext}
+          className="transition-transform hover:scale-110 focus:outline-none"
+        >
+          <GoArrowRight className="fade-up w-12 text-4xl sm:text-5xl" />
+        </button>
+      </div>
+
       <div
-        className={`${gridClass} scroll-snap-x mandatory no-scrollbar flex h-full max-w-full snap-start place-items-center justify-self-center overflow-x-auto overflow-y-hidden scroll-smooth`}
         ref={scrollContainerRef}
+        className={`${gridClass} no-scrollbar flex max-w-full snap-x snap-mandatory place-items-center justify-self-center overflow-x-auto overflow-y-hidden scroll-smooth`}
       >
-        {visibleCards.map((service, index) => {
-          const isHovered = hoveredIndex === index;
+        {dataToMap.map((service, index) => {
+          const isActive = index === activeIndex;
+          const isHovered = index === hoveredIndex;
+          const isActiveOrHovered = isActive || isHovered;
           return (
             <div
-              className={`${isHovered ? "bg-opacity-0" : "bg-lilac-100"} ${cardClass} flex h-full min-h-[25rem] w-full max-w-[355px] flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border border-myblack-150/30 transition-all duration-300 ease-in-out sm:max-w-sm xl:max-w-[400px] 2xl:max-w-md 3xl:max-w-lg`}
+              style={{
+                scale: isActiveOrHovered ? "1" : "1",
+                transformOrigin: "right",
+                transition: "scale 0.3s ease, translate 0.3s ease",
+              }}
               key={index}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(0)}
+              ref={(el) => (cardRefs.current[index] = el)}
+              className={`group ${cardClass} z-0 min-w-[370px] snap-center transition-all duration-300 ease-in-out ${
+                isActiveOrHovered
+                  ? "shadow-lg shadow-neutral-400"
+                  : "border-x border-neutral-300 bg-lilac-100/10"
+              }`}
+              onMouseEnter={() => {
+                handleCardHover(index);
+                setActiveIndex(index);
+              }}
+              onMouseLeave={() => {
+                setHoveredIndex(null);
+              }}
             >
+              <div
+                className={`absolute bottom-0 z-0 min-h-full w-full transition-all duration-300 ease-in-out ${
+                  isActiveOrHovered ? "" : ""
+                } `}
+                style={{
+                  background: !isActiveOrHovered
+                    ? "linear-gradient(to bottom left, rgba(250, 250, 200, 0.6) -8%, rgba(60, 107, 254, 0.1) 40%, rgba(250, 250, 200, 0.3) 60%, rgba(70, 107, 255, 0.1) 80%, rgba(100, 107, 255, 0.125) 90%)"
+                    : "linear-gradient(to top, rgba(60, 100, 250, 0.275) 20%,  rgba(70, 107, 255, 0.15) 50%, rgba(0, 0, 0, 0.2) 100%",
+                }}
+              />
               <div className="relative flex min-h-[25rem] w-full items-end">
-                <div
-                  className={`flex flex-col gap-2.5 px-4 transition-all duration-300 ease-in-out sm:px-5 ${
-                    isHovered
-                      ? "-translate-y-3"
-                      : "translate-y-5 text-myblack-150"
-                  }`}
-                >
+                <div className="flex flex-col gap-2.5 px-4 pb-6 text-myblack-150 sm:px-5">
                   <div
-                    className={`flex items-center justify-between transition-all duration-300 ease-in-out`}
+                    className={`${
+                      isActiveOrHovered ? "translate-y-2" : ""
+                    } flex items-center justify-between transition-all duration-300 ease-in-out`}
                   >
                     <h1
                       className={`${
-                        isHovered ? "font-normal text-mywhite-50" : ""
+                        isActiveOrHovered ? "font-normal text-mywhite-50" : ""
                       } pointer-events-none text-xl capitalize xl:text-xl 2xl:text-2xl`}
                       style={{
-                        scale: isHovered ? "1.105" : "1",
+                        scale: isActiveOrHovered ? "1.15" : "1",
                         transformOrigin: "left",
                         transition: "scale 0.3s ease, text-shadow 0.1s ease",
                       }}
@@ -127,10 +228,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                     </h1>
                     <GoArrowRight
                       className={`w-12 text-2xl transition-all duration-300 ease-in-out ${
-                        isHovered ? "text-mywhite-50" : "text-blue-500"
+                        isActiveOrHovered ? "text-mywhite-50" : "text-myblue-50"
                       }`}
                       style={
-                        isHovered
+                        isActiveOrHovered
                           ? {
                               transform: "scale(1.3)",
                               transformOrigin: "left",
@@ -138,45 +239,50 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                             }
                           : {
                               transform: "scale(1)",
-                              transformOrigin: "left",
+                              transformOrigin: "top",
                               transition: "transform 0.3s ease",
                             }
                       }
                     />
                   </div>
+                  {/* divideR */}
                   <div
-                    className={`h-[1.5px] w-80 outline-0 sm:w-full ${
-                      isHovered ? "bg-mywhite-100" : "bg-myblack-100"
+                    className={`h-[1px] w-80 outline-0 transition-all duration-300 ease-in-out sm:w-full ${
+                      isActiveOrHovered
+                        ? "translate-y-2 bg-mywhite-100"
+                        : "bg-myblack-100"
                     }`}
                   />
                   <p
                     className={`${
-                      isHovered ? "text-mywhite-50" : ""
-                    } min-h-[4.65rem] text-sm 2xl:text-base`}
+                      isActiveOrHovered
+                        ? "translate-y-4 text-mywhite-50 opacity-0"
+                        : ""
+                    } pointer-events-none min-h-16 text-sm transition-all duration-300 ease-in-out 2xl:text-base`}
                   >
                     {service.service_headline}
                   </p>
-                  <button
-                    className={`w-fit text-mywhite-50 transition-all duration-300 ease-in-out hover:text-blue-400 ${
-                      isHovered
-                        ? "-translate-y-3 opacity-100"
+                  <PrismicNextLink
+                    field={service.service_link}
+                    className={`absolute bottom-0 max-w-fit transition-all duration-300 ease-in-out ${
+                      isActiveOrHovered
+                        ? "-translate-y-12 opacity-100"
                         : "translate-y-10 opacity-0"
-                    } rounded-full bg-myblack-150 px-4 py-0.5`}
+                    }`}
                   >
-                    <PrismicNextLink
-                      field={service.service_link}
-                      className="text-sm"
+                    <button
+                      className={`flex w-fit min-w-32 items-center pl-1 text-mywhite-50 transition-all duration-300 ease-in-out`}
                     >
                       Read More
-                    </PrismicNextLink>
-                  </button>
+                    </button>
+                  </PrismicNextLink>
                 </div>
                 <PrismicNextImage
                   field={service.service_image}
-                  className={`absolute left-0 top-0 -z-10 transition-all duration-200 ease-linear ${
-                    !isHovered
-                      ? "pointer-events-none translate-y-5 opacity-0"
-                      : "translate-y-0 opacity-100"
+                  className={`absolute left-0 top-0 -z-50 transition-all duration-300 ease-in-out ${
+                    isActiveOrHovered
+                      ? "translate-y-0 opacity-100"
+                      : "pointer-events-none translate-y-5 opacity-0"
                   } h-[25rem] w-full object-cover object-center`}
                 />
               </div>
@@ -196,131 +302,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
       </div>
     </>
-  ) : pagetype === "services" ? (
-    <>
-      <div className={`${gridClass} grid h-full max-w-full lg:grid-cols-2`}>
-        {formattedCardData.map((service, index) => {
-          const isHovered = hoveredIndex === index;
-          return (
-            <div
-              className={`${isHovered ? "bg-opacity-0" : "bg-lilac-100"} ${cardClass} flex h-full min-h-[25rem] w-full max-w-full flex-shrink-0 flex-col items-center justify-between gap-y-2 rounded border border-myblack-150/50 transition-all duration-300 ease-in-out`}
-              key={index}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(0)}
-            >
-              <div className="relative min-h-[28rem] min-w-full gap-3 pb-8 sm:grid-cols-[3fr_2fr] md:grid 2xl:grid-cols-[2fr_1fr]">
-                {/* CARD Image CONTENT */}
-                <div
-                  className={`relative flex h-full flex-col justify-end gap-2.5 px-4 transition-all duration-300 ease-in-out sm:px-5 ${
-                    isHovered ? "" : "text-myblack-150"
-                  }`}
-                  style={{
-                    // scale: isHovered ? "0.8 0.8 1" : "1 1 1",
-                    width: isHovered && screenSize === "md" ? "75%" : "100%",
-                    transformOrigin: "left",
-                    transition: "width 0.4s ease",
-                  }}
-                >
-                  {/* Card Title */}
-                  <div
-                    className={`flex items-center justify-between transition-all duration-300 ease-in-out`}
-                  >
-                    <h1
-                      className={`${
-                        isHovered ? "font-normal" : ""
-                      } pointer-events-none text-xl capitalize xl:text-xl 2xl:text-2xl`}
-                      style={{
-                        scale: isHovered ? "1.105" : "1",
-                        transformOrigin: "left",
-                        transition: "scale 0.3s ease, text-shadow 0.1s ease",
-                      }}
-                    >
-                      {service.service_title}
-                    </h1>
-                    <GoArrowRight
-                      className={`w-12 text-2xl transition-all duration-300 ease-in-out ${
-                        isHovered ? "" : "text-blue-500"
-                      }`}
-                      style={
-                        isHovered
-                          ? {
-                              transform: "scale(1.3)",
-                              transformOrigin: "left",
-                              transition: "transform 0.3s ease",
-                            }
-                          : {
-                              transform: "scale(1)",
-                              transformOrigin: "left",
-                              transition: "transform 0.3s ease",
-                            }
-                      }
-                    />
-                  </div>
-                  {/* divider line */}
-                  <div
-                    className={`h-[1.5px] w-80 outline-0 sm:w-full ${
-                      isHovered ? "bg-mywhite-100" : "bg-myblack-100"
-                    }`}
-                  />
-                  {/* COntent */}
-                  <p className={`${isHovered ? "" : ""} text-sm 2xl:text-base`}>
-                    {service.service_headline}
-                  </p>
-                  {/* Read More Link */}
-                  <button
-                    className={`w-fit text-mywhite-50 transition-all duration-300 ease-in-out hover:text-blue-400 ${
-                      isHovered ? "" : ""
-                    } rounded-full bg-myblack-150 px-4 py-0.5`}
-                  >
-                    <PrismicNextLink
-                      field={service.service_link}
-                      className="text-sm"
-                    >
-                      Read More
-                    </PrismicNextLink>
-                  </button>
-                  <div
-                    className="absolute top-3.5 h-52 w-[92%] rounded"
-                    // style={{
-                    //   scale: isHovered ? "0.7 1 1" : "1 1 1",
-                    //   borderRadius: isHovered ? "8px" : "4px",
-                    //   transformOrigin: " left",
-                    //   transition: "scale 0.4s ease, borderRadius 0.1s ease",
-                    // }}
-                  >
-                    <PrismicNextImage
-                      field={service.service_image}
-                      className={`absolute top-0 transition-all duration-200 ease-linear ${
-                        !isHovered
-                          ? "pointer-events-none rounded"
-                          : "rounded-lg"
-                      } h-full w-full object-cover object-center`}
-                    />
-                  </div>
-                </div>
-                {/* CARD PARAGRAPH CONTENT */}
-
-                <div
-                  className="hidden h-full w-full p-2 md:flex"
-                  style={{
-                    translate: isHovered && screenSize === "md" ? "-20%" : "0%",
-                    width: isHovered && screenSize === "md" ? "120%" : "100%",
-                    transformOrigin: "right",
-                    transition: "width 0.4s ease, translate 0.4s ease",
-                  }}
-                >
-                  <p className="text-sm text-gray-600">
-                    {service.service_description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  ) : (
-    ""
   );
 };
 

@@ -10,6 +10,7 @@ export const components = {
   faqs: dynamic(() => import("./Faqs")),
   hero: dynamic(() => import("./Hero")),
   logo_slider: dynamic(() => import("./LogoSlider")),
+  menu_items: dynamic(() => import("./MenuItems")),
   rich_text: dynamic(() => import("./RichText")),
   service: dynamic(() => import("./Service")),
 };

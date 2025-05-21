@@ -1,8 +1,10 @@
 import React from "react";
 import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
-import Menu from "./Menu";
 import { paddingClass } from "../constants";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
+
 // import { PrismicLink } from "@prismicio/react";
 
 export default async function Footer({ extraClass }: { extraClass?: string }) {
@@ -28,13 +30,8 @@ export default async function Footer({ extraClass }: { extraClass?: string }) {
           </span>
         </div>
         <div className="flex w-full max-w-4xl lg:justify-between lg:gap-x-8 max-xs:flex-col max-xs:gap-y-10 max-lg:gap-x-6">
-          <div className="flex max-w-52 flex-1 flex-col gap-5 lg:max-w-60">
-            <h2 className="text-2xl font-semibold uppercase">Services</h2>
-            <Menu extraClass="flex flex-col " pageName="footer" />
-          </div>
-          <div className="flex max-w-36 flex-1 flex-col gap-5 lg:max-w-40">
-            <h2 className="text-2xl font-semibold uppercase">Company</h2>
-            <Menu extraClass="flex flex-col " pageName="footer" />
+          <div className="flex max-w-full flex-1 flex-col gap-5 lg:max-w-60">
+            <SliceZone slices={footer.data.slices} components={components} />
           </div>
           <div className="flex max-w-56 flex-1 flex-col gap-y-5 lg:max-w-72 xl:min-w-60 max-md:hidden">
             <h2 className="fade-up text-xl font-medium md:text-2xl 2xl:text-3xl">

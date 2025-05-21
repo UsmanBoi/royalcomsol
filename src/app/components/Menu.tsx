@@ -1,7 +1,6 @@
 import React from "react";
 import { createClient } from "@/prismicio";
 import NewMenu from "./NewMenu";
-import { PrismicNextLink } from "@prismicio/next";
 import { Content } from "@prismicio/client";
 
 type MenuDocument = Content.MenuDocument;
@@ -28,22 +27,7 @@ export default async function Menu({ extraClass = "", pageName }: Props) {
   }
 
   if (pageName === "footer") {
-    return (
-      <nav className={`${extraClass}`}>
-        {menuLinks.map((item, index) => (
-          <button
-            className={`-ml-1 w-fit p-2 opacity-70 transition-all duration-300 ease-in-out`}
-            key={index}
-          >
-            <PrismicNextLink field={item.link_url}>
-              <span className="text-sm text-mywhite-50 underline lg:text-base">
-                {item.link_title}
-              </span>
-            </PrismicNextLink>
-          </button>
-        ))}
-      </nav>
-    );
+    return <nav className={`${extraClass}`}></nav>;
   }
 
   return null;

@@ -209,7 +209,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 } `}
                 style={{
                   background: !isActiveOrHovered
-                    ? "linear-gradient(to bottom left, rgba(250, 250, 250, 0.5) -8%, rgba(35, 107, 254, 0.06) 40%, rgba(250, 250, 250, 0.3) 65%, rgba(35, 107, 254, 0.06) 78%, rgba(35, 107, 254, 0.1) 88%)"
+                    ? // ? "linear-gradient(to bottom left, rgba(250, 250, 250, 0.5) -8%, rgba(35, 107, 254, 0.06) 40%, rgba(250, 250, 250, 0.3) 65%, rgba(35, 107, 254, 0.06) 78%, rgba(35, 107, 254, 0.1) 88%)"
+                      ""
                     : "linear-gradient(to top, rgba(35, 107, 254, 0.275) 20%,  rgba(35, 107, 254, 0.15) 50%, rgba(0, 0, 0, 0.2) 100%",
                 }}
               />

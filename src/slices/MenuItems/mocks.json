@@ -1,0 +1,49 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"menu_title": {
+				"__TYPE__": "FieldContent",
+				"value": "plate",
+				"type": "Text"
+			},
+			"menu_data": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"item_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "motor",
+									"type": "Text"
+								}
+							],
+							[
+								"item_link",
+								{
+									"key": "d26ec9d1-7bdb-4940-ae0a-f27319f8af74",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev",
+										"text": "suppose"
+									}
+								}
+							]
+						]
+					}
+				]
+			},
+			"menu_type": {
+				"__TYPE__": "FieldContent",
+				"value": "Services",
+				"type": "Select"
+			}
+		},
+		"items": []
+	}
+]

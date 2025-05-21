@@ -29,7 +29,7 @@ const Service: FC<ServiceProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`relative flex h-[30em] w-screen items-start pt-[4rem] md:h-[35em] lg:h-[44rem] lg:pb-24 2xl:justify-center max-sm:mb-20`}
+      className={`relative flex h-[30em] w-screen items-start pt-[4rem] md:h-[35em] lg:h-[39em] lg:pb-12 2xl:justify-center max-sm:mb-20`}
     >
       <div className="relative flex h-full w-screen max-w-full gap-y-5 sm:justify-between 2xl:max-w-screen-2xl 3xl:max-w-screen-2xl max-sm:h-[30em] max-sm:flex-col">
         <h1
@@ -47,7 +47,7 @@ const Service: FC<ServiceProps> = ({ slice }) => {
             service_image: item.service_image ?? "",
             service_link: item.service_link,
           }))}
-          gridClass="absolute min-w-[100vw] bottom-0 left-0 min-w-full"
+          gridClass="absolute min-w-[100vw] bottom-0 left-0"
           cardClass="flex h-full min-h-[25rem] w-full max-w-[355px] flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border border-myblack-150/30 transition-all duration-300 ease-in-out sm:max-w-sm xl:max-w-[400px] 2xl:max-w-md 3xl:max-w-lg"
         />
       </div>

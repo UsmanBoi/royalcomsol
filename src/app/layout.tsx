@@ -27,7 +27,7 @@ export default function RootLayout({
           <InViewObserver />
           {children}
         </div>
-        <Footer extraClass="text-mywhite-50 bg-myblack-50" />
+        <Footer extraClass="bg-myblack-150 text-mywhite-50" />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>

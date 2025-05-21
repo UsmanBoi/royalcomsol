@@ -16,7 +16,12 @@ const Blog: FC<BlogProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for blog (variation: {slice.variation}) Slices
+      {slice.primary.blog_data.map((blog, index) => (
+        <div key={index}>
+          <h1>{blog.blog_title}</h1>
+          <span>{blog.blog_description}</span>
+        </div>
+      ))}
     </section>
   );
 };

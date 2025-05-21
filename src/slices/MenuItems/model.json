@@ -1,0 +1,64 @@
+{
+  "id": "menu_items",
+  "type": "SharedSlice",
+  "name": "MenuItems",
+  "description": "MenuItems",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "menu_type": {
+          "type": "Select",
+          "config": {
+            "label": "Menu Type",
+            "placeholder": "",
+            "options": [
+              "Main Menu",
+              "Services"
+            ]
+          }
+        },
+        "menu_title": {
+          "type": "Text",
+          "config": {
+            "label": "Menu Title",
+            "placeholder": ""
+          }
+        },
+        "menu_data": {
+          "type": "Group",
+          "config": {
+            "label": "Menu Data",
+            "repeat": true,
+            "fields": {
+              "item_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Item Title",
+                  "placeholder": ""
+                }
+              },
+              "item_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Item Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

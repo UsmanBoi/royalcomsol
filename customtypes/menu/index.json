@@ -39,6 +39,17 @@
             }
           }
         }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "menu_items": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     },
     "SEO and MetaData": {

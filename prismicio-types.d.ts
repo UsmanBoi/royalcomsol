@@ -102,6 +102,8 @@ export type BlogPostDocument<Lang extends string = string> =
     Lang
   >;
 
+type FooterDocumentDataSlicesSlice = MenuItemsSlice;
+
 /**
  * Content for Footer documents
  */
@@ -176,7 +178,18 @@ interface FooterDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  address: prismic.KeyTextField /**
+  address: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<FooterDocumentDataSlicesSlice> /**
    * Meta Title field in *Footer*
    *
    * - **Field Type**: Text
@@ -427,6 +440,8 @@ export interface MenuDocumentDataMenuLinksItem {
   >;
 }
 
+type MenuDocumentDataSlicesSlice = MenuItemsSlice;
+
 /**
  * Content for Menu documents
  */
@@ -451,7 +466,18 @@ interface MenuDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  menu_links: prismic.GroupField<Simplify<MenuDocumentDataMenuLinksItem>> /**
+  menu_links: prismic.GroupField<Simplify<MenuDocumentDataMenuLinksItem>>;
+
+  /**
+   * Slice Zone field in *Menu*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<MenuDocumentDataSlicesSlice> /**
    * Meta Title field in *Menu*
    *
    * - **Field Type**: Text
@@ -1516,6 +1542,104 @@ export type LogoSliderSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *MenuItems → Default → Primary → Menu Data*
+ */
+export interface MenuItemsSliceDefaultPrimaryMenuDataItem {
+  /**
+   * Item Title field in *MenuItems → Default → Primary → Menu Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_items.default.primary.menu_data[].item_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  item_title: prismic.KeyTextField;
+
+  /**
+   * Item Link field in *MenuItems → Default → Primary → Menu Data*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_items.default.primary.menu_data[].item_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  item_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *MenuItems → Default → Primary*
+ */
+export interface MenuItemsSliceDefaultPrimary {
+  /**
+   * Menu Type field in *MenuItems → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_items.default.primary.menu_type
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  menu_type: prismic.SelectField<"Main Menu" | "Services">;
+
+  /**
+   * Menu Title field in *MenuItems → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_items.default.primary.menu_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  menu_title: prismic.KeyTextField;
+
+  /**
+   * Menu Data field in *MenuItems → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_items.default.primary.menu_data[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menu_data: prismic.GroupField<
+    Simplify<MenuItemsSliceDefaultPrimaryMenuDataItem>
+  >;
+}
+
+/**
+ * Default variation for MenuItems Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MenuItemsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MenuItems*
+ */
+type MenuItemsSliceVariation = MenuItemsSliceDefault;
+
+/**
+ * MenuItems Shared Slice
+ *
+ * - **API ID**: `menu_items`
+ * - **Description**: MenuItems
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemsSlice = prismic.SharedSlice<
+  "menu_items",
+  MenuItemsSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -1801,6 +1925,7 @@ declare module "@prismicio/client" {
       BlogPostDocumentDataSlicesSlice,
       FooterDocument,
       FooterDocumentData,
+      FooterDocumentDataSlicesSlice,
       HeaderDocument,
       HeaderDocumentData,
       HomeDocument,
@@ -1809,6 +1934,7 @@ declare module "@prismicio/client" {
       MenuDocument,
       MenuDocumentData,
       MenuDocumentDataMenuLinksItem,
+      MenuDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -1855,6 +1981,11 @@ declare module "@prismicio/client" {
       LogoSliderSliceDefaultPrimary,
       LogoSliderSliceVariation,
       LogoSliderSliceDefault,
+      MenuItemsSlice,
+      MenuItemsSliceDefaultPrimaryMenuDataItem,
+      MenuItemsSliceDefaultPrimary,
+      MenuItemsSliceVariation,
+      MenuItemsSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

@@ -29,28 +29,28 @@ const Service: FC<ServiceProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`relative flex h-[36rem] w-screen items-start gap-y-16 py-14 sm:h-[42rem] sm:gap-y-20 lg:py-20 2xl:justify-center`}
+      className={`relative flex h-[30em] w-screen items-start pt-[4rem] md:h-[35em] lg:h-[44rem] lg:pb-24 2xl:justify-center max-sm:mb-20`}
     >
-      <div className="flex h-[5rem] w-screen max-w-full 2xl:max-w-screen-xl 3xl:max-w-screen-2xl">
+      <div className="relative flex h-full w-screen max-w-full gap-y-5 sm:justify-between 2xl:max-w-screen-2xl 3xl:max-w-screen-2xl max-sm:h-[30em] max-sm:flex-col">
         <h1
-          className={`${secHeading} h-fit pt-4 sm:pt-12`}
+          className={`${secHeading} slide-in-left h-fit max-sm:max-w-[28rem]`}
           style={{ wordSpacing: "0.1em" }}
         >
           {slice.primary.title}
         </h1>
+        <ServiceCard
+          pagetype="homePage"
+          serviceLink={slice.primary.show_all}
+          cardData={slice.primary.service_data.map((item) => ({
+            service_title: item.service_title ?? "",
+            service_headline: item.service_headline ?? "",
+            service_image: item.service_image ?? "",
+            service_link: item.service_link,
+          }))}
+          gridClass="absolute min-w-[100vw] bottom-0 left-0 min-w-full"
+          cardClass="flex h-full min-h-[25rem] w-full max-w-[355px] flex-shrink-0 snap-start flex-col items-center justify-between gap-y-2 border border-myblack-150/30 transition-all duration-300 ease-in-out sm:max-w-sm xl:max-w-[400px] 2xl:max-w-md 3xl:max-w-lg"
+        />
       </div>
-      <ServiceCard
-        pagetype="homePage"
-        serviceLink={slice.primary.show_all}
-        cardData={slice.primary.service_data.map((item) => ({
-          service_title: item.service_title ?? "",
-          service_headline: item.service_headline ?? "",
-          service_image: item.service_image ?? "",
-          service_link: item.service_link,
-        }))}
-        gridClass="absolute w-screen max-h-[400px] bottom-4 left-[4.5%] 2xl:left-[10%] 3xl:left-[17%] w-full"
-        cardClass=""
-      />
     </Bounded>
   ) : slice.variation === "default" ? (
     <Bounded className="flex flex-col gap-5 pb-20">

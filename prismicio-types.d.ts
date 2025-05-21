@@ -146,15 +146,26 @@ interface FooterDocumentData {
   >;
 
   /**
-   * Phone Number field in *Footer*
+   * Description field in *Footer*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: footer.phone_number
+   * - **API ID Path**: footer.description
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  phone_number: prismic.KeyTextField;
+  description: prismic.KeyTextField;
+
+  /**
+   * Email Address field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.email_address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_address: prismic.KeyTextField;
 
   /**
    * Address field in *Footer*

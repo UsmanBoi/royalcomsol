@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/app/components/Bounded";
-import { secHeading } from "@/app/constants";
 import { PrismicNextLink } from "@prismicio/next";
 import { GoArrowRight } from "react-icons/go";
 import FaqCard from "@/app/components/ui/FaqCard";

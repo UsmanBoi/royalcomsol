@@ -107,7 +107,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     // Calculate position to center the card in the container
     const container = scrollContainerRef.current;
     const containerWidth = container.clientWidth;
-    const cardLeft = cardRef.offsetLeft;
+    const options =
+      screenSize === "lg"
+        ? 400
+        : screenSize === "xl" || screenSize === "2xl"
+          ? 600
+          : 180;
+    const cardLeft = cardRef.offsetLeft + options;
     const cardWidth = cardRef.offsetWidth;
 
     // Center the card in the view
@@ -152,7 +158,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <>
-      <div className="flex max-h-32 w-full max-w-32 items-center justify-between sm:gap-x-6 lg:h-20 xl:h-24">
+      <div className="hidden max-h-[4.5em] w-full max-w-32 items-center justify-between sm:gap-x-6 md:flex lg:h-20 xl:h-24">
         <button
           onClick={handlePrev}
           className="transition-transform hover:scale-110 focus:outline-none"
@@ -203,8 +209,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 } `}
                 style={{
                   background: !isActiveOrHovered
-                    ? "linear-gradient(to bottom left, rgba(250, 250, 200, 0.6) -8%, rgba(60, 107, 254, 0.1) 40%, rgba(250, 250, 200, 0.3) 60%, rgba(70, 107, 255, 0.1) 80%, rgba(100, 107, 255, 0.125) 90%)"
-                    : "linear-gradient(to top, rgba(60, 100, 250, 0.275) 20%,  rgba(70, 107, 255, 0.15) 50%, rgba(0, 0, 0, 0.2) 100%",
+                    ? "linear-gradient(to bottom left, rgba(250, 250, 250, 0.5) -8%, rgba(35, 107, 254, 0.06) 40%, rgba(250, 250, 250, 0.3) 65%, rgba(35, 107, 254, 0.06) 78%, rgba(35, 107, 254, 0.1) 88%)"
+                    : "linear-gradient(to top, rgba(35, 107, 254, 0.275) 20%,  rgba(35, 107, 254, 0.15) 50%, rgba(0, 0, 0, 0.2) 100%",
                 }}
               />
               <div className="relative flex min-h-[25rem] w-full items-end">

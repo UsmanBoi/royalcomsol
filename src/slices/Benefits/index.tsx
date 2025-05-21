@@ -30,14 +30,14 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`flex h-auto min-w-fit items-center py-10 2xl:justify-center`}
+      className={`flex h-auto min-w-fit items-center py-5 2xl:justify-center`}
     >
-      <div className={`flex flex-col gap-y-10 py-10 sm:gap-y-20 lg:py-20`}>
+      <div className={`flex flex-col gap-y-6 sm:gap-y-12 max-lg:py-8`}>
         <h1
-          className={`h-fit sm:w-[30rem] 3xl:leading-[1.3] max-3xl:leading-[1.275em] ${secHeading}`}
+          className={`fade-up h-fit sm:w-[30rem] 3xl:leading-[1.3] max-3xl:leading-[1.275em] ${secHeading}`}
           style={{ wordSpacing: "0.1em" }}
         >
-          {slice.primary.title}
+          Our Benefits
         </h1>
 
         <BenefitCard
@@ -47,16 +47,19 @@ const Benefits: FC<BenefitsProps> = ({ slice }) => {
             benefit_image: item.benefit_image ?? "",
           }))}
         />
-        <div className="flex min-w-96 items-center text-2xl transition-all duration-300 ease-in-out hover:scale-105 xl:text-3xl">
-          <button type="button" className={`w-fit`}>
-            <PrismicNextLink field={slice.primary.view_all}>
+        <div className="flex max-w-fit items-center text-2xl transition-all duration-300 ease-in-out xl:text-3xl">
+          <PrismicNextLink href="/benefits">
+            <button
+              type="button"
+              className={`slide-in-left flex w-fit min-w-80 items-center pl-1`}
+            >
               {/* Button text */}
-              <span className="text-lg">View All Benefits</span>
-            </PrismicNextLink>
-          </button>
-          <GoArrowRight
-            className={`w-12 transition-all duration-300 ease-in-out`}
-          />
+              <span className="text-lg">View All</span>
+              <GoArrowRight
+                className={`w-12 transition-all duration-300 ease-in-out`}
+              />
+            </button>
+          </PrismicNextLink>
         </div>
       </div>
     </Bounded>

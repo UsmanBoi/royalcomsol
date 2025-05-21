@@ -19,8 +19,10 @@ const About: FC<AboutProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex h-auto w-full items-center bg-myblack-150 py-8 text-mywhite-50 xs:justify-center sm:py-16 2xl:min-h-[50rem] 2xl:py-[4.5rem]"
+      className="relative flex h-auto w-full items-center bg-myblack-150 py-8 text-mywhite-50 xs:justify-center sm:py-16 2xl:min-h-[50rem] 2xl:py-[4.5rem]"
     >
+      <div className="background-gradient absolute inset-0 -z-0 min-h-full"></div>
+      <div className="pointer-events-none absolute inset-0 -z-0 h-full bg-[url('/noisetexture.jpg')] opacity-5 mix-blend-multiply"></div>
       <div className="relative grid h-full w-full gap-x-32 gap-y-10 lg:grid-cols-[1fr_1fr] xl:justify-items-center xl:place-self-center 2xl:max-w-screen-2xl 2xl:gap-x-44 3xl:max-w-screen-2xl max-xs:max-w-[22em]">
         <div className="flex h-full w-full flex-col justify-between gap-7">
           <h1

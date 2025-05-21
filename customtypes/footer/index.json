@@ -31,10 +31,17 @@
           "repeat": false
         }
       },
-      "phone_number": {
+      "description": {
         "type": "Text",
         "config": {
-          "label": "Phone Number",
+          "label": "Description",
+          "placeholder": ""
+        }
+      },
+      "email_address": {
+        "type": "Text",
+        "config": {
+          "label": "Email Address",
           "placeholder": ""
         }
       },

@@ -255,26 +255,65 @@ interface HeaderDocumentData {
   title: prismic.KeyTextField;
 
   /**
-   * Home field in *Header*
+   * Site First Name field in *Header*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: home button
-   * - **API ID Path**: header.home
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.site_first_name
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  home: prismic.KeyTextField;
+  site_first_name: prismic.KeyTextField;
 
   /**
-   * Home Link field in *Header*
+   * Site Last Name field in *Header*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.site_last_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  site_last_name: prismic.KeyTextField;
+
+  /**
+   * Site Link field in *Header*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: header.home_link
+   * - **API ID Path**: header.site_link
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  home_link: prismic.LinkField<
+  site_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * CTA Title field in *Header*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.cta_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_title: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Header*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.cta_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_link: prismic.LinkField<
     string,
     string,
     unknown,
@@ -536,13 +575,24 @@ interface PageDocumentData {
   /**
    * Title field in *Page*
    *
-   * - **Field Type**: Title
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: page.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  title: prismic.TitleField;
+  title: prismic.RichTextField;
+
+  /**
+   * PageTitle field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.pagetitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pagetitle: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Page*
@@ -615,6 +665,17 @@ interface ServicePostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * PageTitle field in *service post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service_post.pagetitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pagetitle: prismic.KeyTextField;
 
   /**
    * Headline field in *service post*

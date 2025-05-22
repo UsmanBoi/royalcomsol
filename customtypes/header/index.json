@@ -13,17 +13,42 @@
           "placeholder": ""
         }
       },
-      "home": {
+      "site_first_name": {
         "type": "Text",
         "config": {
-          "label": "Home",
-          "placeholder": "home button"
+          "label": "Site First Name",
+          "placeholder": ""
         }
       },
-      "home_link": {
+      "site_last_name": {
+        "type": "Text",
+        "config": {
+          "label": "Site Last Name",
+          "placeholder": ""
+        }
+      },
+      "site_link": {
         "type": "Link",
         "config": {
-          "label": "Home Link",
+          "label": "Site Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "cta_title": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Title",
+          "placeholder": ""
+        }
+      },
+      "cta_link": {
+        "type": "Link",
+        "config": {
+          "label": "CTA Link",
           "placeholder": "",
           "select": null,
           "allowTargetBlank": true,

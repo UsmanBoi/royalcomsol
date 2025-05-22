@@ -34,7 +34,7 @@ const FaqCard: React.FC<FaqCardProps> = ({ cardData }) => {
             className="flex w-[23em] items-center justify-between py-3 text-left sm:w-full"
           >
             <span
-              className={`max-w-80 font-normal sm:max-w-full sm:text-lg lg:text-xl xl:text-2xl 2xl:text-[26px] ${openIndex === index ? "text-blue-600" : ""}`}
+              className={`max-w-80 font-normal sm:max-w-full sm:text-lg lg:text-xl 2xl:text-[26px] ${openIndex === index ? "text-blue-600" : ""}`}
             >
               {faq.question}
             </span>

@@ -3,8 +3,13 @@ import { paddingClass } from "../../constants";
 import Link from "next/link";
 import CTAButton from "./CTAButton";
 import Menu from "../Menu";
+import { HeaderDocumentData } from "../../../../prismicio-types";
 
-export default async function HeaderContent() {
+type Props = {
+  newdata: HeaderDocumentData;
+};
+
+export default async function HeaderContent({ newdata }: Props) {
   return (
     <header
       className={`${paddingClass} grid h-[4.65rem] min-w-full grid-cols-[1fr_1fr] items-center justify-between border-b-2 border-gray-200/80 bg-mywhite-100 bg-opacity-90 backdrop-blur-[5px] md:grid-cols-[1fr_2fr_1fr]`}
@@ -12,13 +17,13 @@ export default async function HeaderContent() {
       <Link
         href="/"
         aria-label="Home Button"
-        className="text-myblue-50 flex h-8 w-fit flex-col justify-center gap-[3px]"
+        className="flex h-8 w-fit flex-col justify-center gap-[3px] text-myblue-50"
       >
         <span className="text-[18px] font-light leading-none tracking-[-0.03em]">
-          RoyalCom
+          {newdata.site_first_name}
         </span>
         <span className="text-[18px] font-semibold leading-none tracking-[-0.03em] lg:font-medium">
-          Solutions
+          {newdata.site_last_name}
         </span>
       </Link>
       <Menu extraClass="" pageName="header" />

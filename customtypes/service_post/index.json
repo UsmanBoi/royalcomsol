@@ -19,6 +19,13 @@
           "placeholder": ""
         }
       },
+      "pagetitle": {
+        "type": "Text",
+        "config": {
+          "label": "PageTitle",
+          "placeholder": ""
+        }
+      },
       "headline": {
         "type": "Text",
         "config": {
